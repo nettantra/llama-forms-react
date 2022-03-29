@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 export default function TextAreaField(props) {
   const { properties, handleData, name } = props;
-  const [style, setStyle] = useState(properties.style || { borderRadius: "5px", width: "100%", padding: "15px", fontSize: "12px", fontFamily: "Nunito Sans" });
+  const [style, setStyle] = useState(properties.style || { borderRadius: "5px", width: "95%", padding: "7px", fontSize: "12px", fontFamily: "Nunito Sans" });
 
   const handleChange = (e) => {
     handleData(e.target.value);
@@ -12,7 +12,7 @@ export default function TextAreaField(props) {
     setStyle({
       ...style,
       minHeight: properties.height || "180px",
-      minWidth: properties.width || "100%",
+      minWidth: properties.width || "95%",
     });
   }, []);
 

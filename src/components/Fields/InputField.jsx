@@ -53,7 +53,7 @@ export default function InputField(props) {
                     height={properties['height'] ? properties['height'] : null}
                     width={properties['width'] ? properties['width'] : null}
                     pattern={properties['validationRegax'] ? properties['validationRegax'] : null}
-                    style={properties['style'] ? properties['style'] : properties['type'] === 'color' ? { width: '40px', height: '40px' } : { width: '100%', padding: '7px', border: '1px solid #000', borderRadius: '5px', fontSize: '14px', fontFamily: 'Nunito Sans', fontWeight: '400' }}
+                    style={properties['style'] ? properties['style'] : properties['type'] === 'color' ? { width: '40px', height: '40px' } : { width: '95%', padding: '7px', border: '1px solid #000', borderRadius: '5px', fontSize: '14px', fontFamily: 'Nunito Sans', fontWeight: '400' }}
                     onChange={(e) => { handleChange(e) }}
                 />
                 <div style={{ marginBottom: '20px' }}>
