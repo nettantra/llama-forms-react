@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React from 'react';
 
 export default function RadioField(props) {
   const { properties, handleData, name } = props;

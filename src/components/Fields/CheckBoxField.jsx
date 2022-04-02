@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
+import React from 'react';
+
 
 export default function CheckBoxField(props) {
   const { properties, handleData, name } = props;
-  const [style, setStyle] = useState(properties.style || {});
   const [chechBoxData, setCheckBoxData] = useState({});
 
   const handleChange = (e) => {
@@ -36,7 +37,7 @@ export default function CheckBoxField(props) {
                   id={item}
                   value={item}
                   onChange={handleChange}
-                  style={style}
+                  style={properties.style || {}}
                   checked={chechBoxData[item] || false}
                 />
                 <label

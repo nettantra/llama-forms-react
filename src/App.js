@@ -1,16 +1,14 @@
-import logo from './logo.svg';
 import './App.css';
-import { LlamaForms } from './llamaForms'
+import React from 'react';
+// import { LlamaForms } from './llamaForms'
+import LlamaForms from 'motaltest';
+// import LlamaForms from './lib';
 
 function App() {
 
   const login_test = (data) => {
     console.log("login", data)
   }
-  const reset_test = () => {
-    console.log("reset")
-  }
-
   return (
       <div style={{ width: "50%", margin: "auto" }}>
         <LlamaForms
@@ -90,7 +88,7 @@ function App() {
                 label: 'Email',
                 placeholder: "Enter your name",
                 description: "This is email field",
-                validationRegax: "^[a-z0-9]+@[a-z]+\.[a-z]{2,3}",
+                // validationRegax: "",
                 errorMessage: "",
                 readOnly: false,
                 maxLength: 30,

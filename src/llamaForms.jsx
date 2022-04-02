@@ -1,10 +1,5 @@
+import React from 'react';
 import { Fragment, useEffect, useState } from "react";
-import DropDownField from "./components/Fields/DropDownField";
-import InputField from "./components/Fields/InputField";
-import RadioField from "./components/Fields/RadioField";
-import TextAreaField from "./components/Fields/TextAreaField";
-import CheckBoxField from "./components/Fields/CheckBoxField";
-import FileUploadField from "./components/Fields/FileUploadField";
 import MultipleForm from "./components/Form/multipleForm";
 import SingleForm from "./components/Form/singleForm";
 
@@ -86,85 +81,6 @@ export const LlamaForms = (props) => {
             />
         )
 
-    }
-
-    const renderForm = (type, index, handleData, properties, data, key) => {
-        // switch case for the different field types
-        switch (type) {
-            case 'dropdown': {
-                return (
-                    <Fragment key={index}>
-                        <DropDownField
-                            handleData={handleData}
-                            properties={properties}
-                            parentState={data}
-                            name={key}
-                        />
-                    </Fragment>
-                )
-            }
-            case 'radio': {
-                return (
-                    <Fragment key={index}>
-                        <RadioField
-                            handleData={handleData}
-                            properties={properties}
-                            parentState={data}
-                            name={key}
-                        />
-                    </Fragment>
-                )
-            }
-            case 'checkbox': {
-                return (
-                    <Fragment key={index}>
-                        <CheckBoxField
-                            handleData={handleData}
-                            properties={properties}
-                            parentState={data}
-                            name={key}
-                        />
-                    </Fragment>
-                )
-            }
-            case 'file': {
-                return (
-                    <Fragment key={index}>
-                        <FileUploadField
-                            handleData={handleData}
-                            properties={properties}
-                            parentState={data}
-                            name={key}
-                        />
-                    </Fragment>
-                )
-            }
-            case 'textarea': {
-                return (
-                    <Fragment key={index}>
-                        <TextAreaField
-                            key={key}
-                            handleData={handleData}
-                            properties={properties}
-                            parentState={data}
-                            name={key}
-                        />
-                    </Fragment>
-                )
-            }
-            default: {
-                return (
-                    <Fragment key={index}>
-                        <InputField
-                            handleData={handleData}
-                            properties={properties}
-                            parentState={data}
-                            name={key}
-                        />
-                    </Fragment>
-                )
-            }
-        }
     }
 
     return (

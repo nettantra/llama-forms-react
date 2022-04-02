@@ -1,5 +1,6 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useState } from "react";
 import RenderForm from "./renderForm";
+import React from 'react';
 
 export default function MultipleForm(props) {
   const [step, setStep] = useState(1);
@@ -8,7 +9,6 @@ export default function MultipleForm(props) {
 
   const fields = props.fields;
   const data = props.parentState;
-  const setData = props.parentSetState;
   let fieldSet = props.wizardStepSet;
 
   const alertRender = () => {
