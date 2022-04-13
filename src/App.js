@@ -88,7 +88,7 @@ function App() {
                 label: 'Email',
                 placeholder: "Enter your name",
                 description: "This is email field",
-                // validationRegax: "",
+                // validationRegex: "",
                 errorMessage: "",
                 readOnly: false,
                 maxLength: 30,

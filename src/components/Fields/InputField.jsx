@@ -21,9 +21,9 @@ export default function InputField(props) {
             handleData(e.target.value, false)
             return
         }
-        if (properties.validationRegax) {
-            setError(!checkValidation(properties['validationRegax'], e.target.value))
-            handleData(e.target.value, !checkValidation(properties['validationRegax'], e.target.value))
+        if (properties.validationRegex) {
+            setError(!checkValidation(properties['validationRegex'], e.target.value))
+            handleData(e.target.value, !checkValidation(properties['validationRegex'], e.target.value))
         } else if (properties.type in regexObject) {
             setError(!checkValidation(regexObject[properties.type]['regex'], e.target.value))
             handleData(e.target.value, !checkValidation(regexObject[properties.type]['regex'], e.target.value))
@@ -51,7 +51,7 @@ export default function InputField(props) {
                     autoComplete={properties['autoComplete'] ? "on" : "off"}
                     height={properties['height'] ? properties['height'] : null}
                     width={properties['width'] ? properties['width'] : null}
-                    pattern={properties['validationRegax'] ? properties['validationRegax'] : null}
+                    pattern={properties['validationRegex'] ? properties['validationRegex'] : null}
                     style={properties['style'] ? properties['style'] : properties['type'] === 'color' ? { width: '40px', height: '40px' } : { width: '95%', padding: '7px', border: '1px solid #000', borderRadius: '5px', fontSize: '14px', fontFamily: 'Nunito Sans', fontWeight: '400' }}
                     onChange={(e) => { handleChange(e) }}
                 />
