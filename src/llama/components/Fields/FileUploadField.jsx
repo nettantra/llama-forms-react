@@ -48,7 +48,7 @@ export default function FileUploadField(props) {
         >
           {properties["label"]}
         </h3>
-        {properties["type"] == "range" ? (
+        {properties["type"] === "range" ? (
           <span>{props.parentState[name].value}</span>
         ) : null}
         <input

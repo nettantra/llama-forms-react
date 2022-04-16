@@ -94,12 +94,12 @@ export default function MultipleForm(props) {
 
       <button
         className="btn"
-        disabled={step == 1 ? true : false}
+        disabled={step === 1 ? true : false}
         onClick={handlePrevious}
       >
         Previous
       </button>
-      {step == parseInt(Object.keys(fieldSet).pop()) ? (
+      {step === parseInt(Object.keys(fieldSet).pop()) ? (
         <button className="btn" onClick={handleSubmit}>
           Submit
         </button>

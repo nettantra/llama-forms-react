@@ -16,7 +16,7 @@ export default function InputField(props) {
     }
     const handleChange = (e) => {
         handleData(e.target.value, false)
-        if (e.target.value.length == 0) {
+        if (e.target.value.length === 0) {
             setError(false)
             handleData(e.target.value, false)
             return
@@ -33,7 +33,7 @@ export default function InputField(props) {
         <>
             <div>
                 <h3 style={{ fontFamily: 'Nunito Sans', fontWeight: '400', fontSize: '16px', margin: '5px 0' }}>{properties['label']}</h3>
-                {properties['type'] == 'range' && <span style={{ fontFamily: 'Nunito Sans', fontWeight: '400', fontSize: '14px', margin: '5px 0' }}>{props.parentState[name].value ? props.parentState[name].value : 0}</span>}
+                {properties['type'] === 'range' && <span style={{ fontFamily: 'Nunito Sans', fontWeight: '400', fontSize: '14px', margin: '5px 0' }}>{props.parentState[name].value ? props.parentState[name].value : 0}</span>}
                 <input
                     id={name}
                     name={name}

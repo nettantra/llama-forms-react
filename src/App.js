@@ -1,8 +1,6 @@
-import './App.css';
 import React from 'react';
-// import { LlamaForms } from './llamaForms'
-import LlamaForms from 'motaltest';
-// import LlamaForms from './lib';
+import LlamaForms from './llama/index'
+// import {LlamaForms} from "test-react-form";
 
 function App() {
 

@@ -41,7 +41,7 @@ export const LlamaForms = (props) => {
             tempFields[key] = {
                 ...options[key],
                 step: schema[key].step ? schema[key].step : 1,
-                type: options[key] && options[key].type || "",
+                type: options[key] ? options[key].type : "",
                 values: schema[key].enum || "",
                 required: schema[key].required || false,
                 value: value[key] || "",
@@ -95,3 +95,5 @@ export const LlamaForms = (props) => {
         </>
     )
 }
+
+export default LlamaForms;
