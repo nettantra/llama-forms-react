@@ -1,73 +1,413 @@
-# llama-react
+# llama-form
+
+> This is a react form builder where we can implement a number of form fields without using any HTML tags. This comes with a dynamic and user-friendly UI. You just need to `import LlamaForm from llama-form` and enjoy an amazing form by JSON schema.
+
+[![NPM](https://img.shields.io/npm/v/llama-form.svg)](https://www.npmjs.com/package/llama-form) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+
+# Example Usage
 
 
-
-## Getting started
-
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
-
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
-
-## Add your files
-
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+**Login Form with email and password and their validation.**
 
 ```
-cd existing_repo
-git remote add origin https://code.nettantra.com/mohommedmotahir.alam/llama-react.git
-git branch -M main
-git push -uf origin main
+import LlamaForm from 'llama-form';
+
+export default function Example() 
+    {
+        return <LlamaForm
+                    schema={{
+                        title: 'Login Form Example',
+                        description: 'This is an example of a login form.',
+                        wizard: false, // optional (true for multi-step forms)
+                        properties: {
+                            email: {
+                                type: 'string',
+                                required: true, // here we mention that the field is required or not
+                            },
+                            password: {
+                                type: 'string',
+                                required: true,
+                            }
+                        }
+                    }}
+                    options={{
+                        fields: {
+                            email: {
+                                type: 'email', // this one defaine the input field type (defaults to 'text')
+                                label: 'User Email', // this one defines the label for the input field
+                                placeholder: "Your email address", // this one defines the placeholder text for the input field
+                                description: "This is a description for the email field", // this one defines the description for the input field
+                                validationRegex:"", // this one defines the validation regex for the input field
+                                errorMessage: "This is an error message for the email field", // this one defines the error message for the input field
+                                readOnly: false, // this one defines if the input field is read only (defaults to false)
+                                maxLength: 30, // this one defines the max length for the input field
+                                autoFocus: true, // this one defines if the input field should be focused on load
+                                autoComplete: true, // this one defines if the input field should be autocompleted
+                            },
+                            password: {
+                                type: 'password',
+                                label: 'User Passsword',
+                                placeholder: "Your password Please",
+                                description: "This is a description for the password field",
+                                validationRegex:"",
+                                errorMessage: "This is an error message for the password field",
+                                readOnly: false,
+                                autoFocus: false,
+                                autoComplete: true,
+                            }
+                        }
+                    }}
+                />
+    }
 ```
 
-## Integrate with your tools
+**Create Registration Form useing llama-form**
 
-- [ ] [Set up project integrations](https://code.nettantra.com/mohommedmotahir.alam/llama-react/-/settings/integrations)
+```
+import LlamaForm from 'llama-form';
 
-## Collaborate with your team
+export default function Example()
+    {
+        return <LlamaForms
+                    schema={{
+                        title: "Registration Form",
+                        description: "This is a registration form",
+                        wizard: false,
+                        properties: {
+                            firstName: {
+                                type: "string",
+                            },
+                            lastName: {
+                                type: "string",
+                            },
+                            email: {
+                                type: "string",
+                                required: true,
+                            },
+                            password: {
+                                type: "string",
+                                required: true,
+                            },
+                            dob: {
+                                type: "string",
+                            },
+                            address: {
+                                type: "string",
+                            },
+                            city: {
+                                type: "string",
+                            },
+                            state: {
+                                type: "string",
+                            },
+                            zip: {
+                                type: "string",
+                            }
+                        }
+                    }}
+                    options={{
+                        fields: {
+                            firstName: {
+                                type: "text",
+                                label: "First Name",
+                                placeholder: "Enter your first name",
+                                description: "Enter your first name",
+                                maxLength: 20
+                            },
+                            lastName: {
+                                type: "text",
+                                label: "Last Name",
+                                placeholder: "Enter your last name",
+                                description: "Enter your last name",
+                                maxLength: 20
+                            },
+                            email: {
+                                type: 'email',
+                                label: 'Email',
+                                placeholder: 'Enter your email',
+                                description: 'Enter your email',
+                                autoFocus: true,
+                            },
+                            password: {
+                                type: 'password',
+                                label: 'Password',
+                                placeholder: 'Enter your password',
+                                description: 'Enter your password',
+                            },
+                            dob: {
+                                type: 'date',
+                                label: 'Date of Birth',
+                                placeholder: 'Enter your date of birth',
+                                description: 'Enter your date of birth',
+                            },
+                            address: {
+                                type: 'text',
+                                label: 'Address',
+                                placeholder: 'Enter your address',
+                                description: 'Enter your address',
+                            },
+                            city: {
+                                type: 'text',
+                                label: 'City',
+                                placeholder: 'Enter your city',
+                                description: 'Enter your city',
+                            },
+                            state: {
+                                type: 'text',
+                                label: 'State',
+                                placeholder: 'Enter your state',
+                                description: 'Enter your state',
+                            },
+                            zip: {
+                                type: 'number',
+                                label: 'Zip',
+                                placeholder: 'Enter your zip',
+                                description: 'Enter your zip',
+                                maxLength: 5,
+                            }
+                        }
+                    }}
+                />
+    }
+```
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Automatically merge when pipeline succeeds](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+**Create Multi-step Registration Form useing llama-form**
 
-## Test and Deploy
+```
+import LlamaForm from 'llama-form';
 
-Use the built-in continuous integration in GitLab.
+export default function Example() {
+    return <LlamaForms
+                schema={{
+                    title: "Registration Form",
+                    description: "This is a registration form",
+                    wizard: true,
+                    properties: {
+                        firstName: {
+                            type: "string",
+                            step: 1,
+                        },
+                        lastName: {
+                            type: "string",
+                            step: 1,
+                        },
+                        email: {
+                            type: "string",
+                            required: true,
+                            step: 2,
+                        },
+                        password: {
+                            type: "string",
+                            required: true,
+                            step: 2,
+                        },
+                        dob: {
+                            type: "string",
+                            step: 1,
+                        },
+                        address: {
+                            type: "string",
+                            step: 3,
+                        },
+                        city: {
+                            type: "string",
+                            step: 3,
+                        },
+                        state: {
+                            type: "string",
+                            step: 3,
+                        },
+                        zip: {
+                            type: "string",
+                            step: 3,
+                        }
+                    }
+                }}
+                options={{
+                    fields: {
+                        firstName: {
+                            type: "text",
+                            label: "First Name",
+                            placeholder: "Enter your first name",
+                            description: "Enter your first name",
+                            maxLength: 20
+                        },
+                        lastName: {
+                            type: "text",
+                            label: "Last Name",
+                            placeholder: "Enter your last name",
+                            description: "Enter your last name",
+                            maxLength: 20
+                        },
+                        email: {
+                            type: 'email',
+                            label: 'Email',
+                            placeholder: 'Enter your email',
+                            description: 'Enter your email',
+                            autoFocus: true,
+                        },
+                        password: {
+                            type: 'password',
+                            label: 'Password',
+                            placeholder: 'Enter your password',
+                            description: 'Enter your password',
+                        },
+                        dob: {
+                            type: 'date',
+                            label: 'Date of Birth',
+                            placeholder: 'Enter your date of birth',
+                            description: 'Enter your date of birth',
+                        },
+                        address: {
+                            type: 'text',
+                            label: 'Address',
+                            placeholder: 'Enter your address',
+                            description: 'Enter your address',
+                        },
+                        city: {
+                            type: 'text',
+                            label: 'City',
+                            placeholder: 'Enter your city',
+                            description: 'Enter your city',
+                        },
+                        state: {
+                            type: 'text',
+                            label: 'State',
+                            placeholder: 'Enter your state',
+                            description: 'Enter your state',
+                        },
+                        zip: {
+                            type: 'number',
+                            label: 'Zip',
+                            placeholder: 'Enter your zip',
+                            description: 'Enter your zip',
+                            maxLength: 5,
+                        }
+                    }
+                }}
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+            />
+}
+```
 
-***
 
-# Editing this README
+**Create a form with a default value.**
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!).  Thank you to [makeareadme.com](https://www.makeareadme.com/) for this template.
+```
+export default function Example() {
+    return <LlamaForms
+                schema={{
+                    title: "Registration Form",
+                    description: "This is a registration form",
+                    wizard: true,
+                    properties: {
+                        firstName: {
+                            type: "string",
+                        },
+                        lastName: {
+                            type: "string",
+                        },
+                        email: {
+                            type: "string",
+                        }
+                    }
+                }}
+                options={{
+                    fields: {
+                        firstName: {
+                            type: "text",
+                            label: "First Name",
+                            placeholder: "Enter your first name",
+                            description: "Enter your first name",
+                            maxLength: 20
+                        },
+                        lastName: {
+                            type: "text",
+                            label: "Last Name",
+                            placeholder: "Enter your last name",
+                            description: "Enter your last name",
+                            maxLength: 20
+                        },
+                        email: {
+                            type: 'email',
+                            label: 'Email',
+                            placeholder: 'Enter your email',
+                            description: 'Enter your email',
+                            autoFocus: true,
+                        }
+                    }
+                }}
+                data={{
+                    firstName: "NetTantra",
+                    lastName: "Technologies",
+                    email: "nettantra@nettantra.net"
+                }}
 
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+            />
+}
+```
 
-## Name
-Choose a self-explaining name for your project.
+# llama-form Props
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+### Main Props
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+> **schema:** It is the base part of the form where you can give json schema for creating form.
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+> **options:** Here we define the properties of fields. Besically It is responsible for making your form more meaningful
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+> **data:** Here we can pass the default value for fields of a form. 
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+> **onSubmit:** This is a call back which accept a function in which it return the form data.
+
+ 
+### Schema Props
+
+1. **title:** Here we give a title to the form.
+2. **description:** Here we give the description to the form.
+3. **wizard:** It is used for multistep form. If its 'true' then form is multi-step.
+4. **properties:** This will carry your dynamic custom field which you want to render in form.
+    * **required:** Here we define whether the particular field is required or not. The default value is false.
+    * **enum:** This is for passing some sets of values. Basically, this is used by dropdown fields, checkbox fields, radio fields, etc.
+    * **step:** This is used to define the field's position on the multistep form with respect to the provided value. For instance, if the step value is 2 then that field will occur on the second step of the form and the default value of the step field is 1.
+
+### Options Props
+
+1. **fields:** Here we pass all schema fields properties. Which basically contains an object for each field that we describe in the schema.
+    * **type:** This is used to define which type of input field we want for our field. As for email we use "type - email". 
+	   **Input Field type support by llama-form.**        
+       1. text - text field
+       2. textarea - text area field
+       3. email - email field
+       4. password - password field
+       5. radio - radio button is used to select one option in multiple options.
+       6. checkbox - This is used to select multiple options.
+       7. dropdown - This is used for dropdown value. Here we pass multiple values.
+       8. color - This is used as color picker
+       9. file - This is used for uploading files.
+       10. number - number filed.
+       11. range - This is used to set a range between two values.
+       12. tel - This is used for telephone number input.
+       13. time - time field
+       14. date - date field
+       15. datetime-local - This is used for both date and time at a time.
+       16. week- week field
+       17. month - month field
+       18. uri - This is used for input URI.
+    * **label:** This is normally used for labeling the input field.
+    * **placeholder:** This is used for showing some helper message to the user regarding a particular input field.
+    * **description:** Here we describe our input field. 
+    * **validationRegax:** Here we pass a custom regex for validation of the input data.
+    * **errorMessage:** Here we pass some error message so when the user does anything wrong then get that error message.
+    * **readOnly:** This is to make a field read-only.
+    * **maxLength:** Here we pass how many characters we want in this field. 
+    * **autoFocus:** This is to make a field on focus while the page is active.
+    * **autoComplete:** This is for giving suggestions of your history data to autocomplete.
+    * **maxFileSize:** This is used when the input type is a file. where we can set the maximum size of the file before upload.
+    * **minFileSize:** This is used when the input type is a file. where we can set the minimum size of the file before upload.
+    * **min:** This is used to set the minimum value of the input field.
+    * **max:** This is used to set the maximum value of the input field.
+    * **interval:** This is used when the input field type is range. Here we define the interval between two values.
+    * **accept:** This is used when the input type is a file. where we can accept a particular extension file, ex - ["jpg", "png", "jpeg"]
 
 ## Support
 Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
