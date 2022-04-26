@@ -1,6 +1,6 @@
 # Llama Forms (React)
 
-> This is a react form builder where we can implement a number of form fields without using any HTML tags. This comes with a dynamic and user-friendly UI. You just need to `import LlamaForm from llama-form` and enjoy an amazing form by JSON schema.
+> This is a React form builder component where we can implement a number of form fields without using any HTML tags by only using JSON data sets. You just need to `import LlamaForm from llama-form` and enjoy an amazing form by JSON schema.
 
 [![NPM](https://img.shields.io/npm/v/llama-form.svg)](https://www.npmjs.com/package/llama-form) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
