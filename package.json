@@ -1,0 +1,67 @@
+{
+  "name": "llama-react",
+  "version": "1.0.0",
+  "private": false,
+  "description": "This is a react form builder where we can implement a number of form fields without using any HTML tags. This comes with a dynamic and user-friendly UI. You just need to import LlamaForm from llama-form and enjoy an amazing form by JSON schema.",
+  "keywords": [
+    "react",
+    "form",
+    "llama-react",
+    "llama-react-form",
+    "form-builder"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nettantra/llama-forms-react.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nettantra/llama-forms-react/issues",
+    "email": "nettantra@nettantra.net"
+  },
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "author": "NetTantra Technologies React Developers <webmaster@nettantra.com> (https://github.com/orgs/nettantra/teams/llama-forms-developers)",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/cli": "^7.17.6",
+    "@babel/core": "^7.17.8",
+    "@babel/polyfill": "^7.12.1",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-react": "^7.16.7"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "package": "rm -rf dist && NODE_ENV=production babel src/llama --out-dir dist --copy-files",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "eslint": "^8.12.0",
+    "eslint-plugin-react": "^7.29.4",
+    "eslint-plugin-react-hooks": "^4.4.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "5.0.0"
+  }
+}
