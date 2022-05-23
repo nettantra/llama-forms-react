@@ -109,7 +109,7 @@ export default function MultipleForm(props) {
         </button>
       )}
 
-      <style jsx>
+      <style jsx="true">
         {`
           .btn {
             background-color: #ddd;
