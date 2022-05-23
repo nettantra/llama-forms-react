@@ -96,7 +96,13 @@ export default function RenderForm(props) {
             {fieldList.map((field, index) => {
                 const handleData = (value = props.parentState[field].value, error = false) => { props.parentSetState({ ...props.parentState, [field]: { value: value, error: error } }) }
                 let properties = fields[field]
-                return renderForm(fields[field].type, index, handleData, properties, props.parentState, field)
+                if (!properties.depend) {
+                    return renderForm(fields[field].type, index, handleData, properties, props.parentState, field)
+                } else {
+                    if (props.parentState[properties.parentField].value === properties.dependentValue){
+                        return renderForm(fields[field].type, index, handleData, properties, props.parentState, field)
+                    }
+                }
             })}
         </>
     )

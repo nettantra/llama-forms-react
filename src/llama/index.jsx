@@ -40,11 +40,14 @@ export const LlamaForms = (props) => {
         for (let key in schema) {
             tempFields[key] = {
                 ...options[key],
-                step: schema[key].step ? schema[key].step : 1,
+                step: schema[key].step ? schema[key].step : schema[key].depend ? schema[options[key].parentField].step : 1,
                 type: options[key] ? options[key].type : "",
                 values: schema[key].enum || "",
                 required: schema[key].required || false,
                 value: value[key] || "",
+                parentField: options[key]?.parentField || "",
+                dependentValue: options[key]?.dependentValue || "", 
+                depend: schema[key]?.depend || false,
             }
         }
         setFields(tempFields)
