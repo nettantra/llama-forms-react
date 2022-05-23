@@ -41,12 +41,12 @@ export default function MultipleForm(props) {
       }
     }
     setStep(step + 1);
-    console.log("next");
+    props.step(step + 1);
   };
 
   const handlePrevious = () => {
     setStep(step - 1);
-    console.log("Previous");
+    props.step(step - 1);
   };
 
   const handleSubmit = () => {

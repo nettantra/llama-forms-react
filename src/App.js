@@ -15,6 +15,12 @@ function App() {
             title: 'Login',
             description: 'Login Form',
             wizard: true,
+            ProgressBar:true,
+            progressBarColor:"",
+            progressBarHeight: "",
+            progressBarText:"",
+            progressBarTextColor:"",
+            subProgressBar: true,
             properties: {
               email: {
                 type: 'string',
@@ -31,7 +37,7 @@ function App() {
               wdoubt: {
                 type: 'string',
                 depend : true,
-                step: 1,
+                step: 2,
               },
               password: {
                 type: 'string',

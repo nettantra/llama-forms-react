@@ -2,6 +2,7 @@ import React from 'react';
 import { Fragment, useEffect, useState } from "react";
 import MultipleForm from "./components/Form/multipleForm";
 import SingleForm from "./components/Form/singleForm";
+import {Progress} from './components/Progress'
 
 
 export const LlamaForms = (props) => {
@@ -9,6 +10,7 @@ export const LlamaForms = (props) => {
     const [fieldList, setFieldList] = useState([])
     const [data, setData] = useState({})
     const [wizardStepSet, setWizardStepSet] = useState({})
+    const [step, setStep] = useState(1);
 
     //loop through the fields and set the data
     const customizeData = (fields) => {
@@ -19,13 +21,11 @@ export const LlamaForms = (props) => {
             tempData[key] = { value: fields[key].value || "", error: false }
             list.push(key)
             try {
-                console.log("first", fields[key].step)
                 wizardSet[fields[key].step].push(key)
             } catch {
                 wizardSet[fields[key].step] = [key]
             }
         }
-        // console.log ("customise data", tempData, "list", list, 'wizards', wizardSet)
         setData(tempData)
         setFieldList(list)
         setWizardStepSet(wizardSet)
@@ -35,7 +35,6 @@ export const LlamaForms = (props) => {
         if (!props.schema) return
         let tempFields = {} 
         const schema = props.schema.properties || {}
-        // console.log(schema)
         const options = props.options.fields || {}
         const value = props.data || {}
         //loop in schema object
@@ -52,7 +51,6 @@ export const LlamaForms = (props) => {
                 depend: schema[key]?.depend || false,
             }
         }
-        console.log("trmpField", tempFields)
         setFields(tempFields)
         customizeData(tempFields)
     }
@@ -74,6 +72,7 @@ export const LlamaForms = (props) => {
                     fields={fields}
                     wizardStepSet={wizardStepSet}
                     onSubmit={props.onSubmit}
+                    step={setStep}
                 />
             )
         }
@@ -88,12 +87,12 @@ export const LlamaForms = (props) => {
         )
 
     }
-
     return (
         <>
             <div style={{ backgroundColor: "#FAFAFA", width: "100%", height: "100%", display: "flex", flexDirection: "column", alignItems: "center", padding: "10px" }}>
                 <h1 style={{ fontFamily: 'Nunito Sans', margin: "20px 0px" }}>{props.schema?.title}</h1>
                 <h2 style={{ fontFamily: 'Nunito Sans', fontWeight: "400", margin: "0px 0px 30px 0px" }}>{props.schema?.description}</h2>
+                <Progress height={props.schema.progressBarHeight} step={step} stepLength={Object.keys(wizardStepSet).length} color={props.schema.ReactprogressBarColor} text={props.schema.progressBarText} textColor={props.schema.progressBarTextColor} subProgressBar={props.schema.subProgressBar}/>
                 <form onSubmit={(e) => { e.preventDefault() }} style={{ minWidth: '100%', padding: "0px 20px" }}>
                     {formBuilder()}
                 </form>
