@@ -17,7 +17,6 @@ export const Progress = ({ height, subProgressBar, color, text, textColor, stepL
     borderRadius: 40,
     textAlign: 'center'
   }
-
   const progresstext = {
     padding: 8,
     color: textColor ? textColor : "black",
