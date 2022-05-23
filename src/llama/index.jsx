@@ -19,11 +19,13 @@ export const LlamaForms = (props) => {
             tempData[key] = { value: fields[key].value || "", error: false }
             list.push(key)
             try {
+                console.log("first", fields[key].step)
                 wizardSet[fields[key].step].push(key)
             } catch {
                 wizardSet[fields[key].step] = [key]
             }
         }
+        // console.log ("customise data", tempData, "list", list, 'wizards', wizardSet)
         setData(tempData)
         setFieldList(list)
         setWizardStepSet(wizardSet)
@@ -47,6 +49,7 @@ export const LlamaForms = (props) => {
                 value: value[key] || "",
             }
         }
+        console.log("trmpField", tempFields)
         setFields(tempFields)
         customizeData(tempFields)
     }
