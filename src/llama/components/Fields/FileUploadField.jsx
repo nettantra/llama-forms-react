@@ -71,7 +71,7 @@ export default function FileUploadField(props) {
             handleChange(e);
           }}
         />
-        <style jsx>{`
+        <style jsx = "true">{`
         .uploadInput::file-selector-button {
             background: #ddd;
             color:#000;
