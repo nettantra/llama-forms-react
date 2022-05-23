@@ -68,7 +68,7 @@ import LlamaForm from 'llama-form';
 
 export default function Example()
     {
-        return <LlamaForms
+        return <LlamaForm
                     schema={{
                         title: "Registration Form",
                         description: "This is a registration form",
@@ -177,7 +177,7 @@ export default function Example()
 import LlamaForm from 'llama-form';
 
 export default function Example() {
-    return <LlamaForms
+    return <LlamaForm
                 schema={{
                     title: "Registration Form",
                     description: "This is a registration form",
@@ -295,7 +295,7 @@ export default function Example() {
 
 ```
 export default function Example() {
-    return <LlamaForms
+    return <LlamaForm
                 schema={{
                     title: "Registration Form",
                     description: "This is a registration form",
