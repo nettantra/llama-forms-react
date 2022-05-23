@@ -22,6 +22,17 @@ function App() {
                 enum: "",
                 step: 1,
               },
+              doubt: {
+                type: 'string',
+                required: true,
+                enum: ["Yes","No"],
+                step: 2,
+              },
+              wdoubt: {
+                type: 'string',
+                depend : true,
+                step: 1,
+              },
               password: {
                 type: 'string',
                 required: true,
@@ -92,6 +103,18 @@ function App() {
                 maxLength: 30,
                 autoFocus: true,
                 autoComplete: true,
+              },
+              doubt: {
+                type: 'radio',
+                label: 'Doubt',
+                description: "This is radio field",
+              },
+              wdoubt: {
+                type: 'textarea',
+                label: 'What is your doubt',
+                description: "This is textarea field",
+                parentField: "doubt",
+                dependentValue: "Yes",
               },
               details: {
                 type: "textarea",
