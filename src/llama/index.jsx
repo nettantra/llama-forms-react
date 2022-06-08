@@ -11,7 +11,7 @@ export const LlamaForms = (props) => {
     const [data, setData] = useState({})
     const [wizardStepSet, setWizardStepSet] = useState({})
     const [step, setStep] = useState(1);
-
+    
     //loop through the fields and set the data
     const customizeData = (fields) => {
         let tempData = {} 
@@ -73,6 +73,7 @@ export const LlamaForms = (props) => {
                     wizardStepSet={wizardStepSet}
                     onSubmit={props.onSubmit}
                     step={setStep}
+                    button={{"next":props.schema.nextButton, "previous":props.schema.previousButton}}
                 />
             )
         }
@@ -92,7 +93,7 @@ export const LlamaForms = (props) => {
             <div style={{ backgroundColor: "#FAFAFA", width: "100%", height: "100%", display: "flex", flexDirection: "column", alignItems: "center", padding: "10px" }}>
                 <h1 style={{ fontFamily: 'Nunito Sans', margin: "20px 0px" }}>{props.schema?.title}</h1>
                 <h2 style={{ fontFamily: 'Nunito Sans', fontWeight: "400", margin: "0px 0px 30px 0px" }}>{props.schema?.description}</h2>
-                <Progress height={props.schema.progressBarHeight} step={step} stepLength={Object.keys(wizardStepSet).length} color={props.schema.progressBarColor} text={props.schema.progressBarText} textColor={props.schema.progressBarTextColor} subProgressBar={props.schema.subProgressBar}/>
+                <Progress height={props.schema.progressBarHeight} step={step} stepLength={Object.keys(wizardStepSet).length} color={props.schema.progressBarColor} text={props.schema.progressBarText} textColor={props.schema.progressBarTextColor} ProgressBar={props.schema.ProgressBar} subProgressBar={props.schema.subProgressBar}/>
                 <form onSubmit={(e) => { e.preventDefault() }} style={{ minWidth: '100%', padding: "0px 20px" }}>
                     {formBuilder()}
                 </form>

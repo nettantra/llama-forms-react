@@ -15,12 +15,14 @@ function App() {
             title: 'Login',
             description: 'Login Form',
             wizard: true,
-            ProgressBar:true,
+            ProgressBar:false,
             progressBarColor:"",
             progressBarHeight: "",
             progressBarText:"",
             progressBarTextColor:"",
-            subProgressBar: true,
+            subProgressBar: false,
+            previousButton:"",
+            nextButton:"",
             properties: {
               email: {
                 type: 'string',

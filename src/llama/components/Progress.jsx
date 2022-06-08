@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const Progress = ({ height, subProgressBar, color, text, textColor, stepLength, step }) => {
+export const Progress = ({ height, ProgressBar ,subProgressBar, color, text, textColor, stepLength, step }) => {
   const Parentdiv = {
     height: height ? height : 20,
     width: '100%',
@@ -31,11 +31,15 @@ export const Progress = ({ height, subProgressBar, color, text, textColor, stepL
   }
   return (
     <>
+    {
+      ProgressBar?
       <div style={Parentdiv}>
         <div style={Childdiv}>
           <span style={progresstext}>{text ? text : "Progress . . ."}</span>
         </div>
       </div>
+      : null
+    }
       <div style={SubStep}>Step {step} of {stepLength}</div>
     </>
   )
