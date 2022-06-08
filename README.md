@@ -1,8 +1,8 @@
 # Llama Form (React)
 
-> This is a schema based React form generation component where we can implement a number of form fields without using any HTML tags by only using JSON data sets. You just need to `import LlamaForm from llama-form` and enjoy an amazing form by JSON schema.
+> This is a schema based React form generation component where we can implement a number of form fields without using any HTML tags by only using JSON data sets. You just need to `import LlamaForm from llama-forms-react` and enjoy an amazing form by JSON schema.
 
-[![NPM](https://img.shields.io/npm/v/llama-form.svg)](https://www.npmjs.com/package/llama-form) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM](https://img.shields.io/npm/v/llama-forms-react.svg)](https://www.npmjs.com/package/llama-forms-react) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 # Example Usage
 
@@ -10,7 +10,7 @@
 **Login Form with email and password and their validation.**
 
 ```
-import LlamaForm from 'llama-form';
+import LlamaForm from 'llama-forms-react';
 
 export default function Example() 
     {
@@ -64,11 +64,11 @@ export default function Example()
 **Create a Registration Form using Llama Form**
 
 ```
-import LlamaForm from 'llama-form';
+import LlamaForm from 'llama-forms-react';
 
 export default function Example()
     {
-        return <LlamaForms
+        return <LlamaForm
                     schema={{
                         title: "Registration Form",
                         description: "This is a registration form",
@@ -171,13 +171,13 @@ export default function Example()
     }
 ```
 
-**Create Multi-step Registration Form useing llama-form**
+**Create Multi-step Registration Form useing llama-forms-react**
 
 ```
-import LlamaForm from 'llama-form';
+import LlamaForm from 'llama-forms-react';
 
 export default function Example() {
-    return <LlamaForms
+    return <LlamaForm
                 schema={{
                     title: "Registration Form",
                     description: "This is a registration form",
@@ -295,7 +295,7 @@ export default function Example() {
 
 ```
 export default function Example() {
-    return <LlamaForms
+    return <LlamaForm
                 schema={{
                     title: "Registration Form",
                     description: "This is a registration form",
@@ -374,7 +374,7 @@ export default function Example() {
 
 1. **fields:** Here we pass all schema fields properties. Which basically contains an object for each field that we describe in the schema.
     * **type:** This is used to define which type of input field we want for our field. As for email we use "type - email". 
-	   **Input Field type support by llama-form.**        
+	   **Input Field type support by llama-forms-react.**        
        1. text - text field
        2. textarea - text area field
        3. email - email field

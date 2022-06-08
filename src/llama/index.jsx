@@ -5,7 +5,7 @@ import SingleForm from "./components/Form/singleForm";
 import {Progress} from './components/Progress'
 
 
-export const LlamaForms = (props) => {
+export const LlamaForm = (props) => {
     const [fields, setFields] = useState({});
     const [fieldList, setFieldList] = useState([])
     const [data, setData] = useState({})
@@ -102,4 +102,4 @@ export const LlamaForms = (props) => {
     )
 }
 
-export default LlamaForms;
+export default LlamaForm;

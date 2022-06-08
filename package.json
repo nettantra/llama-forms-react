@@ -1,6 +1,6 @@
 {
-  "name": "llama-react",
-  "version": "1.0.0",
+  "name": "llama-forms-react",
+  "version": "1.0.1",
   "private": false,
   "description": "This is a react form builder where we can implement a number of form fields without using any HTML tags. This comes with a dynamic and user-friendly UI. You just need to import LlamaForm from llama-form and enjoy an amazing form by JSON schema.",
   "keywords": [
@@ -30,7 +30,8 @@
     "@babel/core": "^7.17.8",
     "@babel/polyfill": "^7.12.1",
     "@babel/preset-env": "^7.16.11",
-    "@babel/preset-react": "^7.16.7"
+    "@babel/preset-react": "^7.16.7",
+    "@babel/preset-typescript": "^7.17.12"
   },
   "scripts": {
     "start": "react-scripts start",

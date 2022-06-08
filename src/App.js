@@ -1,6 +1,6 @@
 import React from 'react';
-import LlamaForms from './llama/index'
-// import {LlamaForms} from "test-react-form";
+import LlamaForm from './llama/index'
+// import {LlamaForm} from "test-react-form";
 
 function App() {
 
@@ -9,7 +9,7 @@ function App() {
   }
   return (
       <div style={{ width: "50%", margin: "auto" }}>
-        <LlamaForms
+        <LlamaForm
           schema={{
             type: 'object',
             title: 'Login',
