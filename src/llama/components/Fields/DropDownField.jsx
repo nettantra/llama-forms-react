@@ -42,7 +42,7 @@ export default function DropDownField(props) {
               margin: "5px 0",
             }}
           >
-            {properties["description"]}&nbsp;&#58;&nbsp;
+            {properties["description"]}&nbsp;&nbsp;
           </p>
           <div
             style={{
