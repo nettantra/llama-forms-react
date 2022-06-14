@@ -70,9 +70,9 @@ export const LlamaForm = (props) => {
                     wizardStepSet={wizardStepSet}
                     onSubmit={props.onSubmit}
                     step={setStep}
-                    button={{"next":props.schema.nextButtonText, "previous":props.schema.prevButtonText}}
+                    button={{"next":props.schema.nextButtonText, "previous":props.schema.prevButtonText, "submit":props.schema.submitButtonText}}
                     //srikant
-                    initialStep={props?.schema?.startStep}
+                    initialStep={props?.schema?.initialStep}
                     //srikant                    
                 />
             )
@@ -85,6 +85,7 @@ export const LlamaForm = (props) => {
                 renderList={fieldList}
                 fields={fields}
                 onSubmit={props.onSubmit}
+                submitButtonText={props.schema.submitButtonText}
             />
         )
 

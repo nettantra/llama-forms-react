@@ -23,8 +23,9 @@ function App() {
             subProgressBar: false,
             prevButtonText:"Back",
             nextButtonText:"Continue",
+            submitButtonText:"Done",
             //srikant
-            startStep:"3",
+            initialStep:3,
             //srikant
             properties: {
               email: {

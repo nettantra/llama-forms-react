@@ -103,7 +103,7 @@ export default function MultipleForm(props) {
       </button>
       {step === parseInt(Object.keys(fieldSet).pop()) ? (
         <button className="btn" onClick={handleSubmit}>
-          Submit
+          {props.button["submit"] ?? "Submit"}
         </button>
       ) : (
         <button className="btn" onClick={handleNext}>
