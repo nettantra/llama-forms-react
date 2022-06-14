@@ -3,7 +3,9 @@ import RenderForm from "./renderForm";
 import React from 'react';
 
 export default function MultipleForm(props) {
-  const [step, setStep] = useState(1);
+  //srikant
+  const [step, setStep] = useState(props.initialStep ?? 1);
+  //srikant
   const [alert, setAlert] = useState(false);
   const [alertMsg, setAlertMsg] = useState("");
 
