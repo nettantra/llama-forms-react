@@ -7,6 +7,12 @@ function App() {
   const login_test = (data) => {
     console.log("login", data)
   }
+  // const handleChange = () => {
+  //   alert("you have clicked in first step")
+  // }
+  // const handle = () => {
+  //   alert("you have clicked in 2nd step")
+  // }
   return (
       <div style={{ width: "50%", margin: "auto" }}>
         <LlamaForm
@@ -219,6 +225,20 @@ function App() {
             dataRange: 50,
           }}
           onSubmit={login_test}
+          // onClick = {{
+          //   1 : handleChange,
+          //   2 : () => {
+          //     alert("you have clicked in 2nd step")
+          //     // handle()
+          //   },
+          //   // 3 : () => {
+          //   //   console.log("click 3")
+          //   // },
+          //   // 4 : () => {
+          //   //   console.log("click 4")
+          //   // },
+          //   // 5: handleChange
+          // }}
         />
       </div>
   );

@@ -11,6 +11,7 @@ export const LlamaForm = (props) => {
     const [data, setData] = useState({})
     const [wizardStepSet, setWizardStepSet] = useState({})
     const [step, setStep] = useState(1);
+    console.log("Props", props.onClick);
     
     //loop through the fields and set the data
     const customizeData = (fields) => {
@@ -55,7 +56,9 @@ export const LlamaForm = (props) => {
         customizeData(tempFields)
     }
 
-
+    const onclick = (e) => {
+        alert("you have clicked")
+    }
 
     useEffect(() => {
         structureData()
@@ -74,6 +77,8 @@ export const LlamaForm = (props) => {
                     onSubmit={props.onSubmit}
                     step={setStep}
                     button={{"next":props.schema.nextButton, "previous":props.schema.previousButton}}
+                    // onclick={onclick}
+                    // onClick= {props.onClick}
                 />
             )
         }

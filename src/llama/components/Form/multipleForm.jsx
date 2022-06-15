@@ -10,6 +10,15 @@ export default function MultipleForm(props) {
   const fields = props.fields;
   const data = props.parentState;
   let fieldSet = props.wizardStepSet;
+  // let currentOnClick = props.onClick;
+  // console.log("fieldSet",currentOnClick);
+
+  // console.log("fields",currentOnClick[step]);
+  // // find the key from fieldset
+  //   for (let i in fieldSet) {
+  //     console.log("i",i);
+  //   }
+
 
   const alertRender = () => {
     return <p style={{ width: '100%', backgroundColor: "#ffc3b2", color: "#902100", padding: "5px 10px", fontSize: "16px", fontWeight: "300", fontFamily: "Nunito Sans", border: "none", borderRadius: "5px", textAlign: "center" }}>{alertMsg}</p>
@@ -17,6 +26,7 @@ export default function MultipleForm(props) {
 
   const handleNext = () => {
     let currentFields = fieldSet[step];
+    // console.log("currentFields",currentFields);
     for (let i in currentFields) {
       if (
         data[currentFields[i]].value === "" &&
@@ -40,6 +50,8 @@ export default function MultipleForm(props) {
         return;
       }
     }
+    // eval(props.onclick());
+    // eval(currentOnClick[step]? currentOnClick[step]() : null)
     setStep(step + 1);
     props.step(step + 1);
   };
