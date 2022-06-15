@@ -43,12 +43,14 @@ function App() {
                 onNext : login_test
               }
             },
-            ProgressBar:true,
-            progressBarColor:"",
-            progressBarHeight: "",
-            progressBarText:"",
-            progressBarTextColor:"",
-            subProgressBar: false,
+            progressBar:{
+              show: true,
+              color: '',
+              height: '',
+              text: 'progress',
+              textColor: '',
+              subProgress: true,
+            },
             prevButtonText:"Back",
             nextButtonText:"Continue",
             submitButtonText:"Done",
