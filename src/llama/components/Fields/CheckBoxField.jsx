@@ -66,7 +66,7 @@ export default function CheckBoxField(props) {
         </p>
       </div>
 
-      <style jsx>{`
+      <style jsx="true">{`
         input[type="checkbox"]:checked + label {
           color: #777;
           transition: all 0.2s ease;

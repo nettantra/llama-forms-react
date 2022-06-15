@@ -59,7 +59,7 @@ export default function RadioField(props) {
         }}>{properties["description"]}</p>
       </div>
 
-      <style jsx>{`
+      <style jsx="true">{`
         [type="radio"]:checked,
         [type="radio"]:not(:checked) {
           position: absolute;

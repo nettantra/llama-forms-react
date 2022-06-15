@@ -21,7 +21,29 @@ function App() {
             title: 'Login',
             description: 'Login Form',
             wizard: true,
-            ProgressBar:false,
+            wizardOptions : {
+              1: {
+                title: 'Login',
+                description: 'Login Form',
+                onNext : login_test
+              },
+              2: {
+                title: 'Register',
+                description: 'Register Form',
+                onNext : login_test
+              },
+              3: {
+                title: 'Registersas',
+                description: 'Register Form',
+                onNext : login_test
+              },
+              5: {
+                title: 'Forgot Password',
+                description: 'Forgot Password Form',
+                onNext : login_test
+              }
+            },
+            ProgressBar:true,
             progressBarColor:"",
             progressBarHeight: "",
             progressBarText:"",
@@ -30,9 +52,7 @@ function App() {
             prevButtonText:"Back",
             nextButtonText:"Continue",
             submitButtonText:"Done",
-            //srikant
             initialStep:3,
-            //srikant
             properties: {
               email: {
                 type: 'string',
@@ -229,20 +249,6 @@ function App() {
             dataRange: 50,
           }}
           onSubmit={login_test}
-          // onClick = {{
-          //   1 : handleChange,
-          //   2 : () => {
-          //     alert("you have clicked in 2nd step")
-          //     // handle()
-          //   },
-          //   // 3 : () => {
-          //   //   console.log("click 3")
-          //   // },
-          //   // 4 : () => {
-          //   //   console.log("click 4")
-          //   // },
-          //   // 5: handleChange
-          // }}
         />
       </div>
   );

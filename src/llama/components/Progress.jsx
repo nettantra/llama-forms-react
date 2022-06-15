@@ -35,7 +35,7 @@ export const Progress = ({ height, ProgressBar ,subProgressBar, color, text, tex
       ProgressBar?
       <div style={Parentdiv}>
         <div style={Childdiv}>
-          <span style={progresstext}>{text ? text : "Progress . . ."}</span>
+          <span style={progresstext}>{text}</span>
         </div>
       </div>
       : null

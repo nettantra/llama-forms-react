@@ -79,7 +79,7 @@ export default function DropDownField(props) {
         </div>
       </div>
 
-      <style jsx>
+      <style jsx="true">
         {`
           select:focus {
             outline: none;
