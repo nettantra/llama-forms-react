@@ -11,7 +11,6 @@ export const LlamaForm = (props) => {
     const [data, setData] = useState({})
     const [wizardStepSet, setWizardStepSet] = useState({})
     const [step, setStep] = useState(1);
-    console.log("Props", props.onClick);
     
     //loop through the fields and set the data
     const customizeData = (fields) => {
@@ -64,7 +63,6 @@ export const LlamaForm = (props) => {
         structureData()
     }, [])
 
-
     const formBuilder = () => {
         if (!props.schema) return
         if (props.schema.wizard) {
@@ -76,12 +74,16 @@ export const LlamaForm = (props) => {
                     wizardStepSet={wizardStepSet}
                     onSubmit={props.onSubmit}
                     step={setStep}
-                    button={{"next":props.schema.nextButton, "previous":props.schema.previousButton}}
                     // onclick={onclick}
                     // onClick= {props.onClick}
+                    button={{"next":props.schema.nextButtonText, "previous":props.schema.prevButtonText, "submit":props.schema.submitButtonText}}
+                    //srikant
+                    initialStep={props?.schema?.initialStep}
+                    //srikant                    
                 />
             )
         }
+      
         return (
             <SingleForm
                 parentState={data}
@@ -89,10 +91,12 @@ export const LlamaForm = (props) => {
                 renderList={fieldList}
                 fields={fields}
                 onSubmit={props.onSubmit}
+                submitButtonText={props.schema.submitButtonText}
             />
         )
 
     }
+
     return (
         <>
             <div style={{ backgroundColor: "#FAFAFA", width: "100%", height: "100%", display: "flex", flexDirection: "column", alignItems: "center", padding: "10px" }}>

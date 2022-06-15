@@ -3,7 +3,9 @@ import RenderForm from "./renderForm";
 import React from 'react';
 
 export default function MultipleForm(props) {
-  const [step, setStep] = useState(1);
+  //srikant
+  const [step, setStep] = useState(props.initialStep ?? 1);
+  //srikant
   const [alert, setAlert] = useState(false);
   const [alertMsg, setAlertMsg] = useState("");
 
@@ -113,7 +115,7 @@ export default function MultipleForm(props) {
       </button>
       {step === parseInt(Object.keys(fieldSet).pop()) ? (
         <button className="btn" onClick={handleSubmit}>
-          Submit
+          {props.button["submit"] ?? "Submit"}
         </button>
       ) : (
         <button className="btn" onClick={handleNext}>

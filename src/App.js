@@ -27,8 +27,12 @@ function App() {
             progressBarText:"",
             progressBarTextColor:"",
             subProgressBar: false,
-            previousButton:"",
-            nextButton:"",
+            prevButtonText:"Back",
+            nextButtonText:"Continue",
+            submitButtonText:"Done",
+            //srikant
+            initialStep:3,
+            //srikant
             properties: {
               email: {
                 type: 'string',
