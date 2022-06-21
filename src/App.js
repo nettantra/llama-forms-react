@@ -47,14 +47,29 @@ function App() {
               show: true,
               color: '',
               height: '',
-              text: 'progress',
+              width: '100%',
+              text: '',
+              textAlign: '',
               textColor: '',
               subProgress: true,
+              align: '',
+              
             },
-            prevButtonText:"Back",
-            nextButtonText:"Continue",
-            submitButtonText:"Done",
-            initialStep:3,
+            buttons: {
+              previous:{
+                text: 'Previous',
+                loader:false,
+              },
+              next:{
+                text: 'Next',
+                loader:true,
+              },
+              submit:{
+                text: 'Done',
+                loader:true,
+              },
+            },
+            initialStep:1,
             properties: {
               email: {
                 type: 'string',
@@ -139,6 +154,8 @@ function App() {
                 description: "This is email field",
                 // validationRegex: "",
                 errorMessage: "",
+                lowercase: false,
+                uppercase: true,
                 readOnly: false,
                 maxLength: 30,
                 autoFocus: true,
@@ -162,6 +179,8 @@ function App() {
                 description: "This is details field",
                 placeholder: "Write......",
                 errorMessage: "",
+                lowercase:false,
+                uppercase:true,
                 readOnly: false,
                 autoFocus: true,
                 autoComplete: true,
@@ -230,9 +249,9 @@ function App() {
                 // max: "2000-01-02",
               },
               // feedback:{
-              //   type: "checkbox",
+              //   type: "text",
               //   label: "What do you think ?",
-              //   description: "This is a checkbox"
+              //   description: "This is a feedback field",
               // },
               currentTime: {
                 type: "time",

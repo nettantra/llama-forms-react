@@ -70,7 +70,7 @@ export const LlamaForm = (props) => {
                     wizardStepSet={wizardStepSet}
                     onSubmit={props.onSubmit}
                     step={setStep}
-                    button={{ "next": props.schema.nextButtonText, "previous": props.schema.prevButtonText, "submit": props.schema.submitButtonText }}
+                    buttons={props?.schema?.buttons?? ""}
                     initialStep={props?.schema?.initialStep}
                     wizardStepOptions={props?.schema?.wizardOptions}
                 />
@@ -84,7 +84,7 @@ export const LlamaForm = (props) => {
                 renderList={fieldList}
                 fields={fields}
                 onSubmit={props.onSubmit}
-                submitButtonText={props.schema.submitButtonText}
+                submitButtonText={props?.schema?.buttons?.submit?.text?? "Submit"}
             />
         )
 
@@ -96,7 +96,7 @@ export const LlamaForm = (props) => {
                 <h1 style={{ fontFamily: 'Nunito Sans', margin: "20px 0px" }}>{props.schema?.title}</h1>
                 {console.log(props.schema?.progressBar)}
                 <h2 style={{ fontFamily: 'Nunito Sans', fontWeight: "400", margin: "0px 0px 30px 0px" }}>{props.schema?.description}</h2>
-                <Progress height={props?.schema?.progressBar?.height?? ""} step={step} stepLength={Object.keys(wizardStepSet).length} color={props?.schema?.progressBar?.color?? ""} text={props?.schema?.progressBar?.text ?? ""} textColor={props?.schema?.progressBar?.textColor?? ""} ProgressBar={props?.schema?.progressBar?.show ?? false} subProgressBar={props?.schema?.progressBar?.subProgress ?? false} />
+                <Progress height={props?.schema?.progressBar?.height?? ""} width={props?.schema?.progressBar?.width?? ""} step={step} stepLength={Object.keys(wizardStepSet).length} color={props?.schema?.progressBar?.color?? ""} text={props?.schema?.progressBar?.text ?? ""} textAlign={props?.schema?.progressBar?.textAlign ?? ""} textColor={props?.schema?.progressBar?.textColor?? ""} ProgressBar={props?.schema?.progressBar?.show ?? false} subProgressBar={props?.schema?.progressBar?.subProgress ?? false} align={props?.schema?.progressBar?.align ?? "start"} />
                 <form onSubmit={(e) => { e.preventDefault() }} style={{ minWidth: '100%', padding: "0px 20px" }}>
                     {formBuilder()}
                 </form>

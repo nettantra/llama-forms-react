@@ -57,7 +57,7 @@ export default function SingleForm(props) {
                 renderList={props.renderList}
             />
             <button style={{ backgroundColor: "#ddd", borderRadius: "5px", border: "none", padding: "5px 10px", fontSize: "16px", fontFamily: "Nunito Sans", margin: "20px 0px" }} onClick={handleSubmit}>
-                {props.submitButtonText ?? "Submit"}
+                {props?.submitButtonText ?? "Submit"}
             </button>
         </>
     )

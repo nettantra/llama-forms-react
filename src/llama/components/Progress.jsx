@@ -1,13 +1,14 @@
 import React from 'react'
 
-export const Progress = ({ height, ProgressBar ,subProgressBar, color, text, textColor, stepLength, step }) => {
+export const Progress = ({ height, width, ProgressBar ,subProgressBar, color, text, textAlign, textColor, stepLength, step, align }) => {
   const Parentdiv = {
     height: height ? height : 20,
-    width: '100%',
-    backgroundColor: 'whitesmoke',
+    width: width ? width : '100%',
     borderRadius: 40,
     marginTop: 50,
     marginBottom: subProgressBar? 0: 20 ,
+    display: 'flex',
+    justifyContent: align,
   }
 
   const Childdiv = {
@@ -15,12 +16,12 @@ export const Progress = ({ height, ProgressBar ,subProgressBar, color, text, tex
     width:`${step/stepLength *100}%`,
     backgroundColor: color ? color : "#99ccff",
     borderRadius: 40,
-    textAlign: 'center'
+    textAlign: textAlign ? textAlign : "center",
   }
   const progresstext = {
     padding: 8,
     color: textColor ? textColor : "black",
-    fontWeight: 800
+    fontWeight: 500
   }
   const SubStep = {
     display: subProgressBar? "block": "none" ,
