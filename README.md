@@ -18,7 +18,7 @@
 - [Install](#install)
 - [Features](#features)
 - [Quickstart](#quickstart)
-- [Multi Step Form]('Documentation/MultiStep/README.md')
+- [Multi Step Form](Documentation/MultiStep/README.md)
 - [Examples](#Examples)
 - [Documentation](#documentation)
 - [Maintainers](#maintainers)
