@@ -78,7 +78,7 @@ export default function SingleForm(props) {
           margin: "20px 0px",
         }}
         onClick={handleSubmit}>
-        {props.submitButtonText ?? "Submit"}
+        {props?.submitButtonText ?? "Submit"}
       </button>
     </>
   );
