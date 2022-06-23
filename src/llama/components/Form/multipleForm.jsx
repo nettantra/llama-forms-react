@@ -1,6 +1,7 @@
 import { Fragment, useState } from "react";
 import RenderForm from "./renderForm";
 import React from 'react';
+import Loader from "../Loader";
 
 export default function MultipleForm(props) {
 
@@ -8,6 +9,7 @@ export default function MultipleForm(props) {
 
   const [alert, setAlert] = useState(false);
   const [alertMsg, setAlertMsg] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const fields = props.fields;
   const data = props.parentState;
@@ -18,6 +20,7 @@ export default function MultipleForm(props) {
   }
 
   const handleNext = async() => {
+    setLoading(true);
     let currentFields = fieldSet[step];
     for (let i in currentFields) {
       if (
@@ -29,6 +32,7 @@ export default function MultipleForm(props) {
         setAlert(true)
         setTimeout(() => {
           setAlert(false)
+          setLoading(false);
         }, 5000)
         return;
       }
@@ -38,6 +42,7 @@ export default function MultipleForm(props) {
         setAlert(true)
         setTimeout(() => {
           setAlert(false)
+          setLoading(false);
         }, 5000)
         return;
       }
@@ -51,14 +56,18 @@ export default function MultipleForm(props) {
 
     setStep(step + 1);
     props.step(step + 1);
+    setLoading(false);
   };
 
   const handlePrevious = () => {
+    setLoading(true);
     setStep(step - 1);
     props.step(step - 1);
+    setLoading(false);
   };
 
   const handleSubmit = () => {
+    setLoading(true);
     let currentFields = fieldSet[step];
     for (let i in currentFields) {
       if (
@@ -70,6 +79,7 @@ export default function MultipleForm(props) {
         setAlert(true)
         setTimeout(() => {
           setAlert(false)
+          setLoading(false);
         }, 5000)
         return;
       }
@@ -79,6 +89,7 @@ export default function MultipleForm(props) {
         setAlert(true)
         setTimeout(() => {
           setAlert(false)
+          setLoading(false);
         }, 5000)
         return;
       }
@@ -88,6 +99,7 @@ export default function MultipleForm(props) {
       finalData[key] = data[key].value
     }
     props.onSubmit(finalData)
+    setLoading(false);
 
   };
 
@@ -106,15 +118,15 @@ export default function MultipleForm(props) {
         disabled={step === 1 ? true : false}
         onClick={handlePrevious}
       >
-        {props.button["previous"]? props.button["previous"] :"Previous"}
+      {[props?.buttons?.["previous"]?.text ?? "Previous", props?.buttons?.["previous"]?.loader ? loading? <Loader key={"key"}/>:null: null]}
       </button>
       {step === parseInt(Object.keys(fieldSet).pop()) ? (
         <button className="btn" onClick={handleSubmit}>
-          {props.button["submit"] ?? "Submit"}
+        {[props?.buttons?.["submit"]?.text ?? "Submit", props?.buttons?.["next"]?.loader ? loading? <Loader key={"key"}/>:null: null]}
         </button>
       ) : (
-        <button className="btn" onClick={handleNext}>
-          {props.button["next"]? props.button["next"] :"Next"}
+        <button className="btn" onClick={handleNext} disabled={loading}>
+        {[props?.buttons?.["next"]?.text ?? "Next", props?.buttons?.["next"]?.loader ? loading? <Loader key={"key"}/>:null: null]}
         </button>
       )}
 

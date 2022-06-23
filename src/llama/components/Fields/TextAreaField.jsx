@@ -6,8 +6,14 @@ export default function TextAreaField(props) {
   const { properties, handleData, name } = props;
   const [style, setStyle] = useState(properties.style || { borderRadius: "5px", width: "95%", padding: "7px", fontSize: "12px", fontFamily: "Nunito Sans" });
 
+  const caseChange = (value) => {
+    if (properties["lowercase"]) return value.toLowerCase();
+    if (properties["uppercase"]) return value.toUpperCase();
+    return value
+}
   const handleChange = (e) => {
-    handleData(e.target.value);
+    const value = caseChange(e.target.value)
+    handleData(value);
   };
 
   useEffect(() => {

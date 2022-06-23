@@ -14,19 +14,50 @@ export default function InputField(props) {
         const re = new RegExp(regex);
         return re.test(value)
     }
+    // const prefix = 'prefix-'
+    const caseChange = (value) => {
+        if (properties["lowercase"]) return value.toLowerCase();
+        if (properties["uppercase"]) return value.toUpperCase();
+        return value
+    }
+    const blockInvalidChar = e => {
+        if (properties["type"] !== "number") {
+            return true
+        } else {
+            ['e', 'E', '+', '-'].includes(e.key) && e.preventDefault();
+        }
+    }
+    // const suffixChange = (input) => {
+    //     if(["text", "number"].includes(properties['type'])) return input.replace(/^/g, `${prefix + " "}`)
+    //     // prefix +" "+ input.substring(prefix.length);
+    //     return input
+        
+    // }
     const handleChange = (e) => {
-        handleData(e.target.value, false)
-        if (e.target.value.length === 0) {
+        let input = e.target.value
+        // let j = input.replace("prefix-", "")
+        // let n = prefix + j    
+        // let i = input.replace(/^/g, `${prefix + " "}`)
+        // ["text", "number"].includes(properties['type'])?  prefix + input.substring(prefix.length) : input
+        if (input.length > properties["maxLength"]) {
+            setError(true)
+            return false
+        }
+        const value = caseChange(input)
+        
+        handleData(value, false)
+        
+        if (value.length === 0) {
             setError(false)
-            handleData(e.target.value, false)
+            handleData(value, false)
             return
         }
         if (properties.validationRegex) {
-            setError(!checkValidation(properties['validationRegex'], e.target.value))
-            handleData(e.target.value, !checkValidation(properties['validationRegex'], e.target.value))
+            setError(!checkValidation(properties['validationRegex'], value))
+            handleData(value, !checkValidation(properties['validationRegex'], value))
         } else if (properties.type in regexObject) {
-            setError(!checkValidation(regexObject[properties.type]['regex'], e.target.value))
-            handleData(e.target.value, !checkValidation(regexObject[properties.type]['regex'], e.target.value))
+            setError(!checkValidation(regexObject[properties.type]['regex'], value))
+            handleData(value, !checkValidation(regexObject[properties.type]['regex'], value))
         }
     }
     return (
@@ -54,6 +85,18 @@ export default function InputField(props) {
                     pattern={properties['validationRegex'] ? properties['validationRegex'] : null}
                     style={properties['style'] ? properties['style'] : properties['type'] === 'color' ? { width: '40px', height: '40px' } : { width: '95%', padding: '7px', border: '1px solid #000', borderRadius: '5px', fontSize: '14px', fontFamily: 'Nunito Sans', fontWeight: '400' }}
                     onChange={(e) => { handleChange(e) }}
+                    onKeyDown={blockInvalidChar}
+                    // ref={(target)=>{
+                    //     console.log(target.value)
+                    //     target.value = prefix
+                    //     }}
+                    // ref={(target)=>{
+                    // target.value = prefix
+                    // }}
+                    // onChange={(e)=>{
+                    //   const input = e.target.value
+                    //   e.target.value = prefix + input
+                    // }}
                 />
                 <div style={{ marginBottom: '20px' }}>
                     <p style={{ margin: '5px 0px', fontFamily: 'Nunito Sans', fontWeight: '200', fontSize: '14px' }}>{properties['description']}</p>
