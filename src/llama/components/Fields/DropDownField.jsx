@@ -1,5 +1,4 @@
-import React from 'react';
-
+import React from "react";
 
 export default function DropDownField(props) {
   const { properties, handleData, name } = props;
@@ -7,7 +6,6 @@ export default function DropDownField(props) {
   const handleChange = (e) => {
     handleData(e.target.value);
   };
-
 
   //loop through the values object
   const values = properties.values;
@@ -28,20 +26,23 @@ export default function DropDownField(props) {
             fontWeight: "400",
             fontSize: "16px",
             margin: "5px 0",
-          }}
-        >
+          }}>
           {properties["label"]}
         </h3>
 
-        <div style={{ display: "flex", flexDirection: "row" , marginBottom:"20px"}}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            marginBottom: "20px",
+          }}>
           <p
             style={{
               fontFamily: "Nunito Sans",
               fontWeight: "400",
               fontSize: "14px",
               margin: "5px 0",
-            }}
-          >
+            }}>
             {properties["description"]}&nbsp;&nbsp;
           </p>
           <div
@@ -53,13 +54,13 @@ export default function DropDownField(props) {
               display: "flex",
               alignItems: "center",
               marginLeft: "5px",
-            }}
-          >
+            }}>
             <select
               value={props.parentState[name].value}
               autoFocus={
                 properties["autofocus"] ? properties["autofocus"] : false
               }
+              className={`llm_dropdown`}
               disabled={properties["readOnly"] ? properties["readOnly"] : false}
               onChange={(e) => {
                 handleChange(e);
@@ -68,10 +69,9 @@ export default function DropDownField(props) {
                 border: "none",
                 backgroundColor: "transparent",
                 fontFamily: "Nunito Sans",
-              }}
-            >
+              }}>
               {props.parentState[name].value ? null : (
-                <option value="">Select</option>
+                <option value=''>Select</option>
               )}
               {options}
             </select>
@@ -79,7 +79,7 @@ export default function DropDownField(props) {
         </div>
       </div>
 
-      <style jsx="true">
+      <style jsx='true'>
         {`
           select:focus {
             outline: none;

@@ -1,10 +1,17 @@
 import { useEffect, useState } from "react";
-import React from 'react';
-
+import React from "react";
 
 export default function TextAreaField(props) {
   const { properties, handleData, name } = props;
-  const [style, setStyle] = useState(properties.style || { borderRadius: "5px", width: "95%", padding: "7px", fontSize: "12px", fontFamily: "Nunito Sans" });
+  const [style, setStyle] = useState(
+    properties.style || {
+      borderRadius: "5px",
+      width: "95%",
+      padding: "7px",
+      fontSize: "12px",
+      fontFamily: "Nunito Sans",
+    }
+  );
 
   const handleChange = (e) => {
     handleData(e.target.value);
@@ -27,13 +34,13 @@ export default function TextAreaField(props) {
             fontWeight: "400",
             fontSize: "16px",
             margin: "5px 0",
-          }}
-        >
+          }}>
           {properties["label"]}
         </h3>
         <textarea
           id={name}
           name={name}
+          className={`llm_textarea`}
           placeholder={
             properties["placeholder"] ? properties["placeholder"] : null
           }
@@ -51,13 +58,16 @@ export default function TextAreaField(props) {
             handleChange(e);
           }}
         />
-        <p style={{
-          marginTop: "5px",
-          marginBottom: "20px",
-          fontFamily: "Nunito Sans",
-          fontWeight: "200",
-          fontSize: "14px",
-        }}>{properties["description"]}</p>
+        <p
+          style={{
+            marginTop: "5px",
+            marginBottom: "20px",
+            fontFamily: "Nunito Sans",
+            fontWeight: "200",
+            fontSize: "14px",
+          }}>
+          {properties["description"]}
+        </p>
       </div>
     </>
   );

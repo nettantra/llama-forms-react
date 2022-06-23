@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import React from 'react';
-
+import React from "react";
 
 export default function CheckBoxField(props) {
   const { properties, handleData, name } = props;
@@ -24,17 +23,23 @@ export default function CheckBoxField(props) {
             fontWeight: "400",
             fontSize: "16px",
             margin: "5px 0",
-          }}
-        >
+          }}>
           {properties["label"]}
         </h3>
         {properties["values"] &&
           properties["values"].map((item, index) => {
             return (
-              <div key={index} style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+              <div
+                key={index}
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                }}>
                 <input
-                  type="checkbox"
+                  type='checkbox'
                   id={item}
+                  className={`llm_checkbox`}
                   value={item}
                   onChange={handleChange}
                   style={properties.style || {}}
@@ -47,8 +52,7 @@ export default function CheckBoxField(props) {
                     fontWeight: "400",
                     fontSize: "14px",
                     marginLeft: "7px",
-                  }}
-                >
+                  }}>
                   {item}
                 </label>
               </div>
@@ -60,17 +64,16 @@ export default function CheckBoxField(props) {
             fontFamily: "Nunito Sans",
             fontWeight: "200",
             fontSize: "14px",
-          }}
-        >
+          }}>
           {properties["description"]}
         </p>
       </div>
 
-      <style jsx="true">{`
+      <style jsx='true'>{`
         input[type="checkbox"]:checked + label {
           color: #777;
           transition: all 0.2s ease;
-          cursor:pointer;
+          cursor: pointer;
         }
       `}</style>
     </>

@@ -1,6 +1,5 @@
 import { useState } from "react";
-import React from 'react';
-
+import React from "react";
 
 export default function FileUploadField(props) {
   const { properties, handleData, name } = props;
@@ -44,8 +43,7 @@ export default function FileUploadField(props) {
             fontWeight: "400",
             fontSize: "16px",
             margin: "5px 0",
-          }}
-        >
+          }}>
           {properties["label"]}
         </h3>
         {properties["type"] === "range" ? (
@@ -54,7 +52,7 @@ export default function FileUploadField(props) {
         <input
           id={name}
           name={name}
-          className="uploadInput"
+          className='llm_fileupload uploadInput'
           type={properties["type"] ? properties["type"] : "text"}
           placeholder={
             properties["placeholder"] ? properties["placeholder"] : null
@@ -71,24 +69,23 @@ export default function FileUploadField(props) {
             handleChange(e);
           }}
         />
-        <style jsx = "true">{`
-        .uploadInput::file-selector-button {
+        <style jsx='true'>{`
+          .uploadInput::file-selector-button {
             background: #ddd;
-            color:#000;
-            border-radius:5px;
+            color: #000;
+            border-radius: 5px;
             border: 0px solid;
             padding: 5px 10px;
-            font-size:14px;
+            font-size: 14px;
             font-family: "Nunito Sans";
-            margin-right:10px;
-            cursor:pointer;
-        }
-        .uploadInput{
-            font-size:12px;
+            margin-right: 10px;
+            cursor: pointer;
+          }
+          .uploadInput {
+            font-size: 12px;
             font-family: "Nunito Sans";
-        }
-      `}</style>
-
+          }
+        `}</style>
 
         <div style={{ marginBottom: "20px" }}>
           <p
@@ -97,8 +94,7 @@ export default function FileUploadField(props) {
               fontFamily: "Nunito Sans",
               fontWeight: "200",
               fontSize: "14px",
-            }}
-          >
+            }}>
             {properties["description"]}
           </p>
           {error ? (
@@ -109,8 +105,7 @@ export default function FileUploadField(props) {
                 fontWeight: "600",
                 fontSize: "14px",
                 color: "#9e001a",
-              }}
-            >
+              }}>
               {properties["errorMessage"]
                 ? properties["errorMessage"]
                 : "Invalid file type or size"}
