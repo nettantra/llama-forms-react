@@ -142,11 +142,23 @@ function App() {
                 required: true,
                 enum: ["You are good", "You have a good sense", "Maybe", "Also I am confused"]
               },
+              zip:{
+                type: 'number',
+                required: true,
+              }
             }
           }}
           options={{
             type: 'object',
             fields: {
+              zip:{
+                type: 'number',
+                label:  "zipcode",
+                maxLength: 10,
+                max:6,
+                // validationRegex:"^[0-9]{5}(?:-[0-9]{4})?$",
+                errorMessage:"your error message"
+              },
               email: {
                 type: 'email',
                 label: 'Email',
