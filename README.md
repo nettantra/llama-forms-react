@@ -174,7 +174,7 @@ Here we pass all schema fields properties. Which basically contains an object fo
 
 ## Author
 
-👤 **NetTantra Technologies React Developers (https://github.com/orgs/nettantra/teams/llama-forms-developers)**
+👤 **NetTantra Technologies React Developers (https://github.com/orgs/nettantra/teams/llama-forms-core)**
 
 - Website: www.nettantra.com
 - Github: [@nettantra](https://github.com/nettantra)
