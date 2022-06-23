@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export default function RadioField(props) {
   const { properties, handleData, name } = props;
@@ -16,17 +16,17 @@ export default function RadioField(props) {
             fontWeight: "400",
             fontSize: "16px",
             margin: "5px 0",
-          }}>
+          }}
+        >
           {properties["label"]}
         </h3>
         {properties["values"].map((value, index) => {
           return (
             <div key={index}>
               <input
-                type='radio'
+                type="radio"
                 id={value}
                 name={name}
-                className={`llm_radio`}
                 value={value}
                 checked={props.parentState[name].value === value}
                 onChange={(e) => {
@@ -43,29 +43,28 @@ export default function RadioField(props) {
                   fontWeight: "400",
                   fontSize: "14px",
                   marginLeft: "7px",
-                }}>
+                }}
+              >
                 {value}
               </label>
             </div>
           );
         })}
-        <p
-          style={{
-            marginTop: "5px",
-            marginBottom: "20px",
-            fontFamily: "Nunito Sans",
-            fontWeight: "200",
-            fontSize: "14px",
-          }}>
-          {properties["description"]}
-        </p>
+        <p style={{
+          marginTop: "5px",
+          marginBottom: "20px",
+          fontFamily: "Nunito Sans",
+          fontWeight: "200",
+          fontSize: "14px",
+        }}>{properties["description"]}</p>
       </div>
 
-      <style jsx='true'>{`
+      <style jsx="true">{`
         [type="radio"]:checked,
         [type="radio"]:not(:checked) {
           position: absolute;
           left: -9999px;
+
         }
         [type="radio"]:checked + label,
         [type="radio"]:not(:checked) + label {

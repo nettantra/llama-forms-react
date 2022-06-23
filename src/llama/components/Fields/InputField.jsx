@@ -18,26 +18,41 @@ export default function InputField(props) {
     const re = new RegExp(regex);
     return re.test(value);
   }
+  // const prefix = 'prefix-'
+  const caseChange = (value) => {
+    if (properties["lowercase"]) return value.toLowerCase();
+    if (properties["uppercase"]) return value.toUpperCase();
+    return value;
+  };
+  // const suffixChange = (input) => {
+  //     if(["text", "number"].includes(properties['type'])) return input.replace(/^/g, `${prefix + " "}`)
+  //     // prefix +" "+ input.substring(prefix.length);
+  //     return input
+
+  // }
   const handleChange = (e) => {
-    handleData(e.target.value, false);
-    if (e.target.value.length === 0) {
+    let input = e.target.value;
+    // let j = input.replace("prefix-", "")
+    // let n = prefix + j
+    // let i = input.replace(/^/g, `${prefix + " "}`)
+    // ["text", "number"].includes(properties['type'])?  prefix + input.substring(prefix.length) : input
+    const value = caseChange(input);
+
+    handleData(value, false);
+
+    if (value.length === 0) {
       setError(false);
-      handleData(e.target.value, false);
+      handleData(value, false);
       return;
     }
     if (properties.validationRegex) {
-      setError(!checkValidation(properties["validationRegex"], e.target.value));
-      handleData(
-        e.target.value,
-        !checkValidation(properties["validationRegex"], e.target.value)
-      );
+      setError(!checkValidation(properties["validationRegex"], value));
+      handleData(value, !checkValidation(properties["validationRegex"], value));
     } else if (properties.type in regexObject) {
-      setError(
-        !checkValidation(regexObject[properties.type]["regex"], e.target.value)
-      );
+      setError(!checkValidation(regexObject[properties.type]["regex"], value));
       handleData(
-        e.target.value,
-        !checkValidation(regexObject[properties.type]["regex"], e.target.value)
+        value,
+        !checkValidation(regexObject[properties.type]["regex"], value)
       );
     }
   };
@@ -67,7 +82,6 @@ export default function InputField(props) {
         <input
           id={name}
           name={name}
-          className={`llm_input`}
           type={properties["type"] ? properties["type"] : "text"}
           placeholder={
             properties["placeholder"] ? properties["placeholder"] : null
@@ -107,6 +121,17 @@ export default function InputField(props) {
           onChange={(e) => {
             handleChange(e);
           }}
+          // ref={(target)=>{
+          //     console.log(target.value)
+          //     target.value = prefix
+          //     }}
+          // ref={(target)=>{
+          // target.value = prefix
+          // }}
+          // onChange={(e)=>{
+          //   const input = e.target.value
+          //   e.target.value = prefix + input
+          // }}
         />
         <div style={{ marginBottom: "20px" }}>
           <p

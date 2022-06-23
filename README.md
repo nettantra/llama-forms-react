@@ -11,7 +11,7 @@
   </a>
 </p>
 
-> A react form builder where we can implement a number of form fields without using any HTML tags. This comes with a dynamic and user-friendly UI. You just need to import LlamaForm from llama-form and enjoy an amazing form by JSON schema.
+> An HTML-free component for React form creation that employs a JSON structure to support a variety of form fields with a simple user interface. Simply import LlamaForm from llama-form to get a great form that is driven by JSON schema.
 
 **Content**
 
@@ -31,14 +31,14 @@ npm i llama-forms-react
 
 ## Features
 
-- Easy to use
-- Schema based form
+- Simple to use
+- Form based on a schema
 - Validation regex support
-- Get form response in JSON format
-- Customizable submit button with loader
-- Callback function support on form submit
+- Form answer in JSON format
+- Submit button with loader that may be customized
+- Form submission callback function support
 - Custom errorMessage support
-- Case Sensitivity validation support
+- Support for sensitivity validation
 - Custom style support
 - multi-step form with:
   - Progress bar
@@ -48,7 +48,7 @@ npm i llama-forms-react
 
 ## Quickstart
 
-**Create a Registration Form using Llama Form**
+**Create a Login Form using Llama Form**
 
 ```js
 import LlamaForm from "llama-forms-react";
@@ -113,13 +113,13 @@ export default function Example() {
 
 ### Main Props
 
-> **schema:** Base part of the form where you can give json schema for creating form.
+> **schema:** The form's foundation, where you may provide a json schema for the form's creation.
 
-> **options:** Properties of fields for specified schema.
+> **options:** Field properties for the provided schema.
 
-> **data:** Default values for form field.
+> **data:** Form field default values
 
-> **onSubmit:** Callback which accept a function in which it returns the form data.
+> **onSubmit:** A callback that accepts a function and returns the form data.
 
 ### Schema Props
 
