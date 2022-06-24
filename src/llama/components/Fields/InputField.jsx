@@ -20,6 +20,11 @@ export default function InputField(props) {
     if (properties["uppercase"]) return value.toUpperCase();
     return value
   }
+  //it add prefix with input value
+  const prefixChange = (value) => {
+    if (properties["prefix"]) return value.substring(properties["prefix"].length)
+    return value
+  }
   const blockInvalidChar = e => {
     if (properties["type"] !== "number") {
       return true
@@ -44,7 +49,7 @@ export default function InputField(props) {
       return false
     }
     const value = caseChange(input)
-
+    prefixChange(value)
     handleData(value, false)
 
     if (value.length === 0) {
