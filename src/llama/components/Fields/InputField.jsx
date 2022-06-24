@@ -46,7 +46,7 @@ export default function InputField(props) {
       setError(true)
       return false
     }
-    const value = caseChange(input)
+    let value = caseChange(input)
     value = prefixChange(value)
     handleData(value, false)
 
