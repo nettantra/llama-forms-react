@@ -38,7 +38,6 @@ export default function InputField(props) {
   // }
   const handleChange = (e) => {
     let input = e.target.value
-    // let j = input.replace("prefix-", "")
     // let n = prefix + j    
     // let i = input.replace(/^/g, `${prefix + " "}`)
     // ["text", "number"].includes(properties['type'])?  prefix + input.substring(prefix.length) : input
