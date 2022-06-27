@@ -1,9 +1,11 @@
-import { useState } from "react"
-import React from 'react';
+import React, { useState, useRef } from "react";
 
 export default function InputField(props) {
   const { properties, handleData, name } = props
   const [error, setError] = useState(false)
+
+  let capsWarning = useRef();
+  let inputRef = useRef();
 
   const regexObject = {
     email: { regex: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/, errorMessage: "Please enter a valid email" },
@@ -30,6 +32,18 @@ export default function InputField(props) {
     if (properties["type"] === "number") ['e', 'E', '+', '-'].includes(e.key) && e.preventDefault();
     return true
   }
+  // this function check the capsLock event in input field
+  const handleCapsLockchek = (e) => {
+    if (e.getModifierState("CapsLock")) {
+      capsWarning.current.hidden = false;
+      capsWarning.current.style.color = 'red';
+      capsWarning.current.innerHTML = properties?.["capsLockMessage"]?.trim() || "WARNING! Caps lock is ON.";
+      inputRef.current.value = "";
+    } else {
+      capsWarning.current.hidden = true;
+    }
+  }
+
   // const suffixChange = (input) => {
   //     if(["text", "number"].includes(properties['type'])) return input.replace(/^/g, `${prefix + " "}`)
   //     // prefix +" "+ input.substring(prefix.length);
@@ -88,6 +102,8 @@ export default function InputField(props) {
           style={properties['style'] ? properties['style'] : properties['type'] === 'color' ? { width: '40px', height: '40px' } : { width: '95%', padding: '7px', border: '1px solid #000', borderRadius: '5px', fontSize: '14px', fontFamily: 'Nunito Sans', fontWeight: '400' }}
           onChange={(e) => { handleChange(e) }}
           onKeyDown={blockInvalidChar}
+          onKeyUp={properties["capsLockWaring"] ? handleCapsLockchek : null}
+          ref={inputRef}
         // ref={(target)=>{
         //     console.log(target.value)
         //     target.value = prefix
@@ -102,6 +118,7 @@ export default function InputField(props) {
         />
         <div style={{ marginBottom: '20px' }}>
           <p style={{ margin: '5px 0px', fontFamily: 'Nunito Sans', fontWeight: '200', fontSize: '14px' }}>{properties['description']}</p>
+          <p id="text" ref={capsWarning} hidden></p>
           {error ? <p style={{ marginTop: '5px', fontFamily: 'Nunito Sans', fontWeight: '600', fontSize: '14px', color: '#9e001a' }}>{properties['errorMessage'] ? properties['errorMessage'] : (properties.type in regexObject) ? regexObject[properties.type]['errorMessage'] : null}</p> : null}
         </div>
       </div>
