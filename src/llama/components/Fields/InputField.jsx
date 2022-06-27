@@ -27,12 +27,10 @@ export default function InputField(props) {
     if (properties["prefix"]) return value.substring(properties["prefix"].length)
     return value
   }
+  //it block invalid character in number
   const blockInvalidChar = e => {
-    if (properties["type"] !== "number") {
-      return true
-    } else {
-      ['e', 'E', '+', '-'].includes(e.key) && e.preventDefault();
-    }
+    if (properties["type"] === "number") ['e', 'E', '+', '-'].includes(e.key) && e.preventDefault();
+    return true
   }
   // this function check the capsLock event in input field
   const handleCapsLockchek = (e) => {
@@ -62,8 +60,8 @@ export default function InputField(props) {
       setError(true)
       return false
     }
-    const value = caseChange(input)
-    prefixChange(value)
+    let value = caseChange(input)
+    value = prefixChange(value)
     handleData(value, false)
 
     if (value.length === 0) {
@@ -89,7 +87,7 @@ export default function InputField(props) {
           name={name}
           type={properties['type'] ? properties['type'] : "text"}
           placeholder={properties['placeholder'] ? properties['placeholder'] : null}
-          value={props.parentState[name]?.value}
+          value={properties["prefix"] ? properties["prefix"] + props.parentState[name]?.value : props.parentState[name]?.value}
           disabled={properties['readOnly'] ? properties['readOnly'] : false}
           maxLength={properties['maxlength'] ? properties['maxlength'] : null}
           min={properties['min'] ? properties['min'] : null}
