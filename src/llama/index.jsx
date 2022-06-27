@@ -1,5 +1,4 @@
-import React from 'react';
-import { Fragment, useEffect, useState } from "react";
+import React,{ useEffect, useState, useRef } from "react";
 import MultipleForm from "./components/Form/multipleForm";
 import SingleForm from "./components/Form/singleForm";
 import { Progress } from './components/Progress'
@@ -11,6 +10,7 @@ export const LlamaForm = (props) => {
     const [data, setData] = useState({})
     const [wizardStepSet, setWizardStepSet] = useState({})
     const [step, setStep] = useState(props.schema?.initialStep ?? 1);
+    let enterButton = useRef()
 
     //loop through the fields and set the data
     const customizeData = (fields) => {
@@ -73,6 +73,7 @@ export const LlamaForm = (props) => {
                     buttons={props?.schema?.buttons?? ""}
                     initialStep={props?.schema?.initialStep}
                     wizardStepOptions={props?.schema?.wizardOptions}
+                    ref={enterButton}
                 />
             )
         }
@@ -85,11 +86,24 @@ export const LlamaForm = (props) => {
                 fields={fields}
                 onSubmit={props.onSubmit}
                 submitButtonText={props?.schema?.buttons?.submit?.text?? "Submit"}
+                ref={enterButton}
             />
         )
 
     }
-
+    useEffect(() => {
+        const listener = event => {
+          if (event.key === "Enter" || event.code === "NumpadEnter") {
+            event.preventDefault();
+            enterButton.current.click();
+          }
+        };
+        document.addEventListener("keydown", listener);
+        //need to clear keydown function
+        return () => {
+          document.removeEventListener("keydown", listener);
+        };
+      }, [step]);
     return (
         <>
             <div style={{ backgroundColor: "#FAFAFA", width: "100%", height: "100%", display: "flex", flexDirection: "column", alignItems: "center", padding: "10px" }}>

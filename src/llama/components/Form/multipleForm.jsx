@@ -1,9 +1,8 @@
-import { Fragment, useState } from "react";
+import React, {useState, forwardRef } from "react";
 import RenderForm from "./renderForm";
-import React from 'react';
 import Loader from "../Loader";
 
-export default function MultipleForm(props) {
+const MultipleForm = forwardRef((props, ref)=>{
 
   const [step, setStep] = useState(props.initialStep ?? 1);
 
@@ -121,11 +120,11 @@ export default function MultipleForm(props) {
       {[props?.buttons?.["previous"]?.text ?? "Previous", props?.buttons?.["previous"]?.loader ? loading? <Loader key={"key"}/>:null: null]}
       </button>
       {step === parseInt(Object.keys(fieldSet).pop()) ? (
-        <button className="btn" onClick={handleSubmit}>
+        <button className="btn" onClick={handleSubmit} ref={ref}>
         {[props?.buttons?.["submit"]?.text ?? "Submit", props?.buttons?.["next"]?.loader ? loading? <Loader key={"key"}/>:null: null]}
         </button>
       ) : (
-        <button className="btn" onClick={handleNext} disabled={loading}>
+        <button className="btn" onClick={handleNext} disabled={loading} ref={ref}>
         {[props?.buttons?.["next"]?.text ?? "Next", props?.buttons?.["next"]?.loader ? loading? <Loader key={"key"}/>:null: null]}
         </button>
       )}
@@ -145,4 +144,5 @@ export default function MultipleForm(props) {
       </style>
     </>
   );
-}
+})
+export default MultipleForm;

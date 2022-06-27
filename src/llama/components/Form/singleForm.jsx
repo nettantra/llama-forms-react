@@ -1,8 +1,7 @@
-import { useState } from "react";
+import React,{ useState, forwardRef } from "react";
 import RenderForm from "./renderForm";
-import React from "react";
 
-export default function SingleForm(props) {
+const SingleForm = forwardRef((props, ref)=> {
   const fields = props.fields;
   const data = props.parentState;
 
@@ -77,9 +76,11 @@ export default function SingleForm(props) {
           fontFamily: "Nunito Sans",
           margin: "20px 0px",
         }}
-        onClick={handleSubmit}>
+        onClick={handleSubmit}
+        ref={ref}>
         {props?.submitButtonText ?? "Submit"}
       </button>
     </>
   );
-}
+})
+export default SingleForm;
