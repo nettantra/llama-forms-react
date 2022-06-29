@@ -2,7 +2,7 @@ import React from 'react'
 
 
 const Loader = () => {
-    const loader = {
+    const loader:object = {
         height: '12px',
         width: '12px',
         borderRadius: '50%',

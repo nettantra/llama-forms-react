@@ -1,12 +1,18 @@
 import { useEffect, useState } from "react";
 import React from 'react';
+interface Props{   
+  properties:any,
+  handleData:any,
+  name:any,
+  parentState:any,
+  
+}
 
-
-export default function CheckBoxField(props) {
+export default function CheckBoxField(props:Props) {
   const { properties, handleData, name } = props;
-  const [chechBoxData, setCheckBoxData] = useState({});
+  const [chechBoxData, setCheckBoxData]:any = useState({});
 
-  const handleChange = (e) => {
+  const handleChange = (e:any) => {
     setCheckBoxData({ ...chechBoxData, [e.target.value]: e.target.checked });
     handleData({ ...chechBoxData, [e.target.value]: e.target.checked });
   };
@@ -29,7 +35,7 @@ export default function CheckBoxField(props) {
           {properties["label"]}
         </h3>
         {properties["values"] &&
-          properties["values"].map((item, index) => {
+          properties["values"].map((item:any, index:any) => {
             return (
               <div key={index} style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
                 <input
@@ -66,7 +72,7 @@ export default function CheckBoxField(props) {
         </p>
       </div>
 
-      <style jsx="true">{`
+      <style >{`
         input[type="checkbox"]:checked + label {
           color: #777;
           transition: all 0.2s ease;

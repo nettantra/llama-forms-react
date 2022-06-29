@@ -1,9 +1,15 @@
 import React from 'react';
 
-export default function RadioField(props) {
+interface Props{   
+  properties:any,
+  handleData:any,
+  name:any,
+  parentState:any,  
+}
+export default function RadioField(props:Props) {
   const { properties, handleData, name } = props;
 
-  const handleChange = (e) => {
+  const handleChange = (e:any) => {
     handleData(e.target.value);
   };
 
@@ -20,7 +26,7 @@ export default function RadioField(props) {
         >
           {properties["label"]}
         </h3>
-        {properties["values"].map((value, index) => {
+        {properties["values"].map((value:any, index:any) => {
           return (
             <div key={index}>
               <input
@@ -59,7 +65,7 @@ export default function RadioField(props) {
         }}>{properties["description"]}</p>
       </div>
 
-      <style jsx="true">{`
+      <style >{`
         [type="radio"]:checked,
         [type="radio"]:not(:checked) {
           position: absolute;

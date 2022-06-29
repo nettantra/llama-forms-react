@@ -1,12 +1,18 @@
 import { useState } from "react";
 import React from 'react';
 
+interface Props{   
+  properties:any,
+  handleData:any,
+  name:any,
+  parentState:any,  
+}
 
-export default function FileUploadField(props) {
+export default function FileUploadField(props:Props) {
   const { properties, handleData, name } = props;
   const [error, setError] = useState(false);
 
-  function checkFileType(file) {
+  function checkFileType(file:any) {
     const fileTypes = properties.accept;
     if (!fileTypes) {
       return true;
@@ -23,7 +29,7 @@ export default function FileUploadField(props) {
     return false;
   }
 
-  const handleChange = (e) => {
+  const handleChange = (e:any) => {
     if (e.target.files && e.target.files[0]) {
       if (checkFileType(e.target.files[0])) {
         setError(false);
@@ -71,7 +77,7 @@ export default function FileUploadField(props) {
             handleChange(e);
           }}
         />
-        <style jsx = "true">{`
+        <style >{`
         .uploadInput::file-selector-button {
             background: #ddd;
             color:#000;

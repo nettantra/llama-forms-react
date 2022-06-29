@@ -1,17 +1,24 @@
 import { useEffect, useState } from "react";
 import React from 'react';
 
+interface Props{   
+  properties:any,
+  handleData:any,
+  name:any,  
+  parentState:any, 
+}
 
-export default function TextAreaField(props) {
+export default function TextAreaField(props:Props) {
   const { properties, handleData, name } = props;
   const [style, setStyle] = useState(properties.style || { borderRadius: "5px", width: "95%", padding: "7px", fontSize: "12px", fontFamily: "Nunito Sans" });
-
-  const caseChange = (value) => {
-    if (properties["lowercase"]) return value.toLowerCase();
-    if (properties["uppercase"]) return value.toUpperCase();
-    return value
+//********
+const caseChange = (value:any) => {
+  if (properties["lowercase"]) return value.toLowerCase();
+  if (properties["uppercase"]) return value.toUpperCase();
+  return value
 }
-  const handleChange = (e) => {
+//**** */
+  const handleChange = (e:any) => {
     const value = caseChange(e.target.value)
     handleData(value);
   };

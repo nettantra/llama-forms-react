@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const Progress = ({ height, width, ProgressBar ,subProgressBar, color, text, textAlign, textColor, stepLength, step, align }) => {
+export const Progress = ({ height, width, ProgressBar ,subProgressBar, color, text, textAlign, textColor, stepLength, step, align }:any) => {
   const Parentdiv = {
     height: height ? height : 20,
     width: width ? width : '100%',

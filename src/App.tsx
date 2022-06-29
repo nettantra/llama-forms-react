@@ -2,19 +2,15 @@ import React from 'react';
 import LlamaForm from './llama/index'
 // import {LlamaForm} from "test-react-form";
 
+
 function App() {
 
-  const login_test = (data) => {
+  const login_test = (data:any) => {
     console.log("login", data)
   }
-  // const handleChange = () => {
-  //   alert("you have clicked in first step")
-  // }
-  // const handle = () => {
-  //   alert("you have clicked in 2nd step")
-  // }
+
   return (
-      <div style={{ width: "50%", margin: "auto" }}>
+    <div style={{ width: "50%", margin: "auto" }}>
         <LlamaForm
           schema={{
             type: 'object',
@@ -166,12 +162,15 @@ function App() {
                 description: "This is email field",
                 // validationRegex: "",
                 errorMessage: "",
+                prefix:"sajal-",
                 lowercase: false,
-                uppercase: true,
+                uppercase: false,
                 readOnly: false,
                 maxLength: 30,
                 autoFocus: true,
                 autoComplete: true,
+                capsLockWaring: true,
+                capsLockMessage : "Caps Lock is On",
               },
               doubt: {
                 type: 'radio',

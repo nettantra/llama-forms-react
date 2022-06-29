@@ -1,10 +1,16 @@
 import React from 'react';
 
+interface Props{   
+  properties:any,
+  handleData:any,
+  name:any,
+  parentState:any,  
+}
 
-export default function DropDownField(props) {
+export default function DropDownField(props:Props) {
   const { properties, handleData, name } = props;
 
-  const handleChange = (e) => {
+  const handleChange = (e:any) => {
     handleData(e.target.value);
   };
 
@@ -79,7 +85,7 @@ export default function DropDownField(props) {
         </div>
       </div>
 
-      <style jsx="true">
+      <style >
         {`
           select:focus {
             outline: none;
