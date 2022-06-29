@@ -175,6 +175,7 @@ function App() {
                 autoComplete: true,
                 capsLockWaring: true,
                 capsLockMessage : "Caps Lock is On",
+                className:"",
               },
               doubt: {
                 type: 'radio',

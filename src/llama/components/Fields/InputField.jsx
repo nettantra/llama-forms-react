@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 export default function InputField(props) {
   const { properties, handleData, name } = props
@@ -76,6 +76,20 @@ export default function InputField(props) {
       handleData(value, !checkValidation(regexObject[properties.type]['regex'], value))
     }
   }
+  useEffect(() => {
+
+    if (properties?.["className"]?.trim()) {
+      inputRef.current.style = ""
+      inputRef.current.className = properties?.["className"] ?? name
+    }
+    if (properties["style"]) {
+      inputRef.current.style = ""
+      for (let key in properties["style"]) {
+        inputRef.current.style.setProperty(key, properties["style"][key]);
+      }
+    }
+
+  }, []);
   return (
     <>
       <div>
