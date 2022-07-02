@@ -65,7 +65,7 @@ function App() {
                 loader:true,
               },
             },
-            initialStep:1,
+            initialStep:2,
             properties: {
               email: {
                 type: 'string',
@@ -77,6 +77,12 @@ function App() {
                 type: 'string',
                 required: true,
                 enum: ["Yes","No"],
+                step: 2,
+              },
+              checkDoubt: {
+                type: 'string',
+                required: true,
+                enum: ["Yes","No", "confuse"],
                 step: 2,
               },
               wdoubt: {
@@ -177,12 +183,20 @@ function App() {
                 label: 'Doubt',
                 description: "This is radio field",
               },
+              checkDoubt: {
+                type: 'checkbox',
+                label: 'checkDoubt',
+                description: "This is checkbox field",
+              },
               wdoubt: {
                 type: 'textarea',
                 label: 'What is your doubt',
                 description: "This is textarea field",
-                parentField: "doubt",
-                dependentValue: "Yes",
+                parentField: "checkDoubt",
+                dependent:{
+                  value : ["Yes", "confuse"],
+                  type: "single",          //multi or single
+                }
               },
               details: {
                 type: "textarea",

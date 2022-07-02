@@ -13,8 +13,14 @@ export default function CheckBoxField(props:Props) {
   const [chechBoxData, setCheckBoxData]:any = useState({});
 
   const handleChange = (e:any) => {
-    setCheckBoxData({ ...chechBoxData, [e.target.value]: e.target.checked });
-    handleData({ ...chechBoxData, [e.target.value]: e.target.checked });
+    let checkObj = { ...chechBoxData, [e.target.value]: e.target.checked}
+    for (let key in checkObj) {
+      if (!checkObj[key]) {
+        delete checkObj[key]
+      }
+    }
+    setCheckBoxData(checkObj);
+    handleData(checkObj);
   };
 
   useEffect(() => {
