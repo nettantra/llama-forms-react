@@ -168,7 +168,7 @@ function App() {
                 description: "This is email field",
                 // validationRegex: "",
                 errorMessage: "",
-                prefix:"sajal-",
+                // prefix:"sajal-",
                 lowercase: false,
                 uppercase: false,
                 readOnly: false,
