@@ -69,7 +69,7 @@ function App() {
                 loader:true,
               },
             },
-            initialStep:1,
+            initialStep:2,
             properties: {
               email: {
                 type: 'string',
@@ -81,6 +81,12 @@ function App() {
                 type: 'string',
                 required: true,
                 enum: ["Yes","No"],
+                step: 2,
+              },
+              checkDoubt: {
+                type: 'string',
+                required: true,
+                enum: ["Yes","No", "confuse"],
                 step: 2,
               },
               wdoubt: {
@@ -176,6 +182,15 @@ function App() {
                 capsLockWaring: true,
                 capsLockMessage : "Caps Lock is On",
                 className:"",
+                // style:{
+                //   width: "95%",
+                //   padding: "17px",
+                //   border: "1px solid red",
+                //   borderRadius: "5px",
+                //   fontSize: "14px",
+                //   fontFamily: "Nunito Sans",
+                //   fontWeight: "400",
+                // }
               },
               doubt: {
                 type: 'radio',
@@ -186,8 +201,16 @@ function App() {
                 type: 'textarea',
                 label: 'What is your doubt',
                 description: "This is textarea field",
-                parentField: "doubt",
-                dependentValue: "Yes",
+                parentField: "checkDoubt",
+                dependent:{
+                  value : ["Yes", "confuse"],
+                  type: "multi",          //multi or single
+                }
+              },
+              checkDoubt: {
+                type: 'checkbox',
+                label: 'checkDoubt',
+                description: "This is checkbox field",
               },
               details: {
                 type: "textarea",

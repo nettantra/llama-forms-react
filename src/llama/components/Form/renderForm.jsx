@@ -113,18 +113,13 @@ export default function RenderForm(props) {
             field
           );
         } else {
-          if (
-            props.parentState[properties.parentField].value ===
-            properties.dependentValue
-          ) {
-            return renderForm(
-              fields[field].type,
-              index,
-              handleData,
-              properties,
-              props.parentState,
-              field
-            );
+          if (props.parentState[properties.parentField].value === properties?.dependent?.value[0]) {
+            return renderForm(fields[field].type, index, handleData, properties, props.parentState, field)
+          }
+          if (properties?.dependent?.type?.toLowerCase() === "multi" && properties?.dependent?.value?.every(key => Object.keys(props.parentState[properties.parentField].value).includes(key))) {
+            return renderForm(fields[field].type, index, handleData, properties, props.parentState, field)
+          } if (properties?.dependent?.type?.toLowerCase() === "single" && Object.keys(props.parentState[properties.parentField].value).some((val) => properties?.dependent?.value?.includes(val))) {
+            return renderForm(fields[field].type, index, handleData, properties, props.parentState, field)
           }
         }
       })}
