@@ -1,6 +1,6 @@
 {
-  "name": "llama-forms-react",
-  "version": "1.0.3",
+  "name": "test-react-form",
+  "version": "1.1.6",
   "private": false,
   "description": "This is a react form builder where we can implement a number of form fields without using any HTML tags. This comes with a dynamic and user-friendly UI. You just need to import LlamaForm from llama-form and enjoy an amazing form by JSON schema.",
   "keywords": [
@@ -19,19 +19,17 @@
     "email": "nettantra@nettantra.net"
   },
   "main": "dist/index.js",
-  "module": "dist/index.js",
+  "typings": "dist/index.d.ts",
   "files": [
     "dist"
   ],
   "author": "NetTantra Technologies React Developers <webmaster@nettantra.com> (https://github.com/orgs/nettantra/teams/llama-forms-developers)",
   "license": "MIT",
+  "peerDependencies": {
+    "react": ">=16"
+  },
   "dependencies": {
-    "@babel/cli": "^7.18.6",
-    "@babel/core": "^7.18.6",
-    "@babel/polyfill": "^7.12.1",
-    "@babel/preset-env": "^7.18.6",
-    "@babel/preset-react": "^7.18.6",
-    "@babel/preset-typescript": "^7.18.6"
+    "core-js": "2.6.5"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.14.1",
@@ -44,20 +42,17 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
+    "tsdx": "^0.14.1",
+    "tslib": "^2.4.0",
     "typescript": "^4.7.3",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "package": "rm -rf dist && tsdx build -i src/llama/index.tsx",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
   },
   "browserslist": {
     "production": [
