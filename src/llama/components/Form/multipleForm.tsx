@@ -1,24 +1,23 @@
-import React, {useState, forwardRef } from "react";
+import React, { useState, forwardRef } from "react";
 import RenderForm from "./renderForm";
 import Loader from "../Loader";
 
 interface LooseObject {
-  [key: string]: any
+  [key: string]: any;
 }
-interface Props{
-  initialStep: number,
-  fields:any,
-  parentState:object,
-  parentSetState:object,
-  wizardStepSet:object,
-  onSubmit:any,
-  buttons:LooseObject
-  step:any,
-  wizardStepOptions:any
+interface Props {
+  initialStep: number;
+  fields: any;
+  parentState: object;
+  parentSetState: object;
+  wizardStepSet: object;
+  onSubmit: any;
+  buttons: LooseObject;
+  step: any;
+  wizardStepOptions: any;
 }
 
-const MultipleForm = forwardRef((props:Props, ref:any)=>{
-
+const MultipleForm = forwardRef((props: Props, ref: any) => {
   const [step, setStep] = useState(props.initialStep ?? 1);
 
   const [alert, setAlert] = useState(false);
@@ -26,14 +25,30 @@ const MultipleForm = forwardRef((props:Props, ref:any)=>{
   const [loading, setLoading] = useState(false);
 
   const fields = props.fields;
-  const data:any = props.parentState;
-  let fieldSet:LooseObject  = props.wizardStepSet;
+  const data: any = props.parentState;
+  let fieldSet: LooseObject = props.wizardStepSet;
 
   const alertRender = () => {
-    return <p style={{ width: '100%', backgroundColor: "#ffc3b2", color: "#902100", padding: "5px 10px", fontSize: "16px", fontWeight: "300", fontFamily: "Nunito Sans", border: "none", borderRadius: "5px", textAlign: "center" }}>{alertMsg}</p>
-  }
+    return (
+      <p
+        style={{
+          width: "100%",
+          backgroundColor: "#ffc3b2",
+          color: "#902100",
+          padding: "5px 10px",
+          fontSize: "16px",
+          fontWeight: "300",
+          fontFamily: "Nunito Sans",
+          border: "none",
+          borderRadius: "5px",
+          textAlign: "center",
+        }}>
+        {alertMsg}
+      </p>
+    );
+  };
 
-  const handleNext = async() => {
+  const handleNext = async () => {
     setLoading(true);
     let currentFields = fieldSet[step];
     for (let i in currentFields) {
@@ -41,32 +56,46 @@ const MultipleForm = forwardRef((props:Props, ref:any)=>{
         data[currentFields[i]].value === "" &&
         fields[currentFields[i]].required
       ) {
-        setAlert(false)
-        setAlertMsg(`${currentFields[i]} field is required`)
-        setAlert(true)
+        setAlert(false);
+        setAlertMsg(`${currentFields[i]} field is required`);
+        setAlert(true);
         setTimeout(() => {
-          setAlert(false)
+          setAlert(false);
           setLoading(false);
-        }, 5000)
+        }, 5000);
         return;
       }
       if (data[currentFields[i]]?.error) {
-        setAlert(false)
-        setAlertMsg(`Please look into ${currentFields[i]} field`)
-        setAlert(true)
+        setAlert(false);
+        setAlertMsg(`Please look into ${currentFields[i]} field`);
+        setAlert(true);
         setTimeout(() => {
-          setAlert(false)
+          setAlert(false);
           setLoading(false);
-        }, 5000)
+        }, 5000);
         return;
       }
     }
-    let finalData:any = {};
+    let finalData: any = {};
     for (let key in data) {
-      finalData[key] = data[key].value
+      finalData[key] = data[key].value;
     }
 
-    props?.wizardStepOptions && props?.wizardStepOptions[step]?.onNext && await props?.wizardStepOptions[step]?.onNext(finalData)
+    let currentData = {
+      step: step,
+      data: finalData,
+    };
+
+    let wizardStepOptions = props?.wizardStepOptions;
+
+    // if onNext not available for specific steps then call global one
+    if (wizardStepOptions && props?.wizardStepOptions[step]?.onNext) {
+      await props?.wizardStepOptions[step]?.onNext(currentData);
+    } else {
+      if (wizardStepOptions?.onNext) {
+        await wizardStepOptions.onNext(currentData);
+      }
+    }
 
     setStep(step + 1);
     props.step(step + 1);
@@ -88,33 +117,32 @@ const MultipleForm = forwardRef((props:Props, ref:any)=>{
         data[currentFields[i]].value === "" &&
         fields[currentFields[i]].required
       ) {
-        setAlert(false)
-        setAlertMsg(`${currentFields[i]} field is required`)
-        setAlert(true)
+        setAlert(false);
+        setAlertMsg(`${currentFields[i]} field is required`);
+        setAlert(true);
         setTimeout(() => {
-          setAlert(false)
+          setAlert(false);
           setLoading(false);
-        }, 5000)
+        }, 5000);
         return;
       }
       if (data[currentFields[i]]?.error) {
-        setAlert(false)
-        setAlertMsg(`Please look into ${currentFields[i]} field`)
-        setAlert(true)
+        setAlert(false);
+        setAlertMsg(`Please look into ${currentFields[i]} field`);
+        setAlert(true);
         setTimeout(() => {
-          setAlert(false)
+          setAlert(false);
           setLoading(false);
-        }, 5000)
+        }, 5000);
         return;
       }
     }
-    let finalData:any = {};
+    let finalData: any = {};
     for (let key in data) {
-      finalData[key] = data[key].value
+      finalData[key] = data[key].value;
     }
-    props.onSubmit(finalData)
+    props.onSubmit(finalData);
     setLoading(false);
-
   };
 
   return (
@@ -128,23 +156,47 @@ const MultipleForm = forwardRef((props:Props, ref:any)=>{
       />
 
       <button
-        className="btn"
+        className='btn'
         disabled={step === 1 ? true : false}
-        onClick={handlePrevious}
-      >
-      {[props?.buttons?.["previous"]?.text ?? "Previous", props?.buttons?.["previous"]?.loader ? loading? <Loader key={"key"}/>:null: null]}
+        onClick={handlePrevious}>
+        {[
+          props?.buttons?.["previous"]?.text ?? "Previous",
+          props?.buttons?.["previous"]?.loader ? (
+            loading ? (
+              <Loader key={"key"} />
+            ) : null
+          ) : null,
+        ]}
       </button>
       {step === parseInt(String(Object.keys(fieldSet).pop())) ? (
-        <button className="btn" onClick={handleSubmit} ref={ref}>
-        {[props?.buttons?.["submit"]?.text ?? "Submit", props?.buttons?.["next"]?.loader ? loading? <Loader key={"key"}/>:null: null]}
+        <button className='btn' onClick={handleSubmit} ref={ref}>
+          {[
+            props?.buttons?.["submit"]?.text ?? "Submit",
+            props?.buttons?.["next"]?.loader ? (
+              loading ? (
+                <Loader key={"key"} />
+              ) : null
+            ) : null,
+          ]}
         </button>
       ) : (
-        <button className="btn" onClick={handleNext} disabled={loading} ref={ref}>
-        {[props?.buttons?.["next"]?.text ?? "Next", props?.buttons?.["next"]?.loader ? loading? <Loader key={"key"}/>:null: null]}
+        <button
+          className='btn'
+          onClick={handleNext}
+          disabled={loading}
+          ref={ref}>
+          {[
+            props?.buttons?.["next"]?.text ?? "Next",
+            props?.buttons?.["next"]?.loader ? (
+              loading ? (
+                <Loader key={"key"} />
+              ) : null
+            ) : null,
+          ]}
         </button>
       )}
 
-      <style >
+      <style>
         {`
           .btn {
             background-color: #ddd;
@@ -159,5 +211,5 @@ const MultipleForm = forwardRef((props:Props, ref:any)=>{
       </style>
     </>
   );
-})
+});
 export default MultipleForm;
