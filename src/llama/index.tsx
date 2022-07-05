@@ -61,8 +61,8 @@ export const LlamaForm = (props: any) => {
         step: properties[key].step
           ? properties[key].step
           : properties[key].depend
-          ? properties[fields[key].parentField].step
-          : 1,
+            ? properties[fields[key].parentField].step
+            : 1,
         type: fields[key] ? fields[key].type : "",
         values: properties[key].enum || "",
         required: properties[key].required || false,
@@ -139,9 +139,8 @@ export const LlamaForm = (props: any) => {
     textAlign: pbTextAlign,
     className: pbClassName,
   } = progressBar;
-
-  return (
-    <div className={`llm-form-container`}>
+  return (<>
+    <div className={`llm_form_container`}>
       <h1 className={`llm-heading`}>{title}</h1>
 
       <h2 className={`llm-description`}>{description}</h2>
@@ -171,7 +170,47 @@ export const LlamaForm = (props: any) => {
         {formBuilder()}
       </form>
     </div>
+    <style>{`
+        .llm-form-container{
+          background-color: #FAFAFA;
+          width: 100%;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          padding: 15px;
+          margin:auto;
+      }
+      .llm-heading{
+          font-family: "Nunito Sans";
+          margin: 20px 0px ;
+          text-align: center;
+      }
+      .llm-description{
+          font-size: "Nunito Sans";
+          font-weight: "400";
+          margin: 0px 0px 30px 0px;
+          text-align: center;
+      }
+      .llm-progresbar-container{
+          border-radius :40px;
+          margin-top : 50px;
+          display:flex;
+          flex-direction: column;
+          margin-bottom: 20px;
+      }
+      .llm-progressbar-text{
+          padding:8px;
+          font-weight: 500;
+      }
+      .llm-progressbar-steps{
+          margin: 5px 5px 20px auto;
+      }
+      `}
+    </style>
+  </>
   );
 };
+
 
 export default LlamaForm;
