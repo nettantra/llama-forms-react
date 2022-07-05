@@ -2,7 +2,6 @@ import React, { useEffect, useState, useRef } from "react";
 import MultipleForm from "./components/Form/multipleForm";
 import SingleForm from "./components/Form/singleForm";
 import { Progress } from "./components/Progress";
-import "../llama/index.css";
 interface LooseObject {
   [key: string]: any;
 }
