@@ -12,7 +12,7 @@ export default function RadioField(props:Props) {
   const handleChange = (e:any) => {
     handleData(e.target.value);
   };
-
+  
   return (
     <>
       <div>

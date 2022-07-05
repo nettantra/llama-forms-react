@@ -10,7 +10,7 @@ interface Props{
 
 export default function CheckBoxField(props:Props) {
   const { properties, handleData, name } = props;
-  const [chechBoxData, setCheckBoxData]:any = useState({});
+  const [chechBoxData, setCheckBoxData]:any = useState(props.parentState[name].value);
 
   const handleChange = (e:any) => {
     let checkObj = { ...chechBoxData, [e.target.value]: e.target.checked}
@@ -22,10 +22,6 @@ export default function CheckBoxField(props:Props) {
     setCheckBoxData(checkObj);
     handleData(checkObj);
   };
-
-  useEffect(() => {
-    setCheckBoxData(props.parentState[name].value);
-  }, []);
 
   return (
     <>
@@ -46,17 +42,20 @@ export default function CheckBoxField(props:Props) {
               <div key={index} style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
                 <input
                   type="checkbox"
-                  id={properties["id"]? properties["id"] : "llmaCheck" + item}
+                  id={"llmaCheck" + item}
                   value={item}
                   onChange={handleChange}
                   style={properties.style || {}}
                   checked={chechBoxData[item] || false}
+                  disabled={
+                    properties["readOnly"] ? properties["readOnly"] : false
+                  }
                 />
                 <label
-                  htmlFor={item}
+                  htmlFor={"llma-checkbox"+item}
                   style={{
                     fontFamily: "Nunito Sans",
-                    fontWeight: "400",
+                    fontWeight: "40px",
                     fontSize: "14px",
                     marginLeft: "7px",
                   }}
