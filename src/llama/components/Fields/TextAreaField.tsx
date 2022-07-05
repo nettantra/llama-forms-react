@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import React from 'react';
+import React,{ useEffect, useRef, useState } from "react";
 
 interface Props{   
   properties:any,
@@ -10,7 +9,7 @@ interface Props{
 
 export default function TextAreaField(props:Props) {
   const { properties, handleData, name } = props;
-  const [style, setStyle] = useState(properties.style || { borderRadius: "5px", width: "95%", padding: "7px", fontSize: "12px", fontFamily: "Nunito Sans" });
+  let textareaRef : any = useRef()
 //********
 const caseChange = (value:any) => {
   if (properties["lowercase"]) return value.toLowerCase();
@@ -23,13 +22,18 @@ const caseChange = (value:any) => {
     handleData(value);
   };
 
-  useEffect(() => {
-    setStyle({
-      ...style,
-      minHeight: properties.height || "180px",
-      minWidth: properties.width || "95%",
-    });
-  }, []);
+useEffect(() => {
+  if (properties?.["className"]?.trim()) {
+    textareaRef.current.style = ""
+    textareaRef.current.className = properties?.["className"] ?? name
+  }
+  if (properties["style"]) {
+    textareaRef.current.style = ""
+    for (let key in properties["style"]) {
+      textareaRef.current.style.setProperty(key, properties["style"][key]);
+    }
+  }
+}, []);
 
   return (
     <>
@@ -45,7 +49,8 @@ const caseChange = (value:any) => {
           {properties["label"]}
         </h3>
         <textarea
-          id={name}
+          id={properties?.["id"]?? name}
+          ref={textareaRef}
           name={name}
           placeholder={
             properties["placeholder"] ? properties["placeholder"] : null
@@ -57,7 +62,7 @@ const caseChange = (value:any) => {
           required={properties["required"] ? properties["required"] : false}
           autoFocus={properties["autofocus"] ? properties["autofocus"] : false}
           autoComplete={properties["autoComplete"] ? "on" : "off"}
-          style={style}
+          style={{ borderRadius: "5px", width: "95%", padding: "7px", fontSize: "12px", fontFamily: "Nunito Sans", minHeight: properties?.height || "180px", minWidth: properties?.width || "95%" }}
           rows={properties["rows"] ? properties["rows"] : null}
           cols={properties["cols"] ? properties["cols"] : null}
           onChange={(e) => {
