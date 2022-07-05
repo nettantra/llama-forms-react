@@ -46,7 +46,7 @@ export default function CheckBoxField(props:Props) {
               <div key={index} style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
                 <input
                   type="checkbox"
-                  id={item}
+                  id={properties["id"]? properties["id"] : "llmaCheck" + item}
                   value={item}
                   onChange={handleChange}
                   style={properties.style || {}}
