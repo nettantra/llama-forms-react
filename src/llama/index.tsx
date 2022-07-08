@@ -139,36 +139,6 @@ export const LlamaForm = (props: any) => {
     className: pbClassName,
   } = progressBar;
   return (<>
-    <div className={`llm_form_container`}>
-      <h1 className={`llm-heading`}>{title}</h1>
-
-      <h2 className={`llm-description`}>{description}</h2>
-
-      {progressBar ? (
-        <Progress
-          className={pbClassName ?? ""}
-          height={pbHeight ?? ""}
-          width={pbWidth ?? ""}
-          step={step}
-          stepLength={Object.keys(wizardStepSet).length}
-          color={pbColor ?? ""}
-          text={pbText ?? ""}
-          textAlign={pbTextAlign ?? ""}
-          textColor={pbTextColor ?? ""}
-          ProgressBar={pbShow ?? false}
-          subProgressBar={subProgress ?? false}
-          align={pbAlign ?? "start"}
-        />
-      ) : null}
-
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-        }}
-        style={{ minWidth: "100%", padding: "0px 20px" }}>
-        {formBuilder()}
-      </form>
-    </div>
     <style>{`
         .llm-form-container{
           background-color: #FAFAFA;
@@ -207,6 +177,36 @@ export const LlamaForm = (props: any) => {
       }
       `}
     </style>
+    <div className={`llm_form_container`}>
+      <h1 className={`llm-heading`}>{title}</h1>
+
+      <h2 className={`llm-description`}>{description}</h2>
+
+      {progressBar ? (
+        <Progress
+          className={pbClassName ?? ""}
+          height={pbHeight ?? ""}
+          width={pbWidth ?? ""}
+          step={step}
+          stepLength={Object.keys(wizardStepSet).length}
+          color={pbColor ?? ""}
+          text={pbText ?? ""}
+          textAlign={pbTextAlign ?? ""}
+          textColor={pbTextColor ?? ""}
+          ProgressBar={pbShow ?? false}
+          subProgressBar={subProgress ?? false}
+          align={pbAlign ?? "start"}
+        />
+      ) : null}
+
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+        }}
+        style={{ minWidth: "100%", padding: "0px 20px" }}>
+        {formBuilder()}
+      </form>
+    </div>
   </>
   );
 };
