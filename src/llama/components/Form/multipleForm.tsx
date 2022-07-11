@@ -102,8 +102,32 @@ const MultipleForm = forwardRef((props: Props, ref: any) => {
     setLoading(false);
   };
 
-  const handlePrevious = () => {
+  const handlePrevious = async() => {
     setLoading(true);
+
+    //final data for return
+    let finalData: any = {};
+    for (let key in data) {
+      finalData[key] = data[key].value;
+    }
+
+    let currentData = {
+      step: step,
+      data: finalData,
+    };
+
+    let wizardStepOptions = props?.wizardStepOptions;
+
+    // if onNext not available for specific steps then call global one
+    if (wizardStepOptions && props?.wizardStepOptions[step]?.onPrev) {
+      await props?.wizardStepOptions[step]?.onPrev(currentData);
+    } else {
+      if (wizardStepOptions?.onPrev) {
+        await wizardStepOptions.onPrev(currentData);
+      }
+    }
+
+
     setStep(step - 1);
     props.step(step - 1);
     setLoading(false);

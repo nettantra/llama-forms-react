@@ -19,6 +19,7 @@ function App() {
             wizard: true,
             wizardOptions : {
               onNext:login_test,
+              onPrev:login_test,
             },
             progressBar:{
               show: true,
