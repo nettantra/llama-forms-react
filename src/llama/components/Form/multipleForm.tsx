@@ -62,7 +62,7 @@ const MultipleForm = forwardRef((props: Props, ref: any) => {
         setTimeout(() => {
           setAlert(false);
           setLoading(false);
-        }, 5000);
+        }, 3000);
         return;
       }
       if (data[currentFields[i]]?.error) {
@@ -72,7 +72,7 @@ const MultipleForm = forwardRef((props: Props, ref: any) => {
         setTimeout(() => {
           setAlert(false);
           setLoading(false);
-        }, 5000);
+        }, 3000);
         return;
       }
     }

@@ -54,9 +54,6 @@ export default function FileUploadField(props:Props) {
         >
           {properties["label"]}
         </h3>
-        {properties["type"] === "range" ? (
-          <span>{props.parentState[name].value}</span>
-        ) : null}
         <input
           id={name}
           name={name}
@@ -77,6 +74,15 @@ export default function FileUploadField(props:Props) {
             handleChange(e);
           }}
         />
+        {props.parentState[name]?.value && (
+          <button
+            className="resetButton"
+            onClick={() => {
+                handleData("");
+              }
+            }
+          >Reset</button>)
+        }
         <style >{`
         .uploadInput::file-selector-button {
             background: #ddd;

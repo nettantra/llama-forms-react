@@ -19,8 +19,8 @@ export default function CheckBoxField(props:Props) {
         delete checkObj[key]
       }
     }
-    setCheckBoxData(checkObj);
-    handleData(checkObj);
+    setCheckBoxData(Object.keys(checkObj).length >= 1 ? checkObj : "");
+    handleData(Object.keys(checkObj).length >= 1 ? checkObj : "");
   };
 
   return (

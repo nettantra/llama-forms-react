@@ -18,26 +18,7 @@ function App() {
             description: 'Login Form',
             wizard: true,
             wizardOptions : {
-              1: {
-                title: 'Login',
-                description: 'Login Form',
-                onNext : login_test
-              },
-              2: {
-                title: 'Register',
-                description: 'Register Form',
-                onNext : login_test
-              },
-              3: {
-                title: 'Registersas',
-                description: 'Register Form',
-                onNext : login_test
-              },
-              5: {
-                title: 'Forgot Password',
-                description: 'Forgot Password Form',
-                onNext : login_test
-              }
+              onNext:login_test,
             },
             progressBar:{
               show: true,
@@ -65,65 +46,37 @@ function App() {
                 loader:true,
               },
             },
-            initialStep:2,
+            initialStep:1,
             properties: {
               email: {
                 type: 'string',
-                required: true,
+                //required: true,
                 enum: "",
                 step: 1,
               },
-              doubt: {
-                type: 'string',
-                required: true,
-                enum: ["Yes","No"],
-                step: 2,
-              },
-              checkDoubt: {
-                type: 'string',
-                required: true,
-                enum: ["Yes","No", "confuse"],
-                step: 2,
-              },
-              wdoubt: {
-                type: 'string',
-                depend : true,
-                step: 2,
-              },
               password: {
                 type: 'string',
-                required: true,
+                //required: true,
                 enum: "",
                 step: 2,
               },
               details: {
                 type: 'string',
-                required: true,
-
+                //required: true,
               },
               color: {
                 type: "string",
                 required: false,
               },
-              image: {
-                type: 'string',
-                required: true,
-                step: 1,
-              },
-              dataRange: {
-                type: "string",
-                required: true,
-                step: 3
-              },
               question: {
                 type: 'string',
-                required: true,
+                //required: true,
                 step: 4,
                 enum: ['yes', 'no', 'I dont know'],
               },
               gender: {
                 type: 'string',
-                required: true,
+                //required: true,
                 enum: {
                   Male: 'male',
                   Female: 'female',
@@ -131,22 +84,19 @@ function App() {
                 },
                 step: 5,
               },
-              dob: {
-                type: 'string',
-                required: true,
-              },
-              currentTime: {
-                type: 'string',
-                required: true,
-              },
-              feedback: {
-                type: 'string',
-                required: true,
-                enum: ["You are good", "You have a good sense", "Maybe", "Also I am confused"]
-              },
               zip:{
                 type: 'number',
+                //required: true,
+              },
+              image: {
+                type: 'string',
                 required: true,
+                step: 1,
+              },
+              checkBox:{
+                type: 'string',
+                // required: true,
+                enum: ['Test', 'Test1', 'Test2']
               }
             }
           }}
@@ -178,26 +128,6 @@ function App() {
                 capsLockWaring: true,
                 capsLockMessage : "Caps Lock is On",
               },
-              doubt: {
-                type: 'radio',
-                label: 'Doubt',
-                description: "This is radio field",
-              },
-              checkDoubt: {
-                type: 'checkbox',
-                label: 'checkDoubt',
-                description: "This is checkbox field",
-              },
-              wdoubt: {
-                type: 'textarea',
-                label: 'What is your doubt',
-                description: "This is textarea field",
-                parentField: "checkDoubt",
-                dependent:{
-                  value : ["Yes", "confuse"],
-                  type: "single",          //multi or single
-                }
-              },
               details: {
                 type: "textarea",
                 label: "Details",
@@ -222,32 +152,6 @@ function App() {
                 description: "This is color field",
                 readOnly: false,
               },
-              dataRange: {
-                type: "range",
-                label: "Range",
-                // required: true,
-                errorMessage: "",
-                readOnly: false,
-                maxLength: 30,
-                autoFocus: true,
-                autoComplete: true,
-                // style:{color:"red"},
-                min: 0,
-                max: 200,
-                interval: 10,
-              },
-              image: {
-                type: 'file',
-                label: 'Image',
-                description: "This is image field",
-                required: true,
-                errorMessage: "Please input jpg, png, jpeg only",
-                readOnly: false,
-                maxFileSize: 10000,
-                minFileSize: 1,
-                // style:{color:"red"},
-                accept: ["jpg", "png", "jpeg"],
-              },
               question: {
                 type: 'radio',
                 label: "This is an amazing form builder. Do you like it?",
@@ -262,37 +166,29 @@ function App() {
                 autofocus: true,
                 readOnly: false,
               },
-              dob: {
-                type: "date",
-                label: "DOB",
-                value: "1997-02-01",
-                errorMessage: "",
-                readOnly: false,
-                autoFocus: false,
-                autoComplete: true,
-                // min: "2000-01-01",
-                // max: "2000-01-02",
+              checkBox: {
+                type: "checkbox",
+                label: "Check Box test",
+                description: "This is checkbox field",
               },
-              // feedback:{
-              //   type: "text",
-              //   label: "What do you think ?",
-              //   description: "This is a feedback field",
-              // },
-              currentTime: {
-                type: "time",
-                label: "Current Time",
-                description: "This is a time field",
+              image: {
+                type: 'file',
+                label: 'Image',
+                description: "This is image field",
+                required: true,
+                errorMessage: "Please input jpg, png, jpeg only",
                 readOnly: false,
-                autoFocus: false,
-                autoComplete: true,
-              },
+                maxFileSize: 10000,
+                minFileSize: 1,
+                // style:{color:"red"},
+                accept: ["jpg", "png", "jpeg"],
+              }
             }
           }}
           data={{
             email: 'mobashir@gmail.com',
             password: '123456',
             question: "yes",
-            dataRange: 50,
           }}
           onSubmit={login_test}
         />
