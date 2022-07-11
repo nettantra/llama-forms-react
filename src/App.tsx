@@ -105,7 +105,7 @@ function App() {
                 type: 'string',
                 // required: true,
                 enum: ['Test', 'Test1', 'Test2'],
-                step:3
+                step:1
               },
               urlField: {
                 type: 'string',
@@ -188,6 +188,7 @@ function App() {
                 type: "checkbox",
                 label: "Check Box test",
                 description: "This is checkbox field",
+                onlyCheck:"Test",
               },
               image: {
                 type: 'image',
@@ -218,6 +219,8 @@ function App() {
             password: '123456',
             question: "yes",
             urlField: "https://www.google.com",
+            // checkBox: {Test:false, Test1:true, Test2:true},
+            checkBox: {Test:false, Test1:true, Test2:true},
           }}
           onSubmit={login_test}
         />
