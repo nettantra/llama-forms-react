@@ -68,6 +68,7 @@ function App() {
               color: {
                 type: "string",
                 required: false,
+                step:3,
               },
               question: {
                 type: 'string',
@@ -87,23 +88,34 @@ function App() {
               },
               zip:{
                 type: 'number',
+                step: 3,
                 //required: true,
               },
               image: {
                 type: 'string',
                 required: true,
-                step: 1,
+                step: 3,
               },
               checkBox:{
                 type: 'string',
                 // required: true,
-                enum: ['Test', 'Test1', 'Test2']
+                enum: ['Test', 'Test1', 'Test2'],
+                step:3
+              },
+              urlField: {
+                type: 'string',
+                required: true,
               }
             }
           }}
           options={{
             type: 'object',
             fields: {
+              urlField:{
+                type: 'url',
+                label: 'Url',
+                readOnly: true,
+              },
               zip:{
                 type: 'number',
                 label:  "zipcode",
@@ -190,6 +202,7 @@ function App() {
             email: 'mobashir@gmail.com',
             password: '123456',
             question: "yes",
+            urlField: "https://www.google.com",
           }}
           onSubmit={login_test}
         />

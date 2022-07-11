@@ -1,12 +1,12 @@
 
 import React from 'react';
 import { Fragment} from "react";
-import DropDownField from "../Fields/DropDownField";
-import InputField from "../Fields/InputField";
-import RadioField from "../Fields/RadioField";
-import TextAreaField from "../Fields/TextAreaField";
-import CheckBoxField from "../Fields/CheckBoxField";
-import FileUploadField from "../Fields/FileUploadField";
+import DropDownField from "../fields/DropDownField";
+import InputField from "../fields/InputField";
+import RadioField from "../fields/RadioField";
+import TextAreaField from "../fields/TextAreaField";
+import CheckBoxField from "../fields/CheckBoxField";
+import FileUploadField from "../fields/FileUploadField";
 
 
 interface Props{  
