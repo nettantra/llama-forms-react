@@ -45,7 +45,7 @@ export default function InputField(props: Props) {
     return true
   }
   // this function check the capsLock event in input field
-  const handleCapsLockchek = (e: any) => {
+  const handleCapsLockChek = (e: any) => {
     if (e.getModifierState("CapsLock")) {
       capsWarning.current.hidden = false;
       capsWarning.current.style.color = 'red';
@@ -128,7 +128,7 @@ export default function InputField(props: Props) {
           style={properties['type'] === 'color' ? { width: '40px', height: '40px' } : { width: '95%', padding: '7px', border: '1px solid #000', borderRadius: '5px', fontSize: '14px', fontFamily: 'Nunito Sans', fontWeight: '400' }}
           onChange={(e) => { handleChange(e) }}
           onKeyDown={blockInvalidChar}
-          onKeyUp={properties["capsLockWaring"] ? handleCapsLockchek : (e) => { console.log("caps lock warning is disabled") }}
+          onKeyUp={properties["capsLockWaring"] ? handleCapsLockChek : (e) => { console.log("caps lock warning is disabled") }}
           ref={inputRef}
         // ref={(target)=>{
         //     console.log(target.value)

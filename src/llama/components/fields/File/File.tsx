@@ -8,7 +8,7 @@ interface Props{
   parentState:any,  
 }
 
-export default function FileUploadField(props:Props) {
+export default function FileUploadField(props:any) {
   const { properties, handleData, name } = props;
   const [error, setError] = useState(false);
 
@@ -36,7 +36,7 @@ export default function FileUploadField(props:Props) {
         handleData(e.target.files[0]);
       } else {
         setError(true);
-        handleData(e.target.files[0], true);
+        handleData('', true);
       }
     }
   };
@@ -58,7 +58,7 @@ export default function FileUploadField(props:Props) {
           id={name}
           name={name}
           className="uploadInput"
-          type={properties["type"] ? properties["type"] : "text"}
+          type='file'
           placeholder={
             properties["placeholder"] ? properties["placeholder"] : null
           }

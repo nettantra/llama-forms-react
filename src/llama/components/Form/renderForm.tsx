@@ -7,7 +7,8 @@ import RadioField from "../fields/Radio/Radio";
 import TextAreaField from "../fields/TextArea/TextArea";
 import CheckBoxField from "../fields/CheckBox/CheckBox";
 import FileUploadField from "../fields/File/File";
-
+import EmailField from "../fields/Email/Email";
+import ImageField from '../fields/Image/Image';
 
 interface Props{  
     fields:any,
@@ -35,6 +36,31 @@ export default function RenderForm(props:Props) {
                     </Fragment>
                 )
             }
+            case 'email': {
+                return (
+                    <Fragment key={index}>
+                        <EmailField
+                            handleData={handleData}
+                            properties={properties}
+                            parentState={data}
+                            name={key}
+                        />
+                    </Fragment>
+                )
+            }
+            case 'image': {
+                return (
+                    <Fragment key={index}>
+                        <ImageField
+                            handleData={handleData}
+                            properties={properties}
+                            parentState={data}
+                            name={key}
+                        />
+                    </Fragment>
+                )
+            }
+
             case 'radio': {
                 return (
                     <Fragment key={index}>

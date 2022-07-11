@@ -94,7 +94,12 @@ function App() {
               image: {
                 type: 'string',
                 required: true,
-                step: 3,
+                step: 1,
+              },
+              file: {
+                type: 'string',
+                // required: true,
+                step: 1,
               },
               checkBox:{
                 type: 'string',
@@ -185,6 +190,16 @@ function App() {
                 description: "This is checkbox field",
               },
               image: {
+                type: 'image',
+                label: 'Image',
+                description: "This is image field",
+                required: true,
+                errorMessage: "Please input jpg, png, jpeg only",
+                readOnly: false,
+                maxFileSize: 10000,
+                minFileSize: 1,
+              },
+              file: {
                 type: 'file',
                 label: 'Image',
                 description: "This is image field",
@@ -194,12 +209,12 @@ function App() {
                 maxFileSize: 10000,
                 minFileSize: 1,
                 // style:{color:"red"},
-                accept: ["jpg", "png", "jpeg"],
+                // accept: ["jpg", "png", "jpeg"],
               }
             }
           }}
           data={{
-            email: 'mobashir@gmail.com',
+            // email: 'mobashir@gmail.com',
             password: '123456',
             question: "yes",
             urlField: "https://www.google.com",
