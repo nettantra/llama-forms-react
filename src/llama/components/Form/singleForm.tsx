@@ -61,6 +61,9 @@ const SingleForm = forwardRef((props:Props, ref:any)=> {
       }
       let finalData:any = {};
       for (let key in data) {
+        if (fields[key].type === "anchor" || fields[key].type === "paragraph") {
+          continue
+        }
         finalData[key] = data[key].value;
       }
       props.onSubmit(finalData);

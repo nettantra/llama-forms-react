@@ -61,6 +61,14 @@ function App() {
                 enum: "",
                 step: 2,
               },
+              link:{
+                type: 'string',
+                step:1,
+                depend : true
+              },
+              paragraph:{
+                type: 'string',
+              },
               details: {
                 type: 'string',
                 //required: true,
@@ -120,6 +128,20 @@ function App() {
                 type: 'url',
                 label: 'Url',
                 readOnly: true,
+              },
+              link:{
+                type: 'anchor',
+                text: 'Link',
+                href: 'https://www.google.com',
+                parentField: 'email',
+                dependent:{
+                  value: ['mobashir@gmail.com'],
+                  type : 'single',
+                }
+              },
+              paragraph:{
+                type:'paragraph',
+                text:"This is only for testing"
               },
               zip:{
                 type: 'number',

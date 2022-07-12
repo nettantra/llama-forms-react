@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Fragment} from "react";
+import { Fragment } from "react";
 import DropDownField from "../fields/DropDown/DropDown";
 import InputField from "../fields/Common/InputField";
 import RadioField from "../fields/Radio/Radio";
@@ -9,25 +9,51 @@ import CheckBoxField from "../fields/CheckBox/CheckBox";
 import FileUploadField from "../fields/File/File";
 import EmailField from "../fields/Email/Email";
 import ImageField from '../fields/Image/Image';
+import AnchorTag from '../fields/Anchor/Anchor';
+import ParagraphTag from '../fields/Paragraph/paragraph';
 
-interface Props{  
-    fields:any,
-    renderList:any,  
-    parentState:any,
-    parentSetState:any,
-    
-    }
-export default function RenderForm(props:Props) {
+interface Props {
+    fields: any,
+    renderList: any,
+    parentState: any,
+    parentSetState: any,
+
+}
+export default function RenderForm(props: Props) {
     const fields = props.fields
     const fieldList = props.renderList || []
 
-    const renderForm = (type:any, index:any, handleData:any, properties:any, data:any, key:any) => {
+    const renderForm = (type: any, index: any, handleData: any, properties: any, data: any, key: any) => {
         // switch case for the different field types
         switch (type) {
             case 'dropdown': {
                 return (
                     <Fragment key={index}>
                         <DropDownField
+                            handleData={handleData}
+                            properties={properties}
+                            parentState={data}
+                            name={key}
+                        />
+                    </Fragment>
+                )
+            }
+            case 'anchor': {
+                return (
+                    <Fragment key={index}>
+                        <AnchorTag
+                            handleData={handleData}
+                            properties={properties}
+                            parentState={data}
+                            name={key}
+                        />
+                    </Fragment>
+                )
+            }
+            case 'paragraph': {
+                return (
+                    <Fragment key={index}>
+                        <ParagraphTag
                             handleData={handleData}
                             properties={properties}
                             parentState={data}
@@ -128,37 +154,37 @@ export default function RenderForm(props:Props) {
 
     return (
         <>
-            {fieldList.map((field:any, index:any) => {
+            {fieldList.map((field: any, index: any) => {
                 const handleData = (
-                value = props.parentState[field].value,
-                error = false
+                    value = props.parentState[field].value,
+                    error = false
                 ) => {
-                props.parentSetState({
-                    ...props.parentState,
-                    [field]: { value: value, error: error },
-                });
+                    props.parentSetState({
+                        ...props.parentState,
+                        [field]: { value: value, error: error },
+                    });
                 };
                 let properties = fields[field];
                 if (!properties.depend) {
-                return renderForm(
-                    fields[field].type,
-                    index,
-                    handleData,
-                    properties,
-                    props.parentState,
-                    field
-                );
+                    return renderForm(
+                        fields[field].type,
+                        index,
+                        handleData,
+                        properties,
+                        props.parentState,
+                        field
+                    );
                 } else {
                     if (props.parentState[properties.parentField].value === properties?.dependent?.value[0]) {
                         return renderForm(fields[field].type, index, handleData, properties, props.parentState, field)
                     }
-                    if (properties?.dependent?.type?.toLowerCase() === "multi" && properties?.dependent?.value?.every((key : string) => Object.keys(props.parentState[properties.parentField].value).includes(key))) {
+                    if (properties?.dependent?.type?.toLowerCase() === "multi" && properties?.dependent?.value?.every((key: string) => Object.keys(props.parentState[properties.parentField].value).includes(key))) {
                         return renderForm(fields[field].type, index, handleData, properties, props.parentState, field)
                     } if (properties?.dependent?.type?.toLowerCase() === "single" && Object.keys(props.parentState[properties.parentField].value).some((val) => properties?.dependent?.value?.includes(val))) {
                         return renderForm(fields[field].type, index, handleData, properties, props.parentState, field)
                     }
                 }
             })}
-    </>
+        </>
     );
 }
