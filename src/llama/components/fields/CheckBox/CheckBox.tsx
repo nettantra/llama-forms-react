@@ -10,11 +10,11 @@ interface Props{
 
 export default function CheckBoxField(props:Props) {
   const { properties, handleData, name } = props;
-  const [chechBoxData, setCheckBoxData]:any = useState(props.parentState[name].value);
   let onlyChecked = properties.onlyCheck
 
   const handleChange = (e:any) => {
-    let checkObj = { ...chechBoxData, [e.target.value]: e.target.checked}
+    let checkObj = props.parentState[name].value || {};
+    checkObj = { ...checkObj, [e.target.value]: e.target.checked}
     for (let key in checkObj) {
       if (!checkObj[key]) {
         delete checkObj[key]
@@ -24,8 +24,6 @@ export default function CheckBoxField(props:Props) {
     if (checkObj[onlyChecked] == true) {
       checkObj = { [onlyChecked]: true }
     }
-    
-    setCheckBoxData(Object.keys(checkObj).length >= 1 ? checkObj : "");
     handleData(Object.keys(checkObj).length >= 1 ? checkObj : "");
   };
 
@@ -52,7 +50,7 @@ export default function CheckBoxField(props:Props) {
                   value={item}
                   onChange={handleChange}
                   style={properties.style || {}}
-                  checked={chechBoxData[item] || false}
+                  checked={props.parentState[name].value[item] || false}
                   disabled={
                     properties["readOnly"] ? properties["readOnly"] : false
                   }

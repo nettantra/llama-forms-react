@@ -11,6 +11,7 @@ import EmailField from "../fields/Email/Email";
 import ImageField from '../fields/Image/Image';
 import AnchorTag from '../fields/Anchor/Anchor';
 import ParagraphTag from '../fields/Paragraph/paragraph';
+import Color from '../fields/Color/Color';
 
 interface Props {
     fields: any,
@@ -42,6 +43,18 @@ export default function RenderForm(props: Props) {
                 return (
                     <Fragment key={index}>
                         <AnchorTag
+                            handleData={handleData}
+                            properties={properties}
+                            parentState={data}
+                            name={key}
+                        />
+                    </Fragment>
+                )
+            }
+            case 'color': {
+                return (
+                    <Fragment key={index}>
+                        <Color
                             handleData={handleData}
                             properties={properties}
                             parentState={data}
