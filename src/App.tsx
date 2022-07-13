@@ -16,7 +16,7 @@ function App() {
           type: 'object',
           title: 'Login',
           description: 'Login Form',
-          wizard: true,
+          wizard: false,
           wizardOptions: {
             onNext: login_test,
             onPrev: login_test,
@@ -49,52 +49,29 @@ function App() {
           },
           initialStep: 1,
           properties: {
-            checkBox: {
+            monthTest: {
               type: 'string',
-              // required: true,
-              enum: ['Test', 'Test1', 'Test2'],
-              step: 1
-            },
-            checkBox1: {
-              type: 'string',
-              // required: true,
-              enum: ['Test3', 'Test4', 'Test5'],
-              step: 2
-            },
-            checkBox2: {
-              type: 'string',
-              // required: true,
-              enum: ['yes', 'no', 'i dont know'],
-              step: 3
+              // step: 1
             }
           }
         }}
         options={{
           type: 'object',
           fields: {
-            checkBox: {
-              type: "checkbox",
-              label: "Check Box test",
+            monthTest: {
+              type: "password",
+              label: "date Test",
               description: "This is checkbox field",
-              // onlyCheck:"Test",
-            },
-            checkBox1: {
-              type: "checkbox",
-              label: "Check Box1 test",
-              description: "This is checkbox1 field",
-            },
-            checkBox2: {
-              type: "checkbox",
-              label: "Check Box2 test",
-              description: "This is checkbox2 field",
+              validationRegex: "^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$",
+              // errorMessage:"Please enter a valid password",
             }
           }
         }}
         data={{
           // email: 'mobashir@gmail.com',
-          password: '123456',
-          question: "yes",
-          urlField: "https://www.google.com",
+          // password: '123456',
+          // question: "yes",
+          // urlField: "https://www.google.com",
           // checkBox: {Test:false, Test1:true, Test2:true},
           // checkBox: {Test:false, Test1:true, Test2:true},
         }}

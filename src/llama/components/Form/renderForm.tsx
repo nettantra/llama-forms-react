@@ -12,6 +12,11 @@ import ImageField from '../fields/Image/Image';
 import AnchorTag from '../fields/Anchor/Anchor';
 import ParagraphTag from '../fields/Paragraph/paragraph';
 import Color from '../fields/Color/Color';
+import DateTime from '../fields/DateTime/DateTime';
+import Date from '../fields/Date/Date';
+import Month from '../fields/Month/Month';
+import Number from '../fields/Number/Number';
+import Password from '../fields/Password/Password';
 
 interface Props {
     fields: any,
@@ -43,6 +48,66 @@ export default function RenderForm(props: Props) {
                 return (
                     <Fragment key={index}>
                         <AnchorTag
+                            handleData={handleData}
+                            properties={properties}
+                            parentState={data}
+                            name={key}
+                        />
+                    </Fragment>
+                )
+            }
+            case 'month': {
+                return (
+                    <Fragment key={index}>
+                        <Month
+                            handleData={handleData}
+                            properties={properties}
+                            parentState={data}
+                            name={key}
+                        />
+                    </Fragment>
+                )
+            }
+            case 'password': {
+                return (
+                    <Fragment key={index}>
+                        <Password
+                            handleData={handleData}
+                            properties={properties}
+                            parentState={data}
+                            name={key}
+                        />
+                    </Fragment>
+                )
+            }
+            case 'number': {
+                return (
+                    <Fragment key={index}>
+                        <Number
+                            handleData={handleData}
+                            properties={properties}
+                            parentState={data}
+                            name={key}
+                        />
+                    </Fragment>
+                )
+            }
+            case 'dateTime': {
+                return (
+                    <Fragment key={index}>
+                        <DateTime
+                            handleData={handleData}
+                            properties={properties}
+                            parentState={data}
+                            name={key}
+                        />
+                    </Fragment>
+                )
+            }
+            case 'date': {
+                return (
+                    <Fragment key={index}>
+                        <Date
                             handleData={handleData}
                             properties={properties}
                             parentState={data}
