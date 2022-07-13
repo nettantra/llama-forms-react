@@ -10,7 +10,7 @@ interface Props {
     parentState: any,
 }
 
-export default function Password(props: Props) {
+export default function PasswordField(props: Props) {
     const { properties, handleData, name } = props
     const [error, setError] = useState(false)
 

@@ -12,71 +12,95 @@ function App() {
   return (
     <div style={{ width: "50%", margin: "auto" }}>
       <LlamaForm
-        schema={{
-          type: 'object',
-          title: 'Login',
-          description: 'Login Form',
-          wizard: false,
-          wizardOptions: {
-            onNext: login_test,
-            onPrev: login_test,
+      schema={{
+        type: 'object',
+        title: 'Login',
+        description: 'Login Form',
+        wizard: true,
+        wizardOptions : {
+          onNext:login_test,
+          onPrev:login_test,
+        },
+        progressBar:{
+          show: true,
+          color: '',
+          height: '',
+          width: '100%',
+          text: '',
+          textAlign: '',
+          textColor: '',
+          subProgress: true,
+          align: '',
+          
+        },
+        buttons: {
+          previous:{
+            text: 'Previous',
+            loader:false,
           },
-          progressBar: {
-            show: true,
-            color: '',
-            height: '',
-            width: '100%',
-            text: '',
-            textAlign: '',
-            textColor: '',
-            subProgress: true,
-            align: '',
-
+          next:{
+            text: 'Next',
+            loader:true,
           },
-          buttons: {
-            previous: {
-              text: 'Previous',
-              loader: false,
-            },
-            next: {
-              text: 'Next',
-              loader: true,
-            },
-            submit: {
-              text: 'Done',
-              loader: true,
-            },
+          submit:{
+            text: 'Done',
+            loader:true,
           },
-          initialStep: 1,
-          properties: {
-            monthTest: {
-              type: 'string',
-              // step: 1
-            }
+        },
+        initialStep:1,
+        properties: {
+        
+          checkBox:{
+            type: 'string',
+            // required: true,
+            enum: ['Test', 'Test1', 'Test2'],
+            step:1
+          },
+          checkBox1:{
+            type: 'string',
+            // required: true,
+            enum: ['Test3', 'Test4', 'Test5'],
+            step:2
+          },
+          checkBox2:{
+            type: 'string',
+            // required: true,
+            enum: ['yes', 'no', 'i dont know'],
+            step:3
           }
-        }}
-        options={{
-          type: 'object',
-          fields: {
-            monthTest: {
-              type: "password",
-              label: "date Test",
-              description: "This is checkbox field",
-              validationRegex: "^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$",
-              // errorMessage:"Please enter a valid password",
-            }
+        }
+      }}
+      options={{
+        type: 'object',
+        fields: {
+          checkBox: {
+            type: "checkbox",
+            label: "Check Box test",
+            description: "This is checkbox field",
+            // onlyCheck:"Test",
+          },
+          checkBox1: {
+            type: "checkbox",
+            label: "Check Box1 test",
+            description: "This is checkbox1 field",
+          },
+          checkBox2: {
+            type: "checkbox",
+            label: "Check Box2 test",
+            description: "This is checkbox2 field",
           }
-        }}
-        data={{
-          // email: 'mobashir@gmail.com',
-          // password: '123456',
-          // question: "yes",
-          // urlField: "https://www.google.com",
-          // checkBox: {Test:false, Test1:true, Test2:true},
-          // checkBox: {Test:false, Test1:true, Test2:true},
-        }}
-        onSubmit={login_test}
-      />
+        }
+      }}
+      data={{
+        // email: 'mobashir@gmail.com',
+        password: '123456',
+        question: "yes",
+        urlField: "https://www.google.com",
+        // checkBox: {Test:false, Test1:true, Test2:true},
+        // checkBox: {Test:false, Test1:true, Test2:true},
+      }}
+      onSubmit={login_test}
+    />
     </div>
   );
 }

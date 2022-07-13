@@ -11,7 +11,7 @@ interface Props {
 }
 
 
-export default function Color(props: Props) {
+export default function ColorField(props: Props) {
     const { properties, handleData, name } = props
 
     const handleChange = (e: any) => {

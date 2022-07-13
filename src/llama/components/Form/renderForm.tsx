@@ -11,222 +11,58 @@ import EmailField from "../fields/Email/Email";
 import ImageField from '../fields/Image/Image';
 import AnchorTag from '../fields/Anchor/Anchor';
 import ParagraphTag from '../fields/Paragraph/paragraph';
-import Color from '../fields/Color/Color';
-import DateTime from '../fields/DateTime/DateTime';
-import Date from '../fields/Date/Date';
-import Month from '../fields/Month/Month';
-import Number from '../fields/Number/Number';
-import Password from '../fields/Password/Password';
+import ColorField from '../fields/Color/Color';
+import DateTimeField from '../fields/DateTime/DateTime';
+import DateField from '../fields/Date/Date';
+import MonthField from '../fields/Month/Month';
+import NumberField from '../fields/Number/Number';
+import PasswordField from '../fields/Password/Password';
 
 interface Props {
     fields: any,
     renderList: any,
     parentState: any,
     parentSetState: any,
-
+}
+interface LooseObject {
+    [key: string]: any;
 }
 export default function RenderForm(props: Props) {
     const fields = props.fields
     const fieldList = props.renderList || []
 
-    const renderForm = (type: any, index: any, handleData: any, properties: any, data: any, key: any) => {
-        // switch case for the different field types
-        switch (type) {
-            case 'dropdown': {
-                return (
-                    <Fragment key={index}>
-                        <DropDownField
-                            handleData={handleData}
-                            properties={properties}
-                            parentState={data}
-                            name={key}
-                        />
-                    </Fragment>
-                )
-            }
-            case 'anchor': {
-                return (
-                    <Fragment key={index}>
-                        <AnchorTag
-                            handleData={handleData}
-                            properties={properties}
-                            parentState={data}
-                            name={key}
-                        />
-                    </Fragment>
-                )
-            }
-            case 'month': {
-                return (
-                    <Fragment key={index}>
-                        <Month
-                            handleData={handleData}
-                            properties={properties}
-                            parentState={data}
-                            name={key}
-                        />
-                    </Fragment>
-                )
-            }
-            case 'password': {
-                return (
-                    <Fragment key={index}>
-                        <Password
-                            handleData={handleData}
-                            properties={properties}
-                            parentState={data}
-                            name={key}
-                        />
-                    </Fragment>
-                )
-            }
-            case 'number': {
-                return (
-                    <Fragment key={index}>
-                        <Number
-                            handleData={handleData}
-                            properties={properties}
-                            parentState={data}
-                            name={key}
-                        />
-                    </Fragment>
-                )
-            }
-            case 'dateTime': {
-                return (
-                    <Fragment key={index}>
-                        <DateTime
-                            handleData={handleData}
-                            properties={properties}
-                            parentState={data}
-                            name={key}
-                        />
-                    </Fragment>
-                )
-            }
-            case 'date': {
-                return (
-                    <Fragment key={index}>
-                        <Date
-                            handleData={handleData}
-                            properties={properties}
-                            parentState={data}
-                            name={key}
-                        />
-                    </Fragment>
-                )
-            }
-            case 'color': {
-                return (
-                    <Fragment key={index}>
-                        <Color
-                            handleData={handleData}
-                            properties={properties}
-                            parentState={data}
-                            name={key}
-                        />
-                    </Fragment>
-                )
-            }
-            case 'paragraph': {
-                return (
-                    <Fragment key={index}>
-                        <ParagraphTag
-                            handleData={handleData}
-                            properties={properties}
-                            parentState={data}
-                            name={key}
-                        />
-                    </Fragment>
-                )
-            }
-            case 'email': {
-                return (
-                    <Fragment key={index}>
-                        <EmailField
-                            handleData={handleData}
-                            properties={properties}
-                            parentState={data}
-                            name={key}
-                        />
-                    </Fragment>
-                )
-            }
-            case 'image': {
-                return (
-                    <Fragment key={index}>
-                        <ImageField
-                            handleData={handleData}
-                            properties={properties}
-                            parentState={data}
-                            name={key}
-                        />
-                    </Fragment>
-                )
-            }
+    const fieldObject: LooseObject = {
+        'dropdown': DropDownField,
+        'anchor': AnchorTag,
+        'month': MonthField,
+        'password': PasswordField,
+        'number': NumberField,
+        'date': DateField,
+        'dateTime': DateTimeField,
+        'color': ColorField,
+        'paragraph': ParagraphTag,
+        'email': EmailField,
+        'image': ImageField,
+        'radio': RadioField,
+        'checkbox': CheckBoxField,
+        'file': FileUploadField,
+        'default': InputField
+    }
 
-            case 'radio': {
-                return (
-                    <Fragment key={index}>
-                        <RadioField
-                            handleData={handleData}
-                            properties={properties}
-                            parentState={data}
-                            name={key}
-                        />
-                    </Fragment>
-                )
-            }
-            case 'checkbox': {
-                return (
-                    <Fragment key={index}>
-                        <CheckBoxField
-                            handleData={handleData}
-                            properties={properties}
-                            parentState={data}
-                            name={key}
-                        />
-                    </Fragment>
-                )
-            }
-            case 'file': {
-                return (
-                    <Fragment key={index}>
-                        <FileUploadField
-                            handleData={handleData}
-                            properties={properties}
-                            parentState={data}
-                            name={key}
-                        />
-                    </Fragment>
-                )
-            }
-            case 'textarea': {
-                return (
-                    <Fragment key={index}>
-                        <TextAreaField
-                            key={key}
-                            handleData={handleData}
-                            properties={properties}
-                            parentState={data}
-                            name={key}
-                        />
-                    </Fragment>
-                )
-            }
-            default: {
-                return (
-                    <Fragment key={index}>
-                        <InputField
-                            handleData={handleData}
-                            properties={properties}
-                            parentState={data}
-                            name={key}
-                        />
-                    </Fragment>
-                )
-            }
-        }
+
+    const renderForm = (type: any, index: any, handleData: any, properties: any, data: any, key: any) => {
+        const RenderField:any = fieldObject[type] || fieldObject['default']
+        return (
+            <Fragment key={index}>
+                <RenderField
+                    key={key}
+                    handleData={handleData}
+                    properties={properties}
+                    parentState={data}
+                    name={key}
+                />
+            </Fragment>
+        )
     }
 
 

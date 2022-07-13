@@ -10,7 +10,7 @@ interface Props {
     parentState: any,
 }
 
-export default function Date(props: Props) {
+export default function DateField(props: Props) {
     const { properties, handleData, name } = props
     const [error, setError] = useState(false)
 
@@ -39,7 +39,7 @@ export default function Date(props: Props) {
             />
             <div style={{ marginBottom: '20px' }}>
                 <p style={{ margin: '5px 0px', fontFamily: 'Nunito Sans', fontWeight: '200', fontSize: '14px' }}>{properties['description']}</p>
-                {error ? <p style={{ marginTop: '5px', fontFamily: 'Nunito Sans', fontWeight: '600', fontSize: '14px', color: '#9e001a' }}>{properties['errorMessage'] ? properties['errorMessage'] : ""}</p> : null}
+                {error ? <p style={{ marginTop: '5px', fontFamily: 'Nunito Sans', fontWeight: '600', fontSize: '14px', color: '#9e001a' }}>{properties['errorMessage'] ? properties['errorMessage'] : `Something went wrong in ${name} field`}</p> : null}
             </div>
         </>
     )

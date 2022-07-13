@@ -172,7 +172,6 @@ const MultipleForm = forwardRef((props: Props, ref: any) => {
       if (fields[key].type === "anchor" || fields[key].type === "paragraph") {
         continue
       }
-      console.log("key", key);
       finalData[key] = data[key].value;
     }
     props.onSubmit(finalData);
