@@ -122,6 +122,7 @@ const MultipleForm = forwardRef((props: Props, ref: any) => {
     let currentData = {
       step: step,
       data: finalData,
+      stepLength: props?.stepLength
     };
 
     let wizardStepOptions = props?.wizardStepOptions;

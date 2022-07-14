@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
-import MultipleForm from "./components/Form/multipleForm";
-import SingleForm from "./components/Form/singleForm";
+import MultipleForm from "./components/form/multipleForm";
+import SingleForm from "./components/form/singleForm";
 import { Progress } from "./components/Progress";
 interface LooseObject {
   [key: string]: any;
