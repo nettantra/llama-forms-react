@@ -49,17 +49,17 @@ function App() {
         },
         initialStep:1,
         properties: {
-        
           checkBox:{
             type: 'string',
-            // required: true,
+            required: true,
             enum: ['Test', 'Test1', 'Test2'],
             step:1
           },
           phone:{
             type: 'string',
-            // required: true,
+            required: true,
             // enum: ['Test', 'Test1', 'Test2'],
+            depend:true,
             step:1
           },
           range:{
@@ -97,7 +97,12 @@ function App() {
             type: "phone",
             label: "phone",
             description: "This is phone field",
-            validationRegex:"^([0|\+[0-9]{1,5})?([7-9][0-9]{9})$"
+            // validationRegex:"^([0|\+[0-9]{1,5})?([7-9][0-9]{9})$",
+            parentField:'zipcode',
+            dependent:{
+              type:"multi",
+              value:["12345","54321"]
+            }
           },
           zipcode: {
             type: "zipcode",

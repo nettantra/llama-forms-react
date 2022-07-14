@@ -64,10 +64,10 @@ export const LlamaForm = (props: any) => {
             : 1,
         type: fields[key] ? fields[key].type : "",
         values: properties[key].enum || "",
-        required: properties[key].required || false,
+        required: properties[key]?.depend ? false : properties[key].required || false,
         value: value[key] || "",
         parentField: fields[key]?.parentField || "",
-        dependentValue: fields[key]?.dependentValue || "",
+        dependentRequired: properties[key]?.depend ? properties[key].required : false || "",
         depend: properties[key]?.depend || false,
       };
     }
