@@ -39,7 +39,6 @@ export default function ZipcodeField(props: Props) {
         let value = e.target.value
         handleData(e.target.value, false)
         if (properties.validationRegex) {
-            console.log("first", !checkValidation(properties['validationRegex'], value))
             handleData(value, !checkValidation(properties['validationRegex'], value))
         } else {
             handleData(value, false)
