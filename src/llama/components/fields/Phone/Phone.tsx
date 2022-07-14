@@ -47,7 +47,6 @@ export default function PhoneField(props: Props) {
                 maxLength={properties['maxlength'] ? properties['maxlength'] : null}
                 min={properties['min'] ? properties['min'] : null}
                 max={properties['max'] ? properties['max'] : null}
-                step={properties['interval'] ? properties['interval'].toString() : null}
                 required={properties['required'] ? properties['required'] : false}
                 autoFocus={properties['autoFocus'] ? properties['autoFocus'] : false}
                 autoComplete={properties['autoComplete'] ? "on" : "off"}

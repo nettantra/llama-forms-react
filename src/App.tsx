@@ -62,6 +62,10 @@ function App() {
             // enum: ['Test', 'Test1', 'Test2'],
             step:1
           },
+          range:{
+            type: 'string',
+            step:1
+          },
           checkBox1:{
             type: 'string',
             // required: true,
@@ -90,6 +94,11 @@ function App() {
             label: "phone",
             description: "This is phone field",
             validationRegex:"^([0|\+[0-9]{1,5})?([7-9][0-9]{9})$"
+          },
+          range: {
+            type: "range",
+            label: "range",
+            description: "This is range field",
           },
           checkBox1: {
             type: "checkbox",
