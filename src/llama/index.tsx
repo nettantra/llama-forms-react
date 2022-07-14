@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
-import MultipleForm from "./components/form/multipleForm";
-import SingleForm from "./components/form/singleForm";
+import MultipleForm from "./components/Form/multipleForm";
+import SingleForm from "./components/Form/singleForm";
 import { Progress } from "./components/Progress";
 interface LooseObject {
   [key: string]: any;
@@ -177,7 +177,7 @@ export const LlamaForm = (props: any) => {
       }
       `}
     </style>
-    <div className={`llm_form_container`}>
+    <div className={`llm-form-container`}>
       <h1 className={`llm-heading`}>{title}</h1>
 
       <h2 className={`llm-description`}>{description}</h2>

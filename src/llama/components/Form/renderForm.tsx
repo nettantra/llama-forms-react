@@ -17,6 +17,8 @@ import DateField from '../fields/Date/Date';
 import MonthField from '../fields/Month/Month';
 import NumberField from '../fields/Number/Number';
 import PasswordField from '../fields/Password/Password';
+import PhoneField from '../fields/Phone/Phone';
+
 
 interface Props {
     fields: any,
@@ -46,6 +48,7 @@ export default function RenderForm(props: Props) {
         'radio': RadioField,
         'checkbox': CheckBoxField,
         'file': FileUploadField,
+        'phone' : PhoneField,
         'default': InputField
     }
 
