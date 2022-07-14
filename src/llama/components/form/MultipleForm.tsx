@@ -1,6 +1,6 @@
 import React, { useState, forwardRef } from "react";
-import RenderForm from "./renderForm";
-import Loader from "../Loader";
+import RenderForm from './RenderForm';
+import Loader from "../utils/Loader";
 
 interface LooseObject {
   [key: string]: any;
@@ -122,6 +122,7 @@ const MultipleForm = forwardRef((props: Props, ref: any) => {
     let currentData = {
       step: step,
       data: finalData,
+      stepLength: props?.stepLength
     };
 
     let wizardStepOptions = props?.wizardStepOptions;

@@ -14,7 +14,9 @@ interface Props {
 export default function EmailField(props: Props) {
     const { properties, handleData, name } = props
     const [error, setError] = useState(false)
-    
+    let inputRef: any = useRef();
+
+
     const regexObject: any = {
         email: { regex: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/, errorMessage: "Please enter a valid email" }
     }
@@ -39,6 +41,19 @@ export default function EmailField(props: Props) {
             handleData(value, !checkValidation(regexObject[properties.type]['regex'], value))
         }
     }
+    useEffect(() => {
+
+        if (properties?.["className"]?.trim()) {
+            inputRef.current.style = ""
+            inputRef.current.className = properties?.["className"] ?? name
+        }
+        if (properties["style"]) {
+            inputRef.current.style = ""
+            for (let key in properties["style"]) {
+                inputRef.current.style.setProperty(key, properties["style"][key]);
+            }
+        }
+    }, []);
 
     return (
         <>
@@ -58,6 +73,7 @@ export default function EmailField(props: Props) {
                 pattern={properties['validationRegex'] ? properties['validationRegex'] : null}
                 style={properties['type'] === 'color' ? { width: '40px', height: '40px' } : { width: '95%', padding: '7px', border: '1px solid #000', borderRadius: '5px', fontSize: '14px', fontFamily: 'Nunito Sans', fontWeight: '400' }}
                 onChange={(e) => { handleChange(e) }}
+                ref={inputRef}
             />
             <div style={{ marginBottom: '20px' }}>
                 <p style={{ margin: '5px 0px', fontFamily: 'Nunito Sans', fontWeight: '200', fontSize: '14px' }}>{properties['description']}</p>

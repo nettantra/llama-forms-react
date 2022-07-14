@@ -1,5 +1,5 @@
 import React,{ useState, forwardRef } from "react";
-import RenderForm from "./renderForm";
+import RenderForm from "./RenderForm";
 
 interface Props{
     fields:any,

@@ -54,6 +54,7 @@ export default function RenderForm(props: Props) {
         'range' : RangeField,
         'zipcode' : ZipcodeField,
         'text' : TextField,
+        'textarea' : TextAreaField,
         'default': InputField
     }
 

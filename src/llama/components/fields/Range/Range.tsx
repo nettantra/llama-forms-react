@@ -13,11 +13,26 @@ interface Props {
 export default function RangeField(props: Props) {
     const { properties, handleData, name } = props
     const [error, setError] = useState(false)
+    let inputRef: any = useRef();
 
 
     const handleChange = (e: any) => {
         handleData(e.target.value, false)
     }
+
+    useEffect(() => {
+
+        if (properties?.["className"]?.trim()) {
+            inputRef.current.style = ""
+            inputRef.current.className = properties?.["className"] ?? name
+        }
+        if (properties["style"]) {
+            inputRef.current.style = ""
+            for (let key in properties["style"]) {
+                inputRef.current.style.setProperty(key, properties["style"][key]);
+            }
+        }
+    }, []);
 
     return (
         <>
@@ -34,7 +49,7 @@ export default function RangeField(props: Props) {
                 style={properties['type'] === 'color' ? { width: '40px', height: '40px' } : { width: '95%', padding: '7px', border: '1px solid #000', borderRadius: '5px', fontSize: '14px', fontFamily: 'Nunito Sans', fontWeight: '400' }}
                 className={properties['className'] ? properties['className'] : "llama-range"}
                 onChange={(e) => handleChange(e) }
-
+                ref={inputRef}
             />
             <div style={{ marginBottom: '20px' }}>
                 <p style={{ margin: '5px 0px', fontFamily: 'Nunito Sans', fontWeight: '200', fontSize: '14px' }}>{properties['description']}</p>
