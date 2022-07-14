@@ -19,7 +19,7 @@ import NumberField from '../fields/Number/Number';
 import PasswordField from '../fields/Password/Password';
 import PhoneField from '../fields/Phone/Phone';
 import RangeField from '../fields/Range/Range';
-
+import ZipcodeField from '../fields/Zipcode/Zipcode'
 
 interface Props {
     fields: any,
@@ -51,6 +51,7 @@ export default function RenderForm(props: Props) {
         'file': FileUploadField,
         'phone' : PhoneField,
         'range' : RangeField,
+        'zipcode' : ZipcodeField,
         'default': InputField
     }
 

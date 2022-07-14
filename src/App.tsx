@@ -66,6 +66,10 @@ function App() {
             type: 'string',
             step:1
           },
+          zipcode:{
+            type: 'string',
+            step:1
+          },
           checkBox1:{
             type: 'string',
             // required: true,
@@ -94,6 +98,16 @@ function App() {
             label: "phone",
             description: "This is phone field",
             validationRegex:"^([0|\+[0-9]{1,5})?([7-9][0-9]{9})$"
+          },
+          zipcode: {
+            type: "zipcode",
+            label: "zipcode",
+            blockCharacter :{
+              active : true,
+              value : ['e', 'E', '+', '-'],
+            },
+            description: "This is zipcode field",
+            validationRegex:"/^\d{5}(?:[- ]?\d{4})?$/"
           },
           range: {
             type: "range",

@@ -95,6 +95,7 @@ export const LlamaForm = (props: any) => {
           initialStep={initialStep}
           wizardStepOptions={wizardOptions}
           ref={enterButton}
+          stepLength={Object.keys(wizardStepSet).length}
         />
       );
     }

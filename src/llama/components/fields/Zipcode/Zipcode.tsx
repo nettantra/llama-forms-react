@@ -10,9 +10,19 @@ interface Props {
     parentState: any,
 }
 
-export default function PhoneField(props: Props) {
+export default function ZipcodeField(props: Props) {
     const { properties, handleData, name } = props
     const [error, setError] = useState(false)
+
+
+    //it block invalid character in number
+    const blockInvalidChar = (e: any) => {
+        if(properties?.['blockCharacter']?.['active']){
+            let value = properties?.['blockCharacter']?.['value']?? []
+            value?.includes(e.key) && e.preventDefault();
+            return true
+        }
+    }
 
     const checkValidation = (validationRegex: any, value: any) => {
         const regex = new RegExp(validationRegex);
@@ -26,8 +36,10 @@ export default function PhoneField(props: Props) {
     }
 
     const handleChange = (e: any) => {
-        let value = e.target.value;
+        let value = e.target.value
+        handleData(e.target.value, false)
         if (properties.validationRegex) {
+            console.log("first", !checkValidation(properties['validationRegex'], value))
             handleData(value, !checkValidation(properties['validationRegex'], value))
         } else {
             handleData(value, false)
@@ -40,24 +52,24 @@ export default function PhoneField(props: Props) {
             <input
                 id={name}
                 name={name}
-                type="tel"
-                placeholder={properties['placeholder'] ? properties['placeholder'] : null}
-                value={props.parentState[name]?.value}
+                type="number"
+                placeholder={properties['placeholder'] ? properties['placeholder'] : "Enter Your Zipcode"}
+                value={properties["prefix"] ? properties["prefix"] + props.parentState[name]?.value : props.parentState[name]?.value}
                 disabled={properties['readOnly'] ? properties['readOnly'] : false}
+                hidden={properties['hidden'] ? properties['hidden'] : false}
                 maxLength={properties['maxlength'] ? properties['maxlength'] : null}
                 min={properties['min'] ? properties['min'] : null}
                 max={properties['max'] ? properties['max'] : null}
                 required={properties['required'] ? properties['required'] : false}
                 autoFocus={properties['autoFocus'] ? properties['autoFocus'] : false}
                 autoComplete={properties['autoComplete'] ? "on" : "off"}
-                height={properties['height'] ? properties['height'] : null}
-                width={properties['width'] ? properties['width'] : null}
                 style={properties['type'] === 'color' ? { width: '40px', height: '40px' } : { width: '95%', padding: '7px', border: '1px solid #000', borderRadius: '5px', fontSize: '14px', fontFamily: 'Nunito Sans', fontWeight: '400' }}
                 onChange={(e) => { handleChange(e) }}
+                onKeyDown={blockInvalidChar}
             />
             <div style={{ marginBottom: '20px' }}>
                 <p style={{ margin: '5px 0px', fontFamily: 'Nunito Sans', fontWeight: '200', fontSize: '14px' }}>{properties['description']}</p>
-                {error ? <p style={{ marginTop: '5px', fontFamily: 'Nunito Sans', fontWeight: '600', fontSize: '14px', color: '#9e001a' }}>{properties['errorMessage'] ? properties['errorMessage'] : `The phone number is not in its format!`}</p> : null}
+                {error ? <p style={{ marginTop: '5px', fontFamily: 'Nunito Sans', fontWeight: '600', fontSize: '14px', color: '#9e001a' }}>{properties['errorMessage'] ? properties['errorMessage'] : `Something went wrong in ${name} field`}</p> : null}
             </div>
         </>
     )
