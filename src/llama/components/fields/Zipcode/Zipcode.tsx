@@ -46,7 +46,6 @@ export default function ZipcodeField(props: Props) {
     }
 
     useEffect(() => {
-
         if (properties?.["className"]?.trim()) {
             inputRef.current.style = ""
             inputRef.current.className = properties?.["className"] ?? name

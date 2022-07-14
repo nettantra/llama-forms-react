@@ -15,7 +15,7 @@ interface Props {
   buttons: LooseObject;
   step: any;
   wizardStepOptions: any;
-  stepLength : any;
+  stepLength: any;
 }
 
 const MultipleForm = forwardRef((props: Props, ref: any) => {
@@ -76,6 +76,19 @@ const MultipleForm = forwardRef((props: Props, ref: any) => {
         }, 3000);
         return;
       }
+      if (data[currentFields[i]].value === "" &&
+        fields[currentFields[i]].dependentRequired) {
+        if (fields[currentFields[i]]?.dependent?.value?.every((key: any) => Object.keys(data[fields[currentFields[i]]?.parentField]?.value).includes(key)) || Object.keys(data[fields[currentFields[i]]?.parentField]?.value).some((val: any) => fields[currentFields[i]]?.dependent?.value?.includes(val)) || fields[currentFields[i]]?.dependent?.value[0] === data[fields[currentFields[i]]?.parentField]?.value) {
+          setAlert(false);
+          setAlertMsg(`${currentFields[i]} field is required`);
+          setAlert(true);
+          setTimeout(() => {
+            setAlert(false);
+            setLoading(false);
+          }, 3000);
+          return;
+        }
+      }
     }
     let finalData: any = {};
     for (let key in data) {
@@ -107,7 +120,7 @@ const MultipleForm = forwardRef((props: Props, ref: any) => {
     setLoading(false);
   };
 
-  const handlePrevious = async() => {
+  const handlePrevious = async () => {
     setLoading(true);
 
     //final data for return
@@ -168,6 +181,19 @@ const MultipleForm = forwardRef((props: Props, ref: any) => {
           setLoading(false);
         }, 5000);
         return;
+      }
+      if (data[currentFields[i]].value === "" &&
+        fields[currentFields[i]].dependentRequired) {
+        if (fields[currentFields[i]]?.dependent?.value?.every((val: any) => Object.keys(data[fields[currentFields[i]]?.parentField]?.value).includes(val)) || Object.keys(data[fields[currentFields[i]]?.parentField]?.value).some((val: any) => fields[currentFields[i]]?.dependent?.value?.includes(val)) || fields[currentFields[i]]?.dependent?.value[0] === data[fields[currentFields[i]]?.parentField]?.value) {
+          setAlert(false);
+          setAlertMsg(`${currentFields[i]} field is required`);
+          setAlert(true);
+          setTimeout(() => {
+            setAlert(false);
+            setLoading(false);
+          }, 3000);
+          return;
+        }
       }
     }
     let finalData: any = {};
