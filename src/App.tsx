@@ -70,6 +70,14 @@ function App() {
             type: 'string',
             step:1
           },
+          text:{
+            type: 'string',
+            step:1
+          },
+          week:{
+            type: 'string',
+            step:1
+          },
           checkBox1:{
             type: 'string',
             // required: true,
@@ -118,6 +126,25 @@ function App() {
             type: "range",
             label: "range",
             description: "This is range field",
+          },
+          text: {
+            type: "text",
+            label: "text",
+            lowercase : false,
+            uppercase: false,
+            description: "This is text field",
+            disAllowSpace: false,
+            validationRegex:"^[a-zA-Z]+$"
+          },
+          week: {
+            type: "week",
+            label: "week",
+            lowercase : false,
+            uppercase: false,
+            description: "This is week field",
+            disAllowSpace: false,
+            // enum: ["2015-W04", "2015-W03", "2015-W02", "2015-W01"],
+            validationRegex:""
           },
           checkBox1: {
             type: "checkbox",
