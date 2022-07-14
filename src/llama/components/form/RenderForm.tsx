@@ -20,7 +20,8 @@ import PasswordField from '../fields/Password/Password';
 import PhoneField from '../fields/Phone/Phone';
 import RangeField from '../fields/Range/Range';
 import ZipcodeField from '../fields/Zipcode/Zipcode'
-import TextField from '../fields/Text/Text'
+import TextField from '../fields/Text/Text';
+import WeekField from '../fields/Week/Week'
 
 interface Props {
     fields: any,
@@ -55,7 +56,8 @@ export default function RenderForm(props: Props) {
         'zipcode' : ZipcodeField,
         'text' : TextField,
         'textarea' : TextAreaField,
-        'default': InputField
+        'default': InputField,
+        'week' : WeekField
     }
 
 
