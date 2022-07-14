@@ -14,22 +14,24 @@ export default function PhoneField(props: Props) {
     const { properties, handleData, name } = props
     const [error, setError] = useState(false)
 
-    const validate = (val: any) => {
-
-        if (properties['validationRegex']) {
-            const regex = new RegExp(properties['validationRegex']);
-            if (regex.test(val) || !val) {
-                setError(false)
-            } else {
-                setError(true)
-            }
+    const checkValidation = (validationRegex: any, value: any) => {
+        const regex = new RegExp(validationRegex);
+        if (regex.test(value) || !value) {
+            setError(true)
+            return false
+        } else {
+            setError(true)
+            return true
         }
     }
 
     const handleChange = (e: any) => {
-
-        handleData(e.target.value, false)
-        validate(e.target.value)
+        let value = e.target.value;
+        if (properties.validationRegex) {
+            handleData(value, !checkValidation(properties['validationRegex'], value))
+        } else {
+            handleData(value, false)
+        }
     }
 
     return (
