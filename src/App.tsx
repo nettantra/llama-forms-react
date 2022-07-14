@@ -70,6 +70,10 @@ function App() {
             type: 'string',
             step:1
           },
+          text:{
+            type: 'string',
+            step:1
+          },
           checkBox1:{
             type: 'string',
             // required: true,
@@ -113,6 +117,15 @@ function App() {
             type: "range",
             label: "range",
             description: "This is range field",
+          },
+          text: {
+            type: "text",
+            label: "text",
+            lowercase : false,
+            uppercase: false,
+            description: "This is text field",
+            disAllowSpace: false,
+            validationRegex:"^[a-zA-Z]+$"
           },
           checkBox1: {
             type: "checkbox",
