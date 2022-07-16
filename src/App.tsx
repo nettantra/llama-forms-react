@@ -78,6 +78,10 @@ function App() {
             type: 'string',
             step:1
           },
+          url:{
+            type: 'string',
+            step:1
+          },
           checkBox1:{
             type: 'string',
             // required: true,
@@ -145,6 +149,15 @@ function App() {
             disAllowSpace: false,
             // enum: ["2015-W04", "2015-W03", "2015-W02", "2015-W01"],
             validationRegex:""
+          },
+          url: {
+            type: "url",
+            label: "url",
+            lowercase : false,
+            uppercase: false,
+            description: "This is url field",
+            disAllowSpace: false,
+            // validationRegex:"^[a-zA-Z]+$"
           },
           checkBox1: {
             type: "checkbox",

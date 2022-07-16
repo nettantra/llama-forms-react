@@ -21,7 +21,8 @@ import PhoneField from '../fields/Phone/Phone';
 import RangeField from '../fields/Range/Range';
 import ZipcodeField from '../fields/Zipcode/Zipcode'
 import TextField from '../fields/Text/Text';
-import WeekField from '../fields/Week/Week'
+import WeekField from '../fields/Week/Week';
+import UrlField from '../fields/Url/Url';
 
 interface Props {
     fields: any,
@@ -57,7 +58,8 @@ export default function RenderForm(props: Props) {
         'text' : TextField,
         'textarea' : TextAreaField,
         'default': InputField,
-        'week' : WeekField
+        'week' : WeekField,
+        'url' : UrlField,
     }
 
 
