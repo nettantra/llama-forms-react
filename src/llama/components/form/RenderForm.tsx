@@ -52,19 +52,19 @@ export default function RenderForm(props: Props) {
         'radio': RadioField,
         'checkbox': CheckBoxField,
         'file': FileUploadField,
-        'phone' : PhoneField,
-        'range' : RangeField,
-        'zipcode' : ZipcodeField,
-        'text' : TextField,
-        'textarea' : TextAreaField,
+        'phone': PhoneField,
+        'range': RangeField,
+        'zipcode': ZipcodeField,
+        'text': TextField,
+        'textarea': TextAreaField,
         'default': InputField,
-        'week' : WeekField,
-        'url' : UrlField,
+        'week': WeekField,
+        'url': UrlField,
     }
 
 
     const renderForm = (type: any, index: any, handleData: any, properties: any, data: any, key: any) => {
-        const RenderField:any = fieldObject[type] || fieldObject['default']
+        const RenderField: any = fieldObject[type] || fieldObject['default']
         return (
             <Fragment key={index}>
                 <RenderField

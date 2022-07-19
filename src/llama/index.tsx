@@ -201,6 +201,7 @@ export const LlamaForm = (props: any) => {
       ) : null}
 
       <form
+        className="llm-form"
         onSubmit={(e) => {
           e.preventDefault();
         }}

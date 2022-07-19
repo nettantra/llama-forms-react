@@ -218,7 +218,7 @@ const MultipleForm = forwardRef((props: Props, ref: any) => {
       />
 
       <button
-        className='btn'
+        className='btn llm-prev-btn'
         disabled={step === 1 ? true : false}
         onClick={handlePrevious}>
         {[
@@ -231,7 +231,7 @@ const MultipleForm = forwardRef((props: Props, ref: any) => {
         ]}
       </button>
       {step === parseInt(String(Object.keys(fieldSet).pop())) ? (
-        <button className='btn' onClick={handleSubmit} ref={ref}>
+        <button className='btn llm-submit-btn' onClick={handleSubmit} ref={ref}>
           {[
             props?.buttons?.["submit"]?.text ?? "Submit",
             props?.buttons?.["next"]?.loader ? (
@@ -243,7 +243,7 @@ const MultipleForm = forwardRef((props: Props, ref: any) => {
         </button>
       ) : (
         <button
-          className='btn'
+          className='btn llm-next -btn'
           onClick={handleNext}
           disabled={loading}
           ref={ref}>
