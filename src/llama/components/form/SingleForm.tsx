@@ -1,5 +1,6 @@
 import React, { useState, forwardRef } from "react";
 import RenderForm from "./RenderForm";
+import Loader from '../utils/Loader';
 
 interface Props {
   fields: any,
@@ -7,7 +8,8 @@ interface Props {
   parentSetState: any,
   renderList: object,
   submitButtonText: String,
-  onSubmit: any
+  onSubmit: any,
+  loader : boolean
 }
 
 const SingleForm = forwardRef((props: Props, ref: any) => {
@@ -16,6 +18,8 @@ const SingleForm = forwardRef((props: Props, ref: any) => {
 
   const [alert, setAlert] = useState(false);
   const [alertMsg, setAlertMsg] = useState("");
+  const [loading, setLoading] = useState(false);
+
 
   const alertRender = () => {
     return (
@@ -39,6 +43,7 @@ const SingleForm = forwardRef((props: Props, ref: any) => {
 
   const handleSubmit = () => {
     setAlert(false);
+    setLoading(true)
     for (let key in fields) {
       if (data[key].value === "" && fields[key].required) {
         setAlert(false);
@@ -46,6 +51,7 @@ const SingleForm = forwardRef((props: Props, ref: any) => {
         setAlert(true);
         setTimeout(() => {
           setAlert(false);
+          setLoading(false)
         }, 5000);
         return;
       }
@@ -55,6 +61,7 @@ const SingleForm = forwardRef((props: Props, ref: any) => {
         setAlert(true);
         setTimeout(() => {
           setAlert(false);
+          setLoading(false)
         }, 5000);
         return;
       }
@@ -65,6 +72,7 @@ const SingleForm = forwardRef((props: Props, ref: any) => {
           setAlert(true);
           setTimeout(() => {
             setAlert(false);
+            setLoading(false)
           }, 3000);
           return;
         }
@@ -78,6 +86,7 @@ const SingleForm = forwardRef((props: Props, ref: any) => {
       finalData[key] = data[key].value;
     }
     props.onSubmit(finalData);
+    setLoading(false)
   };
 
   return (
@@ -102,7 +111,15 @@ const SingleForm = forwardRef((props: Props, ref: any) => {
         className={`llm-submit-btn`}
         onClick={handleSubmit}
         ref={ref}>
-        {props?.submitButtonText ?? "Submit"}
+        {[
+          props?.submitButtonText ?? "Submit",
+          props?.loader ? 
+          (
+            loading ? (
+              <Loader key={"key"} />
+            ) : null
+          ) : null,
+        ]}
       </button>
     </>
   );

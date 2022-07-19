@@ -108,7 +108,9 @@ export const LlamaForm = (props: any) => {
         fields={fields}
         onSubmit={onSubmit}
         submitButtonText={buttons?.submit?.text ?? "Submit"}
+        loader={buttons?.submit?.loader ?? false}
         ref={enterButton}
+
       />
     );
   };

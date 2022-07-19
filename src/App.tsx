@@ -16,7 +16,7 @@ function App() {
         type: 'object',
         title: 'Login',
         description: 'Login Form',
-        wizard: true,
+        wizard: false,
         wizardOptions : {
           onNext:login_test,
           onPrev:login_test,
