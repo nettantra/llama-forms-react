@@ -17,8 +17,7 @@ export default function PasswordField(props: Props) {
 
 
     const regexObject: any = {
-        email: { regex: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/, errorMessage: "Please enter a valid email" },
-        number: { regex: /^[0-9]*$/, errorMessage: "Please enter a valid number" },
+        password: { regex: /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/, errorMessage: "Please enter a valid Password in the format 'Test@123' " },
     }
 
     function checkValidation(regex: string, value: string) {
@@ -28,10 +27,13 @@ export default function PasswordField(props: Props) {
 
     const handleChange = (e: any) => {
         let value = e.target.value;
-        handleData(value, false)
-        if (properties.validationRegex) {
+        if (properties?.validationRegex) {
             setError(!checkValidation(properties['validationRegex'], value))
             handleData(value, !checkValidation(properties['validationRegex'], value))
+        }
+        else if ("password" in regexObject) {
+            setError(!checkValidation(regexObject['password']['regex'], value))
+            handleData(value, !checkValidation(regexObject['password']['regex'], value))
         }
     }
     useEffect(() => {
@@ -65,13 +67,13 @@ export default function PasswordField(props: Props) {
                 autoComplete={properties['autoComplete'] ? "on" : "off"}
                 height={properties['height'] ? properties['height'] : null}
                 width={properties['width'] ? properties['width'] : null}
-                style={properties['type'] === 'color' ? { width: '40px', height: '40px' } : { width: '95%', padding: '7px', border: '1px solid #000', borderRadius: '5px', fontSize: '14px', fontFamily: 'Nunito Sans', fontWeight: '400' }}
+                style={{ width: '95%', padding: '7px', border: '1px solid #000', borderRadius: '5px', fontSize: '14px', fontFamily: 'Nunito Sans', fontWeight: '400' }}
                 onChange={(e) => { handleChange(e) }}
                 ref={inputRef}
             />
             <div style={{ marginBottom: '20px' }}>
                 <p style={{ margin: '5px 0px', fontFamily: 'Nunito Sans', fontWeight: '200', fontSize: '14px' }}>{properties['description']}</p>
-                {error ? <p style={{ marginTop: '5px', fontFamily: 'Nunito Sans', fontWeight: '600', fontSize: '14px', color: '#9e001a' }}>{properties['errorMessage'] ? properties['errorMessage'] : `Something went wrong in ${name} field`}</p> : null}
+                {error ? <p style={{ marginTop: '5px', fontFamily: 'Nunito Sans', fontWeight: '600', fontSize: '14px', color: '#9e001a' }}>{properties['errorMessage'] ? properties['errorMessage'] : regexObject['password']['errorMessage']}</p> : null}
             </div>
         </>
     )
