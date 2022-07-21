@@ -31,9 +31,11 @@ export default function PasswordField(props: Props) {
             setError(!checkValidation(properties['validationRegex'], value))
             handleData(value, !checkValidation(properties['validationRegex'], value))
         }
-        else if ("password" in regexObject) {
+        else if (properties['dafaultValidation'] && "password" in regexObject) {
             setError(!checkValidation(regexObject['password']['regex'], value))
             handleData(value, !checkValidation(regexObject['password']['regex'], value))
+        }else{
+            handleData(value, false)
         }
     }
     useEffect(() => {
