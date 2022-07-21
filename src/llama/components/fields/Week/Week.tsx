@@ -14,6 +14,7 @@ interface Props {
 export default function WeekField(props: Props) {
     const { properties, handleData, name } = props
     const [error, setError] = useState(false)
+    let weekRef : any = useRef();
 
     function checkValidation(regex: string, value: string) {
         const re = new RegExp(regex);
@@ -33,6 +34,19 @@ export default function WeekField(props: Props) {
             handleData(value, false)
         }
     }
+
+    useEffect(() => {
+        if (properties?.["className"]?.trim()) {
+            weekRef.current.style = ""
+            weekRef.current.className = properties?.["className"] ?? name
+        }
+        if (properties["style"]) {
+            weekRef.current.style = ""
+            for (let key in properties["style"]) {
+                weekRef.current.style.setProperty(key, properties["style"][key]);
+            }
+        }
+    }, []);
 
     return (
         <>
@@ -56,6 +70,7 @@ export default function WeekField(props: Props) {
                 pattern={properties['validationRegex'] ? properties['validationRegex'] : null}
                 style={properties['type'] === 'color' ? { width: '40px', height: '40px' } : { width: '95%', padding: '7px', border: '1px solid #000', borderRadius: '5px', fontSize: '14px', fontFamily: 'Nunito Sans', fontWeight: '400' }}
                 onChange={(e) => { handleChange(e) }}
+                ref={weekRef}
             />
                 {properties?.enum?.length?
                 <datalist id="weekList">
