@@ -66,6 +66,10 @@ function App() {
             type: 'string',
             step:1
           },
+          range:{
+            type:"string",
+            step:1
+          },
           zipcode:{
             type: 'string',
             step:1
@@ -131,6 +135,11 @@ function App() {
             label: "password",
             description: "This is password field",
             dafaultValidation : false,
+          },
+          range:{
+            type: "range",
+            label: "range",
+            description: "This is range field",
           },
           text: {
             type: "text",

@@ -50,7 +50,7 @@ export default function RangeField(props: Props) {
                 className={properties['className'] ? properties['className'] : "llama-range"}
                 onChange={(e) => handleChange(e) }
                 ref={inputRef}
-            />
+            /><span>{props.parentState[name]?.value}</span>
             <div style={{ marginBottom: '20px' }}>
                 <p style={{ margin: '5px 0px', fontFamily: 'Nunito Sans', fontWeight: '200', fontSize: '14px' }}>{properties['description']}</p>
                 {error ? <p style={{ marginTop: '5px', fontFamily: 'Nunito Sans', fontWeight: '600', fontSize: '14px', color: '#9e001a' }}>{properties['errorMessage'] ? properties['errorMessage'] : `Something went wrong in ${name} field`}</p> : null}
