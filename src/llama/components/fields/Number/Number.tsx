@@ -59,7 +59,7 @@ export default function NumberField(props: Props) {
                 autoComplete={properties['autoComplete'] ? "on" : "off"}
                 height={properties['height'] ? properties['height'] : null}
                 width={properties['width'] ? properties['width'] : null}
-                style={properties['type'] === 'color' ? { width: '40px', height: '40px' } : { width: '95%', padding: '7px', border: '1px solid #000', borderRadius: '5px', fontSize: '14px', fontFamily: 'Nunito Sans', fontWeight: '400' }}
+                style={{ width: '95%', padding: '7px', border: '1px solid #000', borderRadius: '5px', fontSize: '14px', fontFamily: 'Nunito Sans', fontWeight: '400' }}
                 onChange={(e) => { handleChange(e) }}
                 onKeyDown={blockInvalidChar}
                 ref={inputRef}
