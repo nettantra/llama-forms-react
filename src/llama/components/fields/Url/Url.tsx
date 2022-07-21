@@ -49,7 +49,7 @@ export default function UrlField(props: Props) {
 
         if (properties?.["className"]?.trim()) {
             urlRef.current.style = ""
-            urlRef.current.className = properties?.["className"] ?? name
+            urlRef.current.className = properties?.["className"] ?? name;
         }
         if (properties["style"]) {
             urlRef.current.style = ""
