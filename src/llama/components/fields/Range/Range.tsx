@@ -46,7 +46,7 @@ export default function RangeField(props: Props) {
                 max={properties['max'] ? properties['max'] : null}
                 step={properties['interval'] ? properties['interval'].toString() : null}
                 required={properties['required'] ? properties['required'] : false}
-                style={properties['type'] === 'color' ? { width: '40px', height: '40px' } : { width: '95%', padding: '7px', border: '1px solid #000', borderRadius: '5px', fontSize: '14px', fontFamily: 'Nunito Sans', fontWeight: '400' }}
+                style={{ width: '95%', padding: '7px', border: '1px solid #000', borderRadius: '5px', fontSize: '14px', fontFamily: 'Nunito Sans', fontWeight: '400' }}
                 className={properties['className'] ? properties['className'] : "llama-range"}
                 onChange={(e) => handleChange(e) }
                 ref={inputRef}
