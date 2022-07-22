@@ -62,6 +62,10 @@ function App() {
             depend:true,
             step:1
           },
+          table:{
+            type: 'string',
+            step:1
+          },
           password:{
             type: 'string',
             step:1
@@ -118,6 +122,19 @@ function App() {
             dependent:{
               type:"multi",
               value:["12345","54321"]
+            }
+          },
+          table: {
+            type: "table",
+            label: "table",
+            description: "This is table field",
+            column : {
+              columnName : ["Id", "Title", "Desc"]
+            },
+            rows:{
+              Id: [0, 1, 2],
+              Title:["sajal", "Mahapatra", "chatu", "patra", "hello"],
+              Desc : ["hello", "world", "hyy", "duia"]
             }
           },
           zipcode: {
