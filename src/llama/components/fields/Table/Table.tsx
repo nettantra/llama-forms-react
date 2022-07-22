@@ -28,7 +28,7 @@ export default function TableField(props: Props) {
     const handleRowChange = (rows: any) => {
         // update logic
         console.log("handleRowChange", rows)
-        // setRows(rows)
+        setRows(rows)
     }
 
     const onCopy = (rows: any) => {
