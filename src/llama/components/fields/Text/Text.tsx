@@ -68,17 +68,17 @@ export default function TextField(props: Props) {
                     name={name}
                     className= {`llm-field-text ${properties['className'] ?? ''}`}
                     type="text"
-                    placeholder={properties['placeholder'] ? properties['placeholder'] : null}
+                    placeholder={properties['placeholder'] ?? null}
                     value={props.parentState[name]?.value}
-                    disabled={properties['readOnly'] ? properties['readOnly'] : false}
-                    required={properties['required'] ? properties['required'] : false}
-                    autoFocus={properties['autoFocus'] ? properties['autoFocus'] : false}
+                    disabled={properties['readOnly'] ?? false}
+                    required={properties['required'] ?? false}
+                    autoFocus={properties['autoFocus'] ?? false}
                     autoComplete={properties['autoComplete'] ? "on" : "off"}
-                    hidden={properties["hidden"] ? properties["hidden"] : false}
-                    readOnly={properties["readonly"] ? properties["readonly"] : false}
-                    maxLength={properties["maxLength"] ? properties["maxLength"] : null}
-                    minLength={properties["minLength"] ? properties["minLength"] : null}
-                    pattern={properties['validationRegex'] ? properties['validationRegex'] : null}
+                    hidden={properties["hidden"] ?? false}
+                    readOnly={properties["readonly"] ?? false}
+                    maxLength={properties["maxLength"] ?? null}
+                    minLength={properties["minLength"] ?? null}
+                    pattern={properties['validationRegex'] ?? null}
                     onChange={(e) => { handleChange(e) }}
                     ref={textRef}
                 />
@@ -90,16 +90,18 @@ export default function TextField(props: Props) {
 
             <style>
                 {`
-                    .llm-field-text-label{
+                    .llm-field-text-container{
                         font-family: 'Nunito Sans';
+                    }
+
+                    .llm-field-text-label{
                         font-weight: 400;
                         font-size: 16px;
-                        margin: '5px 0'
+                        margin: 5px 0
                     }
 
                     .llm-field-text{
                         width: 95%;
-                        font-family: 'Nunito Sans';
                         font-weight: 400;
                         font-size: 14px;
                         border: 1px solid #000;
@@ -112,15 +114,13 @@ export default function TextField(props: Props) {
                     }
 
                     .llm-field-text-description{
-                        margin: '5px 0px';
-                        font-family: 'Nunito Sans';
+                        margin: 5px 0px;
                         font-weight: 200;
                         font-size: 14px;
                     }
 
                     .llm-field-text-error-message{
                         marging-top: 5px;
-                        font-family: 'Nunito Sans';
                         font-weight: 600;
                         font-size: 14px;
                         color: #9e001a;
