@@ -105,6 +105,10 @@ function App() {
             // required: true,
             enum: ['yes', 'no', 'i dont know'],
             step:3
+          },
+          html:{
+            type: 'string',
+            step:1
           }
         }
       }}
@@ -134,8 +138,14 @@ function App() {
             className:"paragraph",
             style:{
               "color":"blue",
-              // "background-color":"wheat"
+              "background-color":"wheat"
             }
+          },
+          html :{
+            type:"html",
+            label : "Html",
+            htmlData : '<p>First &middot; Second</p>',
+
           },
           table: {
             type: "table",

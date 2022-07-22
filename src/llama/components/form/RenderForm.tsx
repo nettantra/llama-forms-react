@@ -23,7 +23,7 @@ import ZipcodeField from '../fields/Zipcode/Zipcode'
 import TextField from '../fields/Text/Text';
 import WeekField from '../fields/Week/Week';
 import UrlField from '../fields/Url/Url';
-import TableField from '../fields/Table/Table'
+import TableField from '../fields/Table/Table';
 
 interface Props {
     fields: any,
