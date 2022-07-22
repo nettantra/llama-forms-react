@@ -96,6 +96,10 @@ function App() {
             enum: ['Test3', 'Test4', 'Test5'],
             step:2
           },
+          para:{
+            type: 'string',
+            step:1
+          },
           checkBox2:{
             type: 'string',
             // required: true,
@@ -122,6 +126,15 @@ function App() {
             dependent:{
               type:"multi",
               value:["12345","54321"]
+            }
+          },
+          para:{
+            type:"paragraph",
+            text:"hello user",
+            className:"paragraph",
+            style:{
+              "color":"blue",
+              // "background-color":"wheat"
             }
           },
           table: {
