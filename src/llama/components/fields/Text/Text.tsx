@@ -49,16 +49,6 @@ export default function TextField(props: Props) {
         }
     }
 
-    useEffect(() => {
-
-        if (properties["style"]) {
-            textRef.current.style = ""
-            for (let key in properties["style"]) {
-                textRef.current.style.setProperty(key, properties["style"][key]);
-            }
-        }
-    }, []);
-
     return (
         <>
             <div className="llm-field-text-container">
