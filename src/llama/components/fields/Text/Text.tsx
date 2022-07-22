@@ -77,7 +77,7 @@ export default function TextField(props: Props) {
                 maxLength={properties["maxLength"] ? properties["maxLength"] : null}
                 minLength={properties["minLength"] ? properties["minLength"] : null}
                 pattern={properties['validationRegex'] ? properties['validationRegex'] : null}
-                style={properties['type'] === 'color' ? { width: '40px', height: '40px' } : { width: '95%', padding: '7px', border: '1px solid #000', borderRadius: '5px', fontSize: '14px', fontFamily: 'Nunito Sans', fontWeight: '400' }}
+                style={{ width: '95%', padding: '7px', border: '1px solid #000', borderRadius: '5px', fontSize: '14px', fontFamily: 'Nunito Sans', fontWeight: '400' }}
                 onChange={(e) => { handleChange(e) }}
                 ref={textRef}
             />
