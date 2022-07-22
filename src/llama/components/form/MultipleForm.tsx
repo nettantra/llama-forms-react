@@ -243,7 +243,7 @@ const MultipleForm = forwardRef((props: Props, ref: any) => {
         </button>
       ) : (
         <button
-          className='btn llm-next -btn'
+          className='btn llm-next-btn'
           onClick={handleNext}
           disabled={loading}
           ref={ref}>
