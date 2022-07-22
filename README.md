@@ -18,6 +18,7 @@
 - [Install](#install)
 - [Features](#features)
 - [Quickstart](#quickstart)
+- [Fields](Documentation/Fields/README.md)
 - [Multi Step Form](Documentation/MultiStep/README.md)
 - [Examples](#Examples)
 - [Documentation](#documentation)
