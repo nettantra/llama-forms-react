@@ -16,7 +16,7 @@ function App() {
         type: 'object',
         title: 'Login',
         description: 'Login Form',
-        wizard: false,
+        wizard: true,
         wizardOptions : {
           onNext:login_test,
           onPrev:login_test,
@@ -98,6 +98,7 @@ function App() {
           },
           para:{
             type: 'string',
+            depend:true,
             step:1
           },
           checkBox2:{
@@ -120,6 +121,7 @@ function App() {
             label: "Check Box test",
             description: "This is checkbox field",
             // onlyCheck:"Test",
+            blacklist:["Test","Test1"],
           },
           phone: {
             type: "phone",
@@ -130,16 +132,8 @@ function App() {
             dependent:{
               type:"multi",
               value:["12345","54321"]
-            }
-          },
-          para:{
-            type:"paragraph",
-            text:"hello user",
-            className:"paragraph",
-            style:{
-              "color":"blue",
-              "background-color":"wheat"
-            }
+            },
+            blacklist:""
           },
           html :{
             type:"html",
@@ -191,7 +185,8 @@ function App() {
             uppercase: false,
             description: "This is text field",
             disAllowSpace: false,
-            validationRegex:"^[a-zA-Z]+$"
+            validationRegex:"^[a-zA-Z]+$",
+            blacklist:["Test","Test1"],
           },
           week: {
             type: "week",
@@ -216,11 +211,23 @@ function App() {
             type: "checkbox",
             label: "Check Box1 test",
             description: "This is checkbox1 field",
+            onlyCheck:"Test3",
+            blacklist:["Test"]
+          },
+          para: {
+            type: "paragraph",
+            text: "This is paragraph field for testing",
+            parentField: "checkBox1",
+            dependent:{
+              value : ["Test3"],
+              type: "single",          //multi or single
+            }
           },
           checkBox2: {
             type: "checkbox",
             label: "Check Box2 test",
             description: "This is checkbox2 field",
+            blacklist:["yes","Test1"],
           }
         }
       }}

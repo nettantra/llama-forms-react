@@ -23,8 +23,8 @@ import ZipcodeField from '../fields/Zipcode/Zipcode'
 import TextField from '../fields/Text/Text';
 import WeekField from '../fields/Week/Week';
 import UrlField from '../fields/Url/Url';
-import TableField from '../fields/Table/Table';
-
+import TableField from '../fields/Table/Table'
+import HtmlTag from '../fields/Html/Html'
 interface Props {
     fields: any,
     renderList: any,
@@ -62,6 +62,7 @@ export default function RenderForm(props: Props) {
         'week': WeekField,
         'url': UrlField,
         'table': TableField,
+        'html': HtmlTag
     }
 
 

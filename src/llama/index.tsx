@@ -20,10 +20,10 @@ export const LlamaForm = (props: any) => {
     properties = {},
   } = schema;
 
-  const [fields, setFields] = useState({});
+  const [fields, setFields] = useState<LooseObject>({});
   const [fieldList, setFieldList] = useState([]);
-  const [data, setData] = useState({});
-  const [wizardStepSet, setWizardStepSet] = useState({});
+  const [data, setData] = useState<LooseObject>({});
+  const [wizardStepSet, setWizardStepSet] = useState<LooseObject>({});
   const [step, setStep] = useState(initialStep ?? 1);
 
   let enterButton: any = useRef();
@@ -116,6 +116,22 @@ export const LlamaForm = (props: any) => {
   };
 
   useEffect(() => {
+    // for blacklist
+    let btn = document.getElementsByClassName('btn llm-next-btn')[0] || document.getElementsByClassName('btn llm-submit-btn')[0]
+    let currentStepFields = wizardStepSet[step]
+    btn.removeAttribute('disabled');
+    currentStepFields?.forEach((field: string) => {
+      if (fields[field].blacklist) {
+          if (fields[field].type === "checkbox") {
+            Object.keys(data[field].value).forEach((key: string) => {
+              fields[field].blacklist.includes(key) && btn.setAttribute('disabled', 'true');
+            })
+          }
+          fields[field].blacklist.includes(data[field].value) && btn.setAttribute('disabled', 'true');
+        }
+    })
+    //end
+
     const listener = (event: any) => {
       if (event.key === "Enter" || event.code === "NumpadEnter") {
         event.preventDefault();
@@ -128,6 +144,24 @@ export const LlamaForm = (props: any) => {
       document.removeEventListener("keydown", listener);
     };
   }, [step]);
+
+
+
+  useEffect(() => {
+    let btn = document.getElementsByClassName('btn llm-next-btn')[0] || document.getElementsByClassName('btn llm-submit-btn')[0]
+
+    btn.removeAttribute('disabled');
+    for (let field in fields) {
+      if (fields[field].blacklist) {
+        if (fields[field].type === "checkbox") {
+          Object.keys(data[field].value).forEach((key: string) => {
+            fields[field].blacklist.includes(key) && btn.setAttribute('disabled', 'true');
+          })
+        }
+        fields[field].blacklist.includes(data[field].value) && btn.setAttribute('disabled', 'true');
+      }
+    }
+  },[data]);
 
   const {
     show: pbShow,
