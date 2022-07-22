@@ -1,9 +1,16 @@
-import './App.css';
 import DataGrid, { TextEditor } from 'react-data-grid';
-import { useState } from 'react';
-import React from 'react';
+import React, { useState } from 'react';
+interface LooseObject {
+    [key: string]: any
+}
+interface Props {
+    properties: LooseObject,
+    handleData: any,
+    name: any,
+    parentState: any,
+}
 
-function App() {
+export default function TableField(props: Props) {
     const columns = [
         { key: 'id', name: 'ID' },
         { key: 'title', name: 'Title', editor: TextEditor }
@@ -44,5 +51,3 @@ function App() {
         />
     );
 }
-
-export default App;
