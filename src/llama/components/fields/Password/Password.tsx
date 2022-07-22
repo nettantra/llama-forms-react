@@ -13,8 +13,9 @@ interface Props {
 export default function PasswordField(props: Props) {
     const { properties, handleData, name } = props
     const [error, setError] = useState(false)
-    let inputRef: any = useRef();
+    const [passwordType, setPasswordType] = useState(true)
 
+    let inputRef: any = useRef();
 
     const regexObject: any = {
         password: { regex: /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/, errorMessage: "Please enter a valid Password in the format 'Test@123' " },
@@ -34,10 +35,11 @@ export default function PasswordField(props: Props) {
         else if (properties['dafaultValidation'] && "password" in regexObject) {
             setError(!checkValidation(regexObject['password']['regex'], value))
             handleData(value, !checkValidation(regexObject['password']['regex'], value))
-        }else{
+        } else {
             handleData(value, false)
         }
     }
+
     useEffect(() => {
 
         if (properties?.["className"]?.trim()) {
@@ -52,34 +54,108 @@ export default function PasswordField(props: Props) {
         }
     }, []);
 
-
     return (
         <>
-            <h3 style={{ fontFamily: 'Nunito Sans', fontWeight: '400', fontSize: '16px', margin: '5px 0' }}>{properties['label']}</h3>
-            <input
-                id={name}
-                name={name}
-                type="password"
-                placeholder={properties['placeholder'] ? properties['placeholder'] : null}
-                value={properties["prefix"] ? properties["prefix"] + props.parentState[name]?.value : props.parentState[name]?.value}
-                disabled={properties['readOnly'] ? properties['readOnly'] : false}
-                maxLength={properties['maxlength'] ? properties['maxlength'] : null}
-                required={properties['required'] ? properties['required'] : false}
-                autoFocus={properties['autoFocus'] ? properties['autoFocus'] : false}
-                autoComplete={properties['autoComplete'] ? "on" : "off"}
-                height={properties['height'] ? properties['height'] : null}
-                width={properties['width'] ? properties['width'] : null}
-                style={{ width: '95%', padding: '7px', border: '1px solid #000', borderRadius: '5px', fontSize: '14px', fontFamily: 'Nunito Sans', fontWeight: '400' }}
-                onChange={(e) => { handleChange(e) }}
-                ref={inputRef}
-            />
-            <div style={{ marginBottom: '20px' }}>
-                <p style={{ margin: '5px 0px', fontFamily: 'Nunito Sans', fontWeight: '200', fontSize: '14px' }}>{properties['description']}</p>
-                {error ? <p style={{ marginTop: '5px', fontFamily: 'Nunito Sans', fontWeight: '600', fontSize: '14px', color: '#9e001a' }}>{properties['errorMessage'] ? properties['errorMessage'] : regexObject['password']['errorMessage']}</p> : null}
+            <div className="llm-field-password-container-wrap">
+                <h3 className="llm-field-password-label" >{properties['label']}</h3>
+
+                <div className="llm-field-password-container">
+                    <input
+                        id={name}
+                        name={name}
+                        className={"llm-field-password"}
+                        type={passwordType ? "password" : "text"}
+                        placeholder={properties['placeholder'] ? properties['placeholder'] : null}
+                        value={properties["prefix"] ? properties["prefix"] + props.parentState[name]?.value : props.parentState[name]?.value}
+                        disabled={properties['readOnly'] ? properties['readOnly'] : false}
+                        maxLength={properties['maxlength'] ? properties['maxlength'] : null}
+                        required={properties['required'] ? properties['required'] : false}
+                        autoFocus={properties['autoFocus'] ? properties['autoFocus'] : false}
+                        autoComplete={properties['autoComplete'] ? "on" : "off"}
+                        height={properties['height'] ? properties['height'] : null}
+                        width={properties['width'] ? properties['width'] : null}
+                        style={properties['togglePassword'] ? { borderRadius: "5px 0 0 5px" } : { borderRadius: '5px' }}
+                        onChange={(e) => { handleChange(e) }}
+                        ref={inputRef}
+                    />
+                    {
+                        properties['togglePassword'] ? (
+                            <span
+                                onClick={() => setPasswordType(!passwordType)}
+                                className="llm-field-password-show"
+                                style={{}}
+                            >
+                                {passwordType ? "Show" : "Hide"}
+                            </span>
+                        ) : null
+                    }
+                </div>
+
+                <div className="llm-field-password-message-container">
+                    <p className="llm-field-password-description">{properties['description']}</p>
+                    {error ? <p className="llm-field-error-message">{properties['errorMessage'] ? properties['errorMessage'] : regexObject['password']['errorMessage']}</p> : null}
+                </div>
             </div>
+
+            <style>
+                {`
+                    .llm-field-password-container{
+                        display: flex;
+                    }
+
+                    .llm-field-password-label{
+                        font-family: 'Nunito Sans';
+                        font-weight: 400;
+                        font-size: 16px;
+                        margin: '5px 0';
+                    }
+                    
+                    .llm-field-password {
+                        width: 95%;
+                        padding:7px;
+                        border:1px solid #000;
+                        border-radius:5px;
+                        font-size: 14px;
+                        font-weight: 400;
+                        font-family: Nunito Sans;
+                    }
+
+                    .llm-field-password-show{
+                        width: 6%;
+                        padding:7px;
+                        border:1px solid #000;
+                        font-size: 14px;
+                        border-radius: 0 5px 5px 0;
+                        font-weight: 400;
+                        cursor:pointer;
+                        font-family: 'Nunito Sans';
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+
+                    .llm-field-password-message-container{
+                        margin-bottom: 20px;
+                    }
+                    
+                    .llm-field-password-description{
+                        margin: '5px 0px';
+                        font-family: 'Nunito Sans';
+                        font-weight: 200;
+                        font-size: 14px;
+                    }
+
+                    .llm-field-error-message{
+                        marging-top: 5px;
+                        font-family: 'Nunito Sans';
+                        font-weight: 600;
+                        font-size: 14px;
+                        color: #9e001a;
+                    }
+
+                `}
+            </style>
+
         </>
     )
-
-
-
 }

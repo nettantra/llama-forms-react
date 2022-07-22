@@ -135,6 +135,7 @@ function App() {
             label: "password",
             description: "This is password field",
             dafaultValidation : false,
+            togglePassword:true,
           },
           range:{
             type: "range",
