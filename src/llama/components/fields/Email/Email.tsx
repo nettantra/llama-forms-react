@@ -41,44 +41,75 @@ export default function EmailField(props: Props) {
             handleData(value, !checkValidation(regexObject[properties.type]['regex'], value))
         }
     }
-    useEffect(() => {
-
-        if (properties?.["className"]?.trim()) {
-            inputRef.current.style = ""
-            inputRef.current.className = properties?.["className"] ?? name
-        }
-        if (properties["style"]) {
-            inputRef.current.style = ""
-            for (let key in properties["style"]) {
-                inputRef.current.style.setProperty(key, properties["style"][key]);
-            }
-        }
-    }, []);
 
     return (
         <>
-            <h3 style={{ fontFamily: 'Nunito Sans', fontWeight: '400', fontSize: '16px', margin: '5px 0' }}>{properties['label']}</h3>
-            <input
-                id={name}
-                name={name}
-                type="email"
-                placeholder={properties['placeholder'] ? properties['placeholder'] : null}
-                value={props.parentState[name]?.value}
-                disabled={properties['readOnly'] ? properties['readOnly'] : false}
-                required={properties['required'] ? properties['required'] : false}
-                autoFocus={properties['autoFocus'] ? properties['autoFocus'] : false}
-                autoComplete={properties['autoComplete'] ? "on" : "off"}
-                height={properties['height'] ? properties['height'] : null}
-                width={properties['width'] ? properties['width'] : null}
-                pattern={properties['validationRegex'] ? properties['validationRegex'] : null}
-                style={{ width: '95%', padding: '7px', border: '1px solid #000', borderRadius: '5px', fontSize: '14px', fontFamily: 'Nunito Sans', fontWeight: '400' }}
-                onChange={(e) => { handleChange(e) }}
-                ref={inputRef}
-            />
-            <div style={{ marginBottom: '20px' }}>
-                <p style={{ margin: '5px 0px', fontFamily: 'Nunito Sans', fontWeight: '200', fontSize: '14px' }}>{properties['description']}</p>
-                {error ? <p style={{ marginTop: '5px', fontFamily: 'Nunito Sans', fontWeight: '600', fontSize: '14px', color: '#9e001a' }}>{properties['errorMessage'] ? properties['errorMessage'] : (properties.type in regexObject) ? regexObject[properties.type]['errorMessage'] : `Something went wrong in ${name} field`}</p> : null}
+            <div className="llm-field-email-container">
+                <h3 className="llm-field-email-label">{properties['label']}</h3>
+
+                <input
+                    id={name}
+                    name={name}
+                    type="email"
+                    className= {`llm-field-email ${properties['className'] ?? ''}`}
+                    placeholder={properties['placeholder'] ?? null}
+                    value={props.parentState[name]?.value}
+                    disabled={properties['readOnly'] ?? false}
+                    required={properties['required'] ?? false}
+                    autoFocus={properties['autoFocus'] ?? false}
+                    autoComplete={properties['autoComplete'] ? "on" : "off"}
+                    height={properties['height'] ?? null}
+                    width={properties['width'] ?? null}
+                    pattern={properties['validationRegex'] ?? null}
+                    onChange={(e) => { handleChange(e) }}
+                    ref={inputRef}
+                />
+
+                <div className="llm-field-email-message-container">
+                    <p className="llm-field-email-description">{properties['description']}</p>
+                    {error ? <p className="llm-field-email-error-message">{properties['errorMessage'] ? properties['errorMessage'] : (properties.type in regexObject) ? regexObject[properties.type]['errorMessage'] : `Something went wrong in ${name} field`}</p> : null}
+                </div>
             </div>
+
+            <style>
+                {`
+                    .llm-field-email-container{
+                        font-family: 'Nunito Sans';
+                    }
+
+                    .llm-field-email-label{
+                        font-weight: 400;
+                        font-size: 16px;
+                        margin: 5px 0
+                    }
+
+                    .llm-field-email{
+                        width: 95%;
+                        font-weight: 400;
+                        font-size: 14px;
+                        border: 1px solid #000;
+                        border-radius: 5px;
+                        padding: 7px;
+                    }
+
+                    .llm-field-email-message-container{
+                        margin-bottom: 20px;
+                    }
+
+                    .llm-field-email-description{
+                        margin: 5px 0px;
+                        font-weight: 200;
+                        font-size: 14px;
+                    }
+
+                    .llm-field-email-error-message{
+                        marging-top: 5px;
+                        font-weight: 600;
+                        font-size: 14px;
+                        color: #9e001a;
+                    }
+                `}
+            </style>
         </>
     )
 }
