@@ -62,6 +62,10 @@ function App() {
             depend:true,
             step:1
           },
+          table:{
+            type: 'string',
+            step:1
+          },
           password:{
             type: 'string',
             step:1
@@ -92,6 +96,10 @@ function App() {
             enum: ['Test3', 'Test4', 'Test5'],
             step:2
           },
+          para:{
+            type: 'string',
+            step:1
+          },
           checkBox2:{
             type: 'string',
             // required: true,
@@ -118,6 +126,30 @@ function App() {
             dependent:{
               type:"multi",
               value:["12345","54321"]
+            }
+          },
+          para:{
+            type:"paragraph",
+            text:"hello user",
+            className:"paragraph",
+            style:{
+              "color":"blue",
+              // "background-color":"wheat"
+            }
+          },
+          table: {
+            type: "table",
+            label: "table",
+            description: "This is table field",
+            column : {
+              columnName : ["Id", "Title", "Desc"],
+              // allEditor:true,
+              columnEditor : ["Id", "Title"]
+            },
+            rows:{
+              Id: [0, 1, 2],
+              Title:["sajal", "Mahapatra", "chatu", "patra", "hello"],
+              Desc : ["hello", "world", "hyy", "duia"]
             }
           },
           zipcode: {

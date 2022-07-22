@@ -12,10 +12,24 @@ interface Props {
 
 export default function ParagraphTag(props: Props) {
     const { properties, handleData, name, parentState } = props;
+    let paragraphRef: any = useRef();
+
+    useEffect(() => {
+
+        if (properties?.["className"]?.trim()) {
+            paragraphRef.current.className = properties?.["className"] ?? name
+        }
+        if (properties["style"]) {
+            paragraphRef.current.style = ""
+            for (let key in properties["style"]) {
+                paragraphRef.current.style.setProperty(key, properties["style"][key]);
+            }
+        }
+    }, []);
 
     return(
         <div>
-            <p>{properties.text}</p>
+            <p ref={paragraphRef}>{properties.text}</p>
         </div>
     )
 }
