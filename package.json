@@ -29,8 +29,7 @@
     "react": ">=16"
   },
   "dependencies": {
-    "core-js": "2.6.5",
-    "react-data-grid": "^7.0.0-beta.14"
+    "core-js": "2.6.5"
   },
   "devDependencies": {
     "@types/react": "^18.0.14",
@@ -40,7 +39,8 @@
     "react-scripts": "5.0.1",
     "tsdx": "^0.14.1",
     "tslib": "^2.4.0",
-    "typescript": "^4.7.4"
+    "typescript": "^4.7.4",
+    "react-data-grid": "^7.0.0-beta.14"
   },
   "scripts": {
     "package": "rm -rf dist && tsdx build -i src/llama/index.tsx",
