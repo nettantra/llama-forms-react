@@ -129,7 +129,9 @@ function App() {
             label: "table",
             description: "This is table field",
             column : {
-              columnName : ["Id", "Title", "Desc"]
+              columnName : ["Id", "Title", "Desc"],
+              // allEditor:true,
+              columnEditor : ["Id", "Title"]
             },
             rows:{
               Id: [0, 1, 2],
