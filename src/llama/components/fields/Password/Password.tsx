@@ -93,7 +93,7 @@ export default function PasswordField(props: Props) {
 
                 <div className="llm-field-password-message-container">
                     <p className="llm-field-password-description">{properties['description']}</p>
-                    {error ? <p className="llm-field-error-message">{properties['errorMessage'] ? properties['errorMessage'] : regexObject['password']['errorMessage']}</p> : null}
+                    {error ? <p className="llm-field-password-error-message">{properties['errorMessage'] ? properties['errorMessage'] : regexObject['password']['errorMessage']}</p> : null}
                 </div>
             </div>
 
@@ -145,7 +145,7 @@ export default function PasswordField(props: Props) {
                         font-size: 14px;
                     }
 
-                    .llm-field-error-message{
+                    .llm-field-password-error-message{
                         marging-top: 5px;
                         font-family: 'Nunito Sans';
                         font-weight: 600;
