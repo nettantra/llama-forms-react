@@ -40,20 +40,6 @@ export default function PasswordField(props: Props) {
         }
     }
 
-    useEffect(() => {
-
-        if (properties?.["className"]?.trim()) {
-            inputRef.current.style = ""
-            inputRef.current.className = properties?.["className"] ?? name
-        }
-        if (properties["style"]) {
-            inputRef.current.style = ""
-            for (let key in properties["style"]) {
-                inputRef.current.style.setProperty(key, properties["style"][key]);
-            }
-        }
-    }, []);
-
     return (
         <>
             <div className="llm-field-password-container-wrap">
@@ -63,17 +49,17 @@ export default function PasswordField(props: Props) {
                     <input
                         id={name}
                         name={name}
-                        className={"llm-field-password"}
+                        className={`llm-field-password ${properties['className'] ?? ''}`}
                         type={passwordType ? "password" : "text"}
-                        placeholder={properties['placeholder'] ? properties['placeholder'] : null}
+                        placeholder={properties['placeholder'] ?? null}
                         value={properties["prefix"] ? properties["prefix"] + props.parentState[name]?.value : props.parentState[name]?.value}
-                        disabled={properties['readOnly'] ? properties['readOnly'] : false}
-                        maxLength={properties['maxlength'] ? properties['maxlength'] : null}
-                        required={properties['required'] ? properties['required'] : false}
-                        autoFocus={properties['autoFocus'] ? properties['autoFocus'] : false}
+                        disabled={properties['readOnly'] ?? false}
+                        maxLength={properties['maxlength'] ?? null}
+                        required={properties['required'] ?? false}
+                        autoFocus={properties['autoFocus'] ?? false}
                         autoComplete={properties['autoComplete'] ? "on" : "off"}
-                        height={properties['height'] ? properties['height'] : null}
-                        width={properties['width'] ? properties['width'] : null}
+                        height={properties['height'] ?? null}
+                        width={properties['width'] ?? null}
                         style={properties['togglePassword'] ? { borderRadius: "5px 0 0 5px" } : { borderRadius: '5px' }}
                         onChange={(e) => { handleChange(e) }}
                         ref={inputRef}
