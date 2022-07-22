@@ -41,5 +41,27 @@ rows: 3,
 cols: 4,
 height: 150px, //minimum height default: 180px
 width: 60%, //minimum width default: 95%
+errorMessage: "Error occured",
+className: "llm-test llm-test2"
+```
+
+### email
+
+```jsx
+type: "email",
+label: "Enter email",
+placeholder: "Enter email",
+readOnly: false, //default: false
+required: true, //default: false
+autoFocus: true, //default: false
+autoComplete: true, //default: false
+hidden: false, //default: false
+lowercase : false, //default: false
+uppercase: false, //default: false
+description: "This is text field",
+validationRegex: "",
+height: 150px, 
+width: 60%,
+errorMessage: "Error occured",
 className: "llm-test llm-test2"
 ```
