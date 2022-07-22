@@ -1,5 +1,5 @@
 import DataGrid, { TextEditor } from 'react-data-grid';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 interface LooseObject {
     [key: string]: any
 }
@@ -11,6 +11,10 @@ interface Props {
 }
 
 export default function TableField(props: Props) {
+    const { properties, handleData, name } = props
+    // const [columns, setColumns] = useState([])
+    // const [rows, setRows] = useState([])
+
     const columns = [
         { key: 'id', name: 'ID' },
         { key: 'title', name: 'Title', editor: TextEditor }
@@ -24,7 +28,7 @@ export default function TableField(props: Props) {
     const handleRowChange = (rows: any) => {
         // update logic
         console.log("handleRowChange", rows)
-        setRows(rows)
+        // setRows(rows)
     }
 
     const onCopy = (rows: any) => {
