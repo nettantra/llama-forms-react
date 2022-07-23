@@ -10,7 +10,8 @@ interface Props {
 
 export default function CheckBoxField(props: Props) {
   const { properties, handleData, name } = props;
-  let onlyChecked = properties.onlyCheck
+  let onlyChecked = properties.onlyCheck;
+  let fieldName = name?.replace(/ /g, '-')
 
   const handleChange = (e: any) => {
     let checkObj = props.parentState[name].value || {};
@@ -41,7 +42,7 @@ export default function CheckBoxField(props: Props) {
               <div key={index} style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
                 <input
                   type="checkbox"
-                  id={"llm-field-checkbox" + item}
+                  id={"llm-field-checkbox-"+fieldName+"-" +item+"-"+ index}
                   value={item}
                   onChange={handleChange}
                   style={properties.style || {}}
@@ -51,7 +52,7 @@ export default function CheckBoxField(props: Props) {
                   }
                 />
                 <label
-                  htmlFor={"llm-field-checkbox" + item}
+                  htmlFor={"llm-field-checkbox-"+fieldName+"-"+item+"-"+ index}
                   className="llm-field-checkbox-option-label"
                 >
                   {item}

@@ -9192,7 +9192,7 @@ react-app-polyfill@^3.0.0:
 
 react-data-grid@^7.0.0-beta.14:
   version "7.0.0-beta.14"
-  resolved "https://registry.npmjs.org/react-data-grid/-/react-data-grid-7.0.0-beta.14.tgz"
+  resolved "https://registry.yarnpkg.com/react-data-grid/-/react-data-grid-7.0.0-beta.14.tgz#ea3b17ff66ead84f2306f509bf53b0045c53b171"
   integrity sha512-geajG6IIHDUC6m4uQ2pzuLDnfCKmApmZZRjRS2cAZeEv6c1igjWlq2GaLPUrZpYfoP09Xvi+5w2sfbcbbDoMwg==
   dependencies:
     clsx "^1.1.1"
