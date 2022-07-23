@@ -87,3 +87,14 @@ prefix: "",
 togglePassword: true, //default: false
 className: "llm-test llm-test2"
 ```
+
+### radio
+
+```jsx
+type: "radio",
+label: "Enter password",
+readOnly: false, //default: false
+required: true, //default: false
+description: "This is text field",
+className: "llm-test llm-test2"
+```
