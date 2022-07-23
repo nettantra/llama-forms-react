@@ -138,8 +138,7 @@ function App() {
           html :{
             type:"html",
             label : "Html",
-            htmlData : '<p>First &middot; Second</p>',
-
+            htmlData : '<p>First &middot; Second</p>'
           },
           table: {
             type: "table",
