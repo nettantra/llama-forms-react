@@ -119,15 +119,15 @@ export const LlamaForm = (props: any) => {
     // for blacklist
     let btn = document.getElementsByClassName('btn llm-next-btn')[0] || document.getElementsByClassName('btn llm-submit-btn')[0]
     let currentStepFields = wizardStepSet[step]
-    btn.removeAttribute('disabled');
+    btn?.removeAttribute('disabled');
     currentStepFields?.forEach((field: string) => {
       if (fields[field].blacklist) {
           if (fields[field].type === "checkbox") {
             Object.keys(data[field].value).forEach((key: string) => {
-              fields[field].blacklist.includes(key) && btn.setAttribute('disabled', 'true');
+              fields[field].blacklist.includes(key) && btn?.setAttribute('disabled', 'true');
             })
           }
-          fields[field].blacklist.includes(data[field].value) && btn.setAttribute('disabled', 'true');
+          fields[field].blacklist.includes(data[field].value) && btn?.setAttribute('disabled', 'true');
         }
     })
     //end
@@ -150,15 +150,15 @@ export const LlamaForm = (props: any) => {
   useEffect(() => {
     let btn = document.getElementsByClassName('btn llm-next-btn')[0] || document.getElementsByClassName('btn llm-submit-btn')[0]
 
-    btn.removeAttribute('disabled');
+    btn?.removeAttribute('disabled');
     for (let field in fields) {
       if (fields[field].blacklist) {
         if (fields[field].type === "checkbox") {
           Object.keys(data[field].value).forEach((key: string) => {
-            fields[field].blacklist.includes(key) && btn.setAttribute('disabled', 'true');
+            fields[field].blacklist.includes(key) && btn?.setAttribute('disabled', 'true');
           })
         }
-        fields[field].blacklist.includes(data[field].value) && btn.setAttribute('disabled', 'true');
+        fields[field].blacklist.includes(data[field].value) && btn?.setAttribute('disabled', 'true');
       }
     }
   },[data]);

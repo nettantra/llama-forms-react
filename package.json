@@ -29,13 +29,13 @@
     "react": ">=16"
   },
   "dependencies": {
-    "core-js": "2.6.5"
+    "core-js": "2.6.5",
+    "react-data-grid": "^7.0.0-beta.14"
   },
   "devDependencies": {
     "@types/react": "^18.0.14",
     "@types/react-dom": "^18.0.5",
     "react": "^18.2.0",
-    "react-data-grid": "^7.0.0-beta.14",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
     "tsdx": "^0.14.1",

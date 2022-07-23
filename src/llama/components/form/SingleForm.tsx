@@ -108,7 +108,7 @@ const SingleForm = forwardRef((props: Props, ref: any) => {
           fontFamily: "Nunito Sans",
           margin: "20px 0px",
         }}
-        className={`llm-submit-btn`}
+        className={`btn llm-submit-btn`}
         onClick={handleSubmit}
         ref={ref}>
         {[
