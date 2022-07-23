@@ -92,9 +92,18 @@ className: "llm-test llm-test2"
 
 ```jsx
 type: "radio",
-label: "Enter password",
+label: "Select option",
 readOnly: false, //default: false
 required: true, //default: false
 description: "This is text field",
-className: "llm-test llm-test2"
+```
+
+### checkbox
+
+```jsx
+type: "checkbox",
+label: "Check option",
+readOnly: false, //default: false
+required: true, //default: false
+description: "This is text field",
 ```
