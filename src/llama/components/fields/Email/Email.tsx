@@ -80,7 +80,7 @@ export default function EmailField(props: Props) {
                     .llm-field-email-label{
                         font-weight: 400;
                         font-size: 16px;
-                        margin: 5px 0
+                        margin: 5px 0;
                     }
 
                     .llm-field-email{

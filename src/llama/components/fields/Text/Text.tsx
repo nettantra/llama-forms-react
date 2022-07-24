@@ -87,7 +87,7 @@ export default function TextField(props: Props) {
                     .llm-field-text-label{
                         font-weight: 400;
                         font-size: 16px;
-                        margin: 5px 0
+                        margin: 5px 0;
                     }
 
                     .llm-field-text{

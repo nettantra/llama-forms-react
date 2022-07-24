@@ -83,11 +83,11 @@ export default function CheckBoxField(props: Props) {
         .llm-field-checkbox-label{
           font-weight: 400;
           font-size: 16px;
-          margin: 5px 0
+          margin: 5px 0;
         }
 
         .llm-field-checkbox-option-label{
-          margin: 5px 0
+          margin: 5px 0;
           font-weight: 400;
           font-size: 14px;
         }

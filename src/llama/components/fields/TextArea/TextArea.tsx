@@ -64,7 +64,7 @@ export default function TextAreaField(props: Props) {
           .llm-field-textarea-label{
             font-weight: 400;
             font-size: 16px;
-            margin: 5px 0
+            margin: 5px 0;
           }
 
           .llm-field-textarea{
