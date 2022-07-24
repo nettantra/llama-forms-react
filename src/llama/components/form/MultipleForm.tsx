@@ -92,7 +92,7 @@ const MultipleForm = forwardRef((props: Props, ref: any) => {
     }
     let finalData: any = {};
     for (let key in data) {
-      if (fields[key].type === "anchor" || fields[key].type === "paragraph") {
+      if (fields[key].type === "anchor" || fields[key].type === "paragraph" || fields[key].type === "html") {
         continue
       }
       finalData[key] = data[key].value;
@@ -126,7 +126,7 @@ const MultipleForm = forwardRef((props: Props, ref: any) => {
     //final data for return
     let finalData: any = {};
     for (let key in data) {
-      if (fields[key].type === "anchor" || fields[key].type === "paragraph") {
+      if (fields[key].type === "anchor" || fields[key].type === "paragraph" || fields[key].type === "html") {
         continue
       }
       finalData[key] = data[key].value;
@@ -198,7 +198,7 @@ const MultipleForm = forwardRef((props: Props, ref: any) => {
     }
     let finalData: any = {};
     for (let key in data) {
-      if (fields[key].type === "anchor" || fields[key].type === "paragraph") {
+      if (fields[key].type === "anchor" || fields[key].type === "paragraph" || fields[key].type === "html") {
         continue
       }
       finalData[key] = data[key].value;

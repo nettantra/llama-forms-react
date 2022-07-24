@@ -80,7 +80,7 @@ const SingleForm = forwardRef((props: Props, ref: any) => {
     }
     let finalData: any = {};
     for (let key in data) {
-      if (fields[key].type === "anchor" || fields[key].type === "paragraph") {
+      if (fields[key].type === "anchor" || fields[key].type === "paragraph" || fields[key].type === "html") {
         continue
       }
       finalData[key] = data[key].value;
@@ -108,7 +108,7 @@ const SingleForm = forwardRef((props: Props, ref: any) => {
           fontFamily: "Nunito Sans",
           margin: "20px 0px",
         }}
-        className={`llm-submit-btn`}
+        className={`btn llm-submit-btn`}
         onClick={handleSubmit}
         ref={ref}>
         {[
