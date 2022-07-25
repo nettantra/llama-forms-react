@@ -34,6 +34,7 @@ export default function RadioField(props: Props) {
                 onChange={(e) => {
                   handleChange(e);
                 }}
+                style={properties.style || {}}
                 disabled={
                   properties["readOnly"] ?? false
                 }
