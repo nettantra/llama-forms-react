@@ -42,7 +42,7 @@ export default function PhoneField(props: Props) {
                 id={name}
                 name={name}
                 type="tel"
-                className={properties?.["className"] ?? name}
+                className={properties?.["className"] ?? 'llama-phone'}
                 placeholder={properties['placeholder'] ? properties['placeholder'] : null}
                 value={props.parentState[name]?.value}
                 disabled={properties['readOnly'] ? properties['readOnly'] : false}
@@ -54,7 +54,7 @@ export default function PhoneField(props: Props) {
                 autoComplete={properties['autoComplete'] ? "on" : "off"}
                 height={properties['height'] ? properties['height'] : null}
                 width={properties['width'] ? properties['width'] : null}
-                style={properties?.["style"] ? properties["style"] : { width: '95%', padding: '7px', border: '1px solid #000', borderRadius: '5px', fontSize: '14px', fontFamily: 'Nunito Sans', fontWeight: '400' }}
+                style={properties?.["style"] ?? { width: '95%', padding: '7px', border: '1px solid #000', borderRadius: '5px', fontSize: '14px', fontFamily: 'Nunito Sans', fontWeight: '400' }}
                 onChange={(e) => { handleChange(e) }}
                 ref={inputRef}
             />
