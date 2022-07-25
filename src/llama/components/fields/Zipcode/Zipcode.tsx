@@ -51,6 +51,7 @@ export default function ZipcodeField(props: Props) {
                 id={name}
                 name={name}
                 type="number"
+                className={properties?.["className"] ?? "llama-zipcode"}
                 placeholder={properties?.['placeholder'] ?? "Enter Your Zipcode"}
                 value={properties?.["prefix"] ? properties?.["prefix"] + props.parentState[name]?.value : props.parentState[name]?.value}
                 disabled={properties?.['readOnly'] ?? false}

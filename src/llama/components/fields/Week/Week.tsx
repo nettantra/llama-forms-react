@@ -42,6 +42,7 @@ export default function WeekField(props: Props) {
                 name={name}
                 type="week"
                 list="weekList"
+                className={properties?.["className"] ?? "llama-week"}
                 placeholder={properties?.['placeholder'] ?? null}
                 value={props.parentState[name]?.value}
                 disabled={properties?.['readOnly'] ?? false}

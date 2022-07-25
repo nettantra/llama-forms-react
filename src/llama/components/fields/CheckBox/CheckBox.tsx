@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import React from 'react';
 interface Props {
   properties: any,
@@ -47,9 +46,10 @@ export default function CheckBoxField(props: Props) {
                   onChange={handleChange}
                   style={properties.style || {}}
                   checked={props.parentState[name].value[item] || false}
-                  disabled={
-                    properties["readOnly"] ? properties["readOnly"] : false
-                  }
+                  disabled={properties?.["readOnly"] ?? false}
+                  hidden={properties?.["hidden"] ?? false}
+                  required={properties?.["required"] ?? false}
+                  autoFocus={properties?.["autoFocus"] ?? false}
                 />
                 <label
                   htmlFor={"llm-field-checkbox-"+fieldName+"-"+item+"-"+ index}
