@@ -25,9 +25,9 @@ export default function TableField(props: Props) {
     //     { id: 1, title: 'Demo' }
     // ]);
 
-    const handleRowChange = (rows: any) => {
+    const handleRowChange = (rows: any, data:any) => {
         // update logic
-        console.log("handleRowChange", rows)
+        console.log("handleRowChange", data)
         setRows(rows)
     }
 
@@ -37,8 +37,8 @@ export default function TableField(props: Props) {
     //   const onPaste = (rows: any) => {
     //     console.log("onPaste", rows)
     //   }
-    // function rowKeyGetter(row: Row) {
-    //   console.log(row.id);
+    // function rowKeyGetter(row: any) {
+    //   console.log(row);
     //   return row.id;
     // }
     useEffect(() => {
@@ -69,34 +69,67 @@ export default function TableField(props: Props) {
                 return {
                     key: item.toString().toLowerCase(),
                     name: item,
-                    editor: TextEditor
+                    editor: TextEditor,
+                    sortable : true,
+                    // width : 30,
+                    // minWidth: 50,
+                    // maxWidth : 200,
+                    resizable:true,
+                    frozen : true,
+
+
                 }
             }
             if(properties?.column?.columnEditor?.includes(item)){
                 return {
                     key: item.toString().toLowerCase(),
                     name: item,
-                    editor: TextEditor
+                    editor: TextEditor,
+                    sortable : true,
+                    // width : 30,
+                    // minWidth: 50,
+                    // maxWidth : 200,
+                    resizable:true,
+                    frozen : true,
+
                 }
             }else{
                 return {
                     key: item.toString().toLowerCase(),
                     name: item,
+                    sortable : true,
+                    // width : 30,
+                    // minWidth: 50,
+                    // maxWidth : 200,
+                    resizable:true,
+                    frozen : true,
+
                 }
             }
         })
         setColumns(data)
         setRows(ar)
     }, [])
+    const rowClass = (row:any)=>{
+        console.log("object", row);
+        return row;
+    }
+    // const onColumnResize = (id :any, width:any)=>{
+    //     console.log(">>>", id, width);
+    // }
     return (
         <DataGrid
             columns={columns}
             rows={rows}
             onCopy={onCopy}
+            rowHeight={35}      // it increase the height of row
+            headerRowHeight={100}       // it increase the height of header
             // onPaste={onPaste}
             // rowKeyGetter={rowKeyGetter}
             // minHeight={150}
             onRowsChange={handleRowChange}
+            rowClass={(e:any)=>rowClass(e)}
+            // onColumnResize={onColumnResize}
         // emptyRowsRenderer={EmptyRowsView}
         />
     );
