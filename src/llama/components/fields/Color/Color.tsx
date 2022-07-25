@@ -31,7 +31,7 @@ export default function ColorField(props: Props) {
                 autoComplete={properties?.['autoComplete'] ? "on" : "off"}
                 height={properties?.['height'] ?? null}
                 width={properties?.['width'] ?? null}
-                style={properties?.['style']?? { width: '40px', height: '40px' } }
+                style={properties?.['style'] ?? { width: '40px', height: '40px' }}
                 onChange={(e) => { handleChange(e) }}
             />
             <div style={{ marginBottom: '20px' }}>
