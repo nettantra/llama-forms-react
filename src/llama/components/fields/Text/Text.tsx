@@ -70,6 +70,7 @@ export default function TextField(props: Props) {
                     minLength={properties["minLength"] ?? null}
                     pattern={properties['validationRegex'] ?? null}
                     onChange={(e) => { handleChange(e) }}
+                    style={properties.style || {}}
                     ref={textRef}
                 />
                 <div className="llm-field-text-message-container">

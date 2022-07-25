@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 
 interface Props {
   properties: any,
@@ -35,9 +35,7 @@ export default function TextAreaField(props: Props) {
           ref={textareaRef}
           name={name}
           className={`llm-field-textarea ${properties['className'] ?? ''}`}
-          placeholder={
-            properties["placeholder"] ? properties["placeholder"] : null
-          }
+          placeholder={properties?.["placeholder"] ?? null}
           value={props.parentState[name].value}
           disabled={properties["readOnly"] ?? false}
           maxLength={properties["maxlength"] ?? null}
@@ -45,9 +43,9 @@ export default function TextAreaField(props: Props) {
           required={properties["required"] ?? false}
           autoFocus={properties["autofocus"] ?? false}
           autoComplete={properties["autoComplete"] ? "on" : "off"}
-          style={{ minHeight: properties?.height || "180px", minWidth: properties?.width || "95%" }}
-          rows={properties["rows"] ? properties["rows"] : null}
-          cols={properties["cols"] ? properties["cols"] : null}
+          style={properties?.style ?? { minHeight: properties?.height || "180px", minWidth: properties?.width || "95%" }}
+          rows={properties?.["rows"] ?? null}
+          cols={properties?.["cols"] ?? null}
           onChange={(e) => {
             handleChange(e);
           }}
