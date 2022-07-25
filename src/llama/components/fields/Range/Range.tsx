@@ -32,7 +32,7 @@ export default function RangeField(props: Props) {
                 required={properties['required'] ? properties['required'] : false}
                 style={properties?.["style"] ?? { width: '95%', padding: '7px', border: '1px solid #000', borderRadius: '5px', fontSize: '14px', fontFamily: 'Nunito Sans', fontWeight: '400' }}
                 className={properties?.['className'] ?? "llama-range"}
-                onChange={(e) => handleChange(e) }
+                onChange={(e) => handleChange(e)}
             /><span>{props.parentState[name]?.value}</span>
             <div style={{ marginBottom: '20px' }}>
                 <p style={{ margin: '5px 0px', fontFamily: 'Nunito Sans', fontWeight: '200', fontSize: '14px' }}>{properties['description']}</p>
@@ -40,7 +40,4 @@ export default function RangeField(props: Props) {
             </div>
         </>
     )
-
-
-
 }
