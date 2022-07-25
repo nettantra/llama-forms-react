@@ -1,5 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
-
+import React from "react";
 interface LooseObject {
     [key: string]: any
 }
@@ -9,7 +8,6 @@ interface Props {
     name: any,
     parentState: any,
 }
-
 
 export default function ColorField(props: Props) {
     const { properties, handleData, name } = props
@@ -25,14 +23,15 @@ export default function ColorField(props: Props) {
                 id={name}
                 name={name}
                 type="color"
+                className={properties?.['className'] ?? 'llama-color'}
                 value={props.parentState[name]?.value}
-                disabled={properties['readOnly'] ? properties['readOnly'] : false}
-                required={properties['required'] ? properties['required'] : false}
-                autoFocus={properties['autoFocus'] ? properties['autoFocus'] : false}
-                autoComplete={properties['autoComplete'] ? "on" : "off"}
-                height={properties['height'] ? properties['height'] : null}
-                width={properties['width'] ? properties['width'] : null}
-                style={{ width: '40px', height: '40px' } }
+                disabled={properties?.['readOnly'] ?? false}
+                required={properties?.['required'] ?? false}
+                autoFocus={properties?.['autoFocus'] ?? false}
+                autoComplete={properties?.['autoComplete'] ? "on" : "off"}
+                height={properties?.['height'] ?? null}
+                width={properties?.['width'] ?? null}
+                style={properties?.['style']?? { width: '40px', height: '40px' } }
                 onChange={(e) => { handleChange(e) }}
             />
             <div style={{ marginBottom: '20px' }}>
