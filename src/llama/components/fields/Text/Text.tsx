@@ -75,7 +75,7 @@ export default function TextField(props: Props) {
                 />
                 <div className="llm-field-text-message-container">
                     <p className="llm-field-text-description">{properties['description']}</p>
-                    {error ? <p className="llm-field-text-error-message">{properties['errorMessage'] ? properties['errorMessage'] : `Something went wrong in ${name} field`}</p> : null}
+                    {error ? <p className="llm-field-text-error-message">{properties?.['errorMessage'] ?? `Something went wrong in ${name} field`}</p> : null}
                 </div>
             </div>
 
