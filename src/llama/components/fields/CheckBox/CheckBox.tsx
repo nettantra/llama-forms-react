@@ -4,7 +4,6 @@ interface Props {
   handleData: any,
   name: any,
   parentState: any,
-
 }
 
 export default function CheckBoxField(props: Props) {
@@ -20,7 +19,6 @@ export default function CheckBoxField(props: Props) {
         delete checkObj[key]
       }
     }
-
     if (checkObj[onlyChecked] == true) {
       checkObj = { [onlyChecked]: true }
     }
@@ -41,7 +39,7 @@ export default function CheckBoxField(props: Props) {
               <div key={index} style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
                 <input
                   type="checkbox"
-                  id={"llm-field-checkbox-"+fieldName+"-" +item+"-"+ index}
+                  id={"llm-field-checkbox-" + fieldName + "-" + item + "-" + index}
                   value={item}
                   onChange={handleChange}
                   style={properties.style || {}}
@@ -52,7 +50,7 @@ export default function CheckBoxField(props: Props) {
                   autoFocus={properties?.["autoFocus"] ?? false}
                 />
                 <label
-                  htmlFor={"llm-field-checkbox-"+fieldName+"-"+item+"-"+ index}
+                  htmlFor={"llm-field-checkbox-" + fieldName + "-" + item + "-" + index}
                   className="llm-field-checkbox-option-label"
                 >
                   {item}
