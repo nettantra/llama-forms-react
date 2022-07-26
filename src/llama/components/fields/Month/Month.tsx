@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 
 interface LooseObject {
     [key: string]: any
@@ -13,25 +13,10 @@ interface Props {
 export default function MonthField(props: Props) {
     const { properties, handleData, name } = props
     const [error, setError] = useState(false)
-    let inputRef: any = useRef();
 
     const handleChange = (e: any) => {
         handleData(e.target.value, false)
     }
-
-    useEffect(() => {
-
-        if (properties?.["className"]?.trim()) {
-            inputRef.current.style = ""
-            inputRef.current.className = properties?.["className"] ?? name
-        }
-        if (properties["style"]) {
-            inputRef.current.style = ""
-            for (let key in properties["style"]) {
-                inputRef.current.style.setProperty(key, properties["style"][key]);
-            }
-        }
-    }, []);
 
     return (
         <>
@@ -40,22 +25,22 @@ export default function MonthField(props: Props) {
                 id={name}
                 name={name}
                 type='month'
+                className={properties?.['className'] ?? "llama-month"}
                 value={props.parentState[name]?.value}
-                disabled={properties['readOnly'] ? properties['readOnly'] : false}
-                min={properties['min'] ? properties['min'] : null}
-                max={properties['max'] ? properties['max'] : null}
-                required={properties['required'] ? properties['required'] : false}
-                autoFocus={properties['autoFocus'] ? properties['autoFocus'] : false}
+                disabled={properties?.['readOnly'] ?? false}
+                min={properties?.['min'] ?? null}
+                max={properties?.['max'] ?? null}
+                required={properties?.['required'] ?? false}
+                autoFocus={properties?.['autoFocus'] ?? false}
                 autoComplete={properties['autoComplete'] ? "on" : "off"}
-                height={properties['height'] ? properties['height'] : null}
-                width={properties['width'] ? properties['width'] : null}
-                style={{ width: '95%', padding: '7px', border: '1px solid #000', borderRadius: '5px', fontSize: '14px', fontFamily: 'Nunito Sans', fontWeight: '400' }}
-                onChange={(e) => { handleChange(e) }}
-                ref={inputRef}
+                height={properties?.['height'] ?? null}
+                width={properties?.['width'] ?? null}
+                style={properties?.['style'] ?? { width: '95%', padding: '7px', border: '1px solid #000', borderRadius: '5px', fontSize: '14px', fontFamily: 'Nunito Sans', fontWeight: '400' }}
+                onChange={(e) => handleChange(e)}
             />
             <div style={{ marginBottom: '20px' }}>
                 <p style={{ margin: '5px 0px', fontFamily: 'Nunito Sans', fontWeight: '200', fontSize: '14px' }}>{properties['description']}</p>
-                {error ? <p style={{ marginTop: '5px', fontFamily: 'Nunito Sans', fontWeight: '600', fontSize: '14px', color: '#9e001a' }}>{properties['errorMessage'] ? properties['errorMessage'] : `Something went wrong in ${name} field`}</p> : null}
+                {error ? <p style={{ marginTop: '5px', fontFamily: 'Nunito Sans', fontWeight: '600', fontSize: '14px', color: '#9e001a' }}>{properties?.['errorMessage'] ?? `Something went wrong in ${name} field`}</p> : null}
             </div>
         </>
     )
