@@ -14,7 +14,6 @@ export default function DropDownField(props:Props) {
     handleData(e.target.value);
   };
 
-
   //loop through the values object
   const values = properties.values;
   let options = [];
@@ -62,19 +61,14 @@ export default function DropDownField(props:Props) {
             }}
           >
             <select
+              className={properties["className"] ?? "llama-select"}
               value={props.parentState[name].value}
-              autoFocus={
-                properties["autofocus"] ? properties["autofocus"] : false
-              }
-              disabled={properties["readOnly"] ? properties["readOnly"] : false}
-              onChange={(e) => {
-                handleChange(e);
-              }}
-              style={{
-                border: "none",
-                backgroundColor: "transparent",
-                fontFamily: "Nunito Sans",
-              }}
+              autoFocus={properties["autofocus"] ?? false}
+              disabled={properties["readOnly"] ?? false}
+              required={properties["required"] ?? false}
+              size={properties["size"] ?? null}
+              onChange={(e) => handleChange(e)}
+              style={properties["style"] ?? {border: "none", backgroundColor: "transparent", fontFamily: "Nunito Sans"}}
             >
               {props.parentState[name].value ? null : (
                 <option value="">Select</option>
@@ -87,7 +81,7 @@ export default function DropDownField(props:Props) {
 
       <style >
         {`
-          select:focus {
+          .llama-select:focus {
             outline: none;
           }
         `}
