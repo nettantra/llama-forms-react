@@ -57,30 +57,23 @@ export default function FileUploadField(props:any) {
         <input
           id={name}
           name={name}
-          className="uploadInput"
+          className={properties?.["className"] ?? "llama-uploadInput"}
           type='file'
-          placeholder={
-            properties["placeholder"] ? properties["placeholder"] : null
-          }
-          disabled={properties["readOnly"] ? properties["readOnly"] : false}
-          maxLength={properties["maxlength"] ? properties["maxlength"] : null}
-          min={properties["min"] ? properties["min"] : null}
-          max={properties["max"] ? properties["max"] : null}
-          multiple={properties["multiple"] ? properties["multiple"] : null}
-          required={properties["required"] ? properties["required"] : false}
-          autoFocus={properties["autoFocus"] ? properties["autoFocus"] : false}
+          placeholder={properties?.["placeholder"] ?? null}
+          disabled={properties?.["readOnly"] ?? false}
+          maxLength={properties?.["maxlength"] ?? null}
+          min={properties?.["min"] ?? null}
+          max={properties?.["max"] ?? null}
+          multiple={properties?.["multiple"] ?? null}
+          required={properties?.["required"] ?? false}
+          autoFocus={properties?.["autoFocus"] ?? false}
           autoComplete={properties["autoComplete"] ? "on" : "off"}
-          onChange={(e) => {
-            handleChange(e);
-          }}
+          onChange={(e) => handleChange(e)}
         />
         {props.parentState[name]?.value && (
           <button
             className="resetButton"
-            onClick={() => {
-                handleData("");
-              }
-            }
+            onClick={() => handleData("")}
           >Reset</button>)
         }
         <style >{`
@@ -123,9 +116,7 @@ export default function FileUploadField(props:any) {
                 color: "#9e001a",
               }}
             >
-              {properties["errorMessage"]
-                ? properties["errorMessage"]
-                : "Invalid file type or size"}
+              {properties?.["errorMessage"] ?? "Invalid file type or size"}
             </p>
           ) : null}
         </div>
