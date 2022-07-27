@@ -89,19 +89,7 @@ export default function InputField(props: Props) {
       handleData(value, !checkValidation(regexObject[properties.type]['regex'], value))
     }
   }
-  useEffect(() => {
 
-    if (properties?.["className"]?.trim()) {
-      inputRef.current.style = ""
-      inputRef.current.className = properties?.["className"] ?? name
-    }
-    if (properties["style"]) {
-      inputRef.current.style = ""
-      for (let key in properties["style"]) {
-        inputRef.current.style.setProperty(key, properties["style"][key]);
-      }
-    }
-  }, []);
   return (
     <>
       <div>
@@ -131,17 +119,6 @@ export default function InputField(props: Props) {
           onKeyDown={blockInvalidChar}
           onKeyUp={properties["capsLockWaring"] ? handleCapsLockChek : (e) =>  console.log("caps lock warning is disabled") }
           ref={inputRef}
-        // ref={(target)=>{
-        //     console.log(target.value)
-        //     target.value = prefix
-        //     }}
-        // ref={(target)=>{
-        // target.value = prefix
-        // }}
-        // onChange={(e)=>{
-        //   const input = e.target.value
-        //   e.target.value = prefix + input
-        // }}
         />
         <div style={{ marginBottom: '20px' }}>
           <p style={{ margin: '5px 0px', fontFamily: 'Nunito Sans', fontWeight: '200', fontSize: '14px' }}>{properties['description']}</p>
