@@ -147,7 +147,8 @@ function App() {
             column : {
               columnName : ["Id", "Title", "Desc"],
               // allEditor:true,
-              columnEditor : ["Id", "Title"]
+              columnEditor : ["Id", "Title"],
+              
             },
             rows:{
               Id: [0, 1, 2],

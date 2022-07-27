@@ -1,5 +1,5 @@
 import DataGrid, { TextEditor } from 'react-data-grid';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 interface LooseObject {
     [key: string]: any
 }
@@ -13,7 +13,7 @@ interface Props {
 export default function TableField(props: Props) {
     const { properties, handleData, name } = props
     const [columns, setColumns] = useState([])
-    const [rows, setRows] = useState([])
+    const [rows, setRows] = useState([]) as any
 
     // const columns = [
     //     { key: 'id', name: 'ID' },
@@ -91,6 +91,14 @@ export default function TableField(props: Props) {
                     // maxWidth : 200,
                     resizable:true,
                     frozen : true,
+                    // formatter: (val :any)=> {
+                    //     const value = val.row.progress;
+                    //     return (
+                    //       <>
+                    //         <progress max={100} value={value} style={{ inlineSize: 50 }} /> {Math.round(value)}%
+                    //       </>
+                    //     );
+                    //   },
 
                 }
             }else{
@@ -109,6 +117,7 @@ export default function TableField(props: Props) {
         })
         setColumns(data)
         setRows(ar)
+        
     }, [])
     const rowClass = (row:any)=>{
         console.log("object", row);
@@ -117,7 +126,60 @@ export default function TableField(props: Props) {
     // const onColumnResize = (id :any, width:any)=>{
     //     console.log(">>>", id, width);
     // }
-    return (
+    const row1 = useMemo(()=>{
+       let  ar : any = []
+       let obj : any = {}
+       let rowLength = properties?.column?.columnName
+       for(let i = 0; i < rowLength.length ; i++ ){
+            obj[rowLength[i].toString().toLowerCase()] = ""
+       }
+    //    console.log("row", obj);
+
+        let data = properties?.column?.columnName?.forEach((item: any) => {
+            if (properties?.rows?.[item]) {
+                if (ar.length) {
+                    for (let i = 0; i < properties.rows[item]?.length; i++) {
+                        if (ar[i]) {
+                            ar[i][item.toString().toLowerCase()] = properties.rows[item][i]
+
+                        } else {
+                            ar.push({
+                                [item.toString().toLowerCase()]: properties.rows[item]?.[i]
+                            })
+                        }
+                    }
+                } else {
+                    for (let i = 0; i < properties?.rows?.[item]?.length; i++) {
+                        ar.push({
+                            [item.toString().toLowerCase()]: properties.rows[item]?.[i]
+                        })
+                    }
+                }
+            }
+        });
+        ar.push(obj)
+        return ar
+    },[])
+console.log("array", row1);
+
+    //this function is for add rows
+    const addRow = () =>{
+        let obj : any = {}
+        let rowLength = properties?.column?.columnName
+        for(let i = 0; i < rowLength.length ; i++ ){
+             obj[rowLength[i].toString().toLowerCase()] = "";
+        }
+        setRows((current : any)  =>[...current, obj])
+    }
+    const addColumn = () => {
+        // this fucntion is for add columns
+        alert("column added")
+    }
+    return (<div>
+        <div>
+            <button type="button" onClick={addRow}>addrow</button>
+            <button type="button" onClick={addColumn}>add column</button>
+        </div>
         <DataGrid
             columns={columns}
             rows={rows}
@@ -129,8 +191,11 @@ export default function TableField(props: Props) {
             // minHeight={150}
             onRowsChange={handleRowChange}
             rowClass={(e:any)=>rowClass(e)}
+            className={properties?.['className'] ?? "fill-grid"}
+
             // onColumnResize={onColumnResize}
         // emptyRowsRenderer={EmptyRowsView}
         />
+        </div>
     );
 }
