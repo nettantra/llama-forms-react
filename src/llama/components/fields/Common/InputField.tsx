@@ -110,6 +110,7 @@ export default function InputField(props: Props) {
         <input
           id={name}
           name={name}
+          className={properties['className'] ?? "llama-"+name}
           type={properties['type'] ?? "text"}
           placeholder={properties?.['placeholder'] ?? null}
           value={properties["prefix"] ? properties["prefix"] + props.parentState[name]?.value : props.parentState[name]?.value}
