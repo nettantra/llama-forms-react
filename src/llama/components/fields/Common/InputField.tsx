@@ -110,25 +110,25 @@ export default function InputField(props: Props) {
         <input
           id={name}
           name={name}
-          type={properties['type'] ? properties['type'] : "text"}
-          placeholder={properties['placeholder'] ? properties['placeholder'] : null}
+          type={properties['type'] ?? "text"}
+          placeholder={properties?.['placeholder'] ?? null}
           value={properties["prefix"] ? properties["prefix"] + props.parentState[name]?.value : props.parentState[name]?.value}
-          disabled={properties['readOnly'] ? properties['readOnly'] : false}
-          maxLength={properties['maxlength'] ? properties['maxlength'] : null}
-          min={properties['min'] ? properties['min'] : null}
-          max={properties['max'] ? properties['max'] : null}
+          disabled={properties?.['readOnly'] ?? false}
+          maxLength={properties?.['maxlength'] ?? null}
+          min={properties?.['min'] ?? null}
+          max={properties?.['max'] ?? null}
           step={properties['interval'] ? properties['interval'].toString() : null}
-          multiple={properties['multiple'] ? properties['multiple'] : null}
-          required={properties['required'] ? properties['required'] : false}
-          autoFocus={properties['autoFocus'] ? properties['autoFocus'] : false}
+          multiple={properties?.['multiple'] ?? null}
+          required={properties?.['required'] ?? false}
+          autoFocus={properties?.['autoFocus'] ?? false}
           autoComplete={properties['autoComplete'] ? "on" : "off"}
-          height={properties['height'] ? properties['height'] : null}
-          width={properties['width'] ? properties['width'] : null}
-          pattern={properties['validationRegex'] ? properties['validationRegex'] : null}
+          height={properties?.['height'] ?? null}
+          width={properties?.['width'] ?? null}
+          pattern={properties?.['validationRegex'] ?? null}
           style={properties?.['style'] ?? { width: '95%', padding: '7px', border: '1px solid #000', borderRadius: '5px', fontSize: '14px', fontFamily: 'Nunito Sans', fontWeight: '400' }}
           onChange={(e) => { handleChange(e) }}
           onKeyDown={blockInvalidChar}
-          onKeyUp={properties["capsLockWaring"] ? handleCapsLockChek : (e) => { console.log("caps lock warning is disabled") }}
+          onKeyUp={properties["capsLockWaring"] ? handleCapsLockChek : (e) =>  console.log("caps lock warning is disabled") }
           ref={inputRef}
         // ref={(target)=>{
         //     console.log(target.value)
@@ -145,7 +145,7 @@ export default function InputField(props: Props) {
         <div style={{ marginBottom: '20px' }}>
           <p style={{ margin: '5px 0px', fontFamily: 'Nunito Sans', fontWeight: '200', fontSize: '14px' }}>{properties['description']}</p>
           <p id="text" ref={capsWarning} hidden></p>
-          {error ? <p style={{ marginTop: '5px', fontFamily: 'Nunito Sans', fontWeight: '600', fontSize: '14px', color: '#9e001a' }}>{properties['errorMessage'] ? properties['errorMessage'] : (properties.type in regexObject) ? regexObject[properties.type]['errorMessage'] : null}</p> : null}
+          {error ? <p style={{ marginTop: '5px', fontFamily: 'Nunito Sans', fontWeight: '600', fontSize: '14px', color: '#9e001a' }}>{properties?.['errorMessage'] ?? (properties.type in regexObject) ? regexObject[properties.type]['errorMessage'] : null}</p> : null}
         </div>
       </div>
     </>
