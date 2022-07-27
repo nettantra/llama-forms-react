@@ -12,8 +12,13 @@ interface Props {
 
 export default function TableField(props: Props) {
     const { properties, handleData, name } = props
-    const [columns, setColumns] = useState([])
+    const [columns, setColumns] = useState([]) as any
     const [rows, setRows] = useState([]) as any
+    const [dialog, setDialog] = useState(false)
+    const [dialogData, SetDialogData] = useState({
+        name : "",
+        editor : false
+    })
 
     // const columns = [
     //     { key: 'id', name: 'ID' },
@@ -25,7 +30,7 @@ export default function TableField(props: Props) {
     //     { id: 1, title: 'Demo' }
     // ]);
 
-    const handleRowChange = (rows: any, data:any) => {
+    const handleRowChange = (rows: any, data: any) => {
         // update logic
         console.log("handleRowChange", data)
         setRows(rows)
@@ -65,32 +70,32 @@ export default function TableField(props: Props) {
                     }
                 }
             }
-            if(properties?.column?.allEditor){
+            if (properties?.column?.allEditor) {
                 return {
                     key: item.toString().toLowerCase(),
                     name: item,
                     editor: TextEditor,
-                    sortable : true,
+                    sortable: true,
                     // width : 30,
                     // minWidth: 50,
                     // maxWidth : 200,
-                    resizable:true,
-                    frozen : true,
+                    resizable: true,
+                    frozen: true,
 
 
                 }
             }
-            if(properties?.column?.columnEditor?.includes(item)){
+            if (properties?.column?.columnEditor?.includes(item)) {
                 return {
                     key: item.toString().toLowerCase(),
                     name: item,
                     editor: TextEditor,
-                    sortable : true,
+                    sortable: true,
                     // width : 30,
                     // minWidth: 50,
                     // maxWidth : 200,
-                    resizable:true,
-                    frozen : true,
+                    resizable: true,
+                    frozen: true,
                     // formatter: (val :any)=> {
                     //     const value = val.row.progress;
                     //     return (
@@ -101,39 +106,39 @@ export default function TableField(props: Props) {
                     //   },
 
                 }
-            }else{
+            } else {
                 return {
                     key: item.toString().toLowerCase(),
                     name: item,
-                    sortable : true,
+                    sortable: true,
                     // width : 30,
                     // minWidth: 50,
                     // maxWidth : 200,
-                    resizable:true,
-                    frozen : true,
+                    resizable: true,
+                    frozen: true,
 
                 }
             }
         })
         setColumns(data)
         setRows(ar)
-        
+
     }, [])
-    const rowClass = (row:any)=>{
+    const rowClass = (row: any) => {
         console.log("object", row);
         return row;
     }
     // const onColumnResize = (id :any, width:any)=>{
     //     console.log(">>>", id, width);
     // }
-    const row1 = useMemo(()=>{
-       let  ar : any = []
-       let obj : any = {}
-       let rowLength = properties?.column?.columnName
-       for(let i = 0; i < rowLength.length ; i++ ){
+    const row1 = useMemo(() => {
+        let ar: any = []
+        let obj: any = {}
+        let rowLength = properties?.column?.columnName
+        for (let i = 0; i < rowLength.length; i++) {
             obj[rowLength[i].toString().toLowerCase()] = ""
-       }
-    //    console.log("row", obj);
+        }
+        //    console.log("row", obj);
 
         let data = properties?.column?.columnName?.forEach((item: any) => {
             if (properties?.rows?.[item]) {
@@ -159,26 +164,41 @@ export default function TableField(props: Props) {
         });
         ar.push(obj)
         return ar
-    },[])
-console.log("array", row1);
+    }, [])
+    console.log("array", row1);
 
-    //this function is for add rows
-    const addRow = () =>{
-        let obj : any = {}
-        let rowLength = properties?.column?.columnName
-        for(let i = 0; i < rowLength.length ; i++ ){
-             obj[rowLength[i].toString().toLowerCase()] = "";
+    //<------- This function is for add rows ------->
+    const addRow = () => {
+        let obj: any = {}
+        for(let k = 0; k < columns.length; k++){
+            if(!columns[k]['key']) return
+            obj[columns[k]['key']] = ""
         }
-        setRows((current : any)  =>[...current, obj])
+        setRows((prevState: any) => [...prevState, obj])
     }
+
+    //<------- this function open the dialogs box ------>
     const addColumn = () => {
-        // this fucntion is for add columns
-        alert("column added")
+        setDialog(true);
     }
-    return (<div>
+    const dialogClose = () => {
+        setDialog(false);
+    }
+    const dialogSubmit = () => {
+        setDialog(false);
+        let obj : any = {
+            key: 'sajal',
+            name: "Sajal",
+            sortable: true,
+        }
+        setColumns((prevState : any) => [...prevState, obj])
+    }
+    return (<div style={{position:"relative"}}>
         <div>
             <button type="button" onClick={addRow}>addrow</button>
             <button type="button" onClick={addColumn}>add column</button>
+
+
         </div>
         <DataGrid
             columns={columns}
@@ -190,12 +210,24 @@ console.log("array", row1);
             // rowKeyGetter={rowKeyGetter}
             // minHeight={150}
             onRowsChange={handleRowChange}
-            rowClass={(e:any)=>rowClass(e)}
+            rowClass={(e: any) => rowClass(e)}
             className={properties?.['className'] ?? "fill-grid"}
-
-            // onColumnResize={onColumnResize}
+        // onColumnResize={onColumnResize}
         // emptyRowsRenderer={EmptyRowsView}
         />
-        </div>
+        <dialog id="llama_dialog_box" open={dialog} style={{padding:"20px 50px", border:"1px solid", backgroundColor:"#e3dfd5", position:"absolute", top:200}}>
+            <div style={{ display: "flex", flexDirection: "column", margin: "auto", width:"auto", marginBottom:"10px"}}>
+                <div>
+                    <input type="text" placeholder='Add your column' required />
+                </div>
+                <div>
+                    <input type="checkbox" id="editable" />
+                    <label htmlFor='editable'>Editable ?</label>
+                </div>
+            </div>
+            <button type='button' onClick={dialogSubmit} style={{float:"right", width:"50%"}}>Done</button>
+            <button type='button' onClick={dialogClose} style={{float:"right", width:"50%"}}>Close</button>
+        </dialog>
+    </div >
     );
 }
