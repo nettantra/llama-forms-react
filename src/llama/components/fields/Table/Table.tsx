@@ -13,6 +13,7 @@ interface Props {
 export default function TableField(props: Props) {
     const { properties, handleData, name } = props
     let col = properties?.['values'] || [];
+    let ro = props.parentState[name].value || []
     
     const [error, setError] = useState(false)
     const [columns, setColumns] = useState([]) as any
@@ -50,84 +51,84 @@ export default function TableField(props: Props) {
     //   console.log(row);
     //   return row.id;
     // }
-    useEffect(() => {
-        let ar = [] as any
+    // useEffect(() => {
+    //     let ar = [] as any
 
-        let data = properties?.column?.columnName?.map((item: any) => {
-            if (properties?.rows?.[item]) {
-                if (ar.length) {
-                    for (let i = 0; i < properties.rows[item]?.length; i++) {
-                        if (ar[i]) {
-                            ar[i][item.toString().toLowerCase()] = properties.rows[item][i]
+    //     let data = properties?.column?.columnName?.map((item: any) => {
+    //         if (properties?.rows?.[item]) {
+    //             if (ar.length) {
+    //                 for (let i = 0; i < properties.rows[item]?.length; i++) {
+    //                     if (ar[i]) {
+    //                         ar[i][item.toString().toLowerCase()] = properties.rows[item][i]
 
-                        } else {
-                            ar.push({
-                                [item.toString().toLowerCase()]: properties.rows[item]?.[i]
-                            })
-                        }
-                    }
-                } else {
-                    for (let i = 0; i < properties?.rows?.[item]?.length; i++) {
-                        ar.push({
-                            [item.toString().toLowerCase()]: properties.rows[item]?.[i]
-                        })
-                    }
-                }
-            }
-            if (properties?.column?.allEditor) {
-                return {
-                    key: item.toString().toLowerCase(),
-                    name: item,
-                    editor: TextEditor,
-                    sortable: true,
-                    // width : 30,
-                    // minWidth: 50,
-                    // maxWidth : 200,
-                    resizable: true,
-                    frozen: true,
+    //                     } else {
+    //                         ar.push({
+    //                             [item.toString().toLowerCase()]: properties.rows[item]?.[i]
+    //                         })
+    //                     }
+    //                 }
+    //             } else {
+    //                 for (let i = 0; i < properties?.rows?.[item]?.length; i++) {
+    //                     ar.push({
+    //                         [item.toString().toLowerCase()]: properties.rows[item]?.[i]
+    //                     })
+    //                 }
+    //             }
+    //         }
+    //         if (properties?.column?.allEditor) {
+    //             return {
+    //                 key: item.toString().toLowerCase(),
+    //                 name: item,
+    //                 editor: TextEditor,
+    //                 sortable: true,
+    //                 // width : 30,
+    //                 // minWidth: 50,
+    //                 // maxWidth : 200,
+    //                 resizable: true,
+    //                 frozen: true,
 
 
-                }
-            }
-            if (properties?.column?.columnEditor?.includes(item)) {
-                return {
-                    key: item.toString().toLowerCase(),
-                    name: item,
-                    editor: TextEditor,
-                    sortable: true,
-                    // width : 30,
-                    // minWidth: 50,
-                    // maxWidth : 200,
-                    resizable: true,
-                    frozen: true,
-                    // formatter: (val :any)=> {
-                    //     const value = val.row.progress;
-                    //     return (
-                    //       <>
-                    //         <progress max={100} value={value} style={{ inlineSize: 50 }} /> {Math.round(value)}%
-                    //       </>
-                    //     );
-                    //   },
+    //             }
+    //         }
+    //         if (properties?.column?.columnEditor?.includes(item)) {
+    //             return {
+    //                 key: item.toString().toLowerCase(),
+    //                 name: item,
+    //                 editor: TextEditor,
+    //                 sortable: true,
+    //                 // width : 30,
+    //                 // minWidth: 50,
+    //                 // maxWidth : 200,
+    //                 resizable: true,
+    //                 frozen: true,
+    //                 // formatter: (val :any)=> {
+    //                 //     const value = val.row.progress;
+    //                 //     return (
+    //                 //       <>
+    //                 //         <progress max={100} value={value} style={{ inlineSize: 50 }} /> {Math.round(value)}%
+    //                 //       </>
+    //                 //     );
+    //                 //   },
 
-                }
-            } else {
-                return {
-                    key: item.toString().toLowerCase(),
-                    name: item,
-                    sortable: true,
-                    // width : 30,
-                    // minWidth: 50,
-                    // maxWidth : 200,
-                    resizable: true,
-                    frozen: true,
+    //             }
+    //         } else {
+    //             return {
+    //                 key: item.toString().toLowerCase(),
+    //                 name: item,
+    //                 sortable: true,
+    //                 // width : 30,
+    //                 // minWidth: 50,
+    //                 // maxWidth : 200,
+    //                 resizable: true,
+    //                 frozen: true,
 
-                }
-            }
-        })
-        setColumns(data)
-        setRows(props.parentState[name].value?? ar)
+    //             }
+    //         }
+    //     })
+    //     setColumns(data)
+    //     setRows(props.parentState[name].value?? ar)
 
-    }, [])
+    // }, [])
     const rowClass = (row: any) => {
         // console.log("object", row);
         return row;
@@ -157,7 +158,17 @@ export default function TableField(props: Props) {
                     resizable: true,
                     frozen: true,
                 }
-            } else {
+            }
+            if(dialogData.editor){
+                return {
+                    key: item.toString().toLowerCase(),
+                    name: item,
+                    editor: TextEditor,
+                    sortable: true,
+                    resizable: true,
+                    frozen: true,
+                }
+            }else {
                 return {
                     key: item.toString().toLowerCase(),
                     name: item,
@@ -165,23 +176,26 @@ export default function TableField(props: Props) {
                     // width : 30,
                     // minWidth: 50,
                     // maxWidth : 200,
-                    editor: TextEditor,
                     resizable: true,
                     frozen: true,
                 }
             }
         })
-    },[col.length])
+    },[col.length, ro.length])
     console.log("properties", columnData, props.parentState[name].value);
 
     //<------- This function is for add rows ------->
     const addRow = () => {
+        //first we have to check column exist or not??
         let obj: any = {}
-        for (let k = 0; k < columns.length; k++) {
-            if (!columns[k]['key']) return
-            obj[columns[k]['key']] = ""
+        for (let k = 0; k < col.length; k++) {
+            obj[col[k].toString().toLowerCase()] = ""
+            // if (!columnData[k]['key']) return
+            // obj[columnData[k]['key']] = ""
         }
         setRows((prevState: any) => [...prevState, obj])
+        ro.push(obj)
+
         // console.log("rowww", obj);
         // col.push("Sajal")
     }
@@ -212,15 +226,19 @@ export default function TableField(props: Props) {
             }
         }
         //we need to update rows
-        const updateRows = rows.map((cur: any) => {
+        const updateRows = ro.map((cur: any) => {
             cur[dialogData['columnName']] = "";
             return cur
         })
         setRows(updateRows)
         col.push(dialogData?.['columnName'])
+        ro = updateRows
         setColumns((prevState: any) => [...prevState, obj])
         setDialog(false);
     }
+    const rowData = useMemo(()=>{
+        return ro
+    },[ro.length])
 
 
     return (<div style={{ position: "relative" }}>
@@ -230,7 +248,7 @@ export default function TableField(props: Props) {
         </div>
         <DataGrid
             columns={columnData}
-            rows={rows}
+            rows={props.parentState[name].value || []}
             onCopy={onCopy}
             rowHeight={35}      // it increase the height of row
             headerRowHeight={100}       // it increase the height of header
