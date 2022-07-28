@@ -12,13 +12,14 @@ interface Props {
 
 export default function TableField(props: Props) {
     const { properties, handleData, name } = props
+    const [error, setError] = useState(false)
     const [columns, setColumns] = useState([]) as any
     const [rows, setRows] = useState([]) as any
     const [dialog, setDialog] = useState(false)
     const [dialogData, SetDialogData] = useState({
-        name : "",
+        columnName : "",
         editor : false
-    })
+    })as any
 
     // const columns = [
     //     { key: 'id', name: 'ID' },
@@ -32,7 +33,7 @@ export default function TableField(props: Props) {
 
     const handleRowChange = (rows: any, data: any) => {
         // update logic
-        console.log("handleRowChange", data)
+        console.log("handleRowChange", rows)
         setRows(rows)
     }
 
@@ -125,47 +126,12 @@ export default function TableField(props: Props) {
 
     }, [])
     const rowClass = (row: any) => {
-        console.log("object", row);
+        // console.log("object", row);
         return row;
     }
     // const onColumnResize = (id :any, width:any)=>{
     //     console.log(">>>", id, width);
     // }
-    const row1 = useMemo(() => {
-        let ar: any = []
-        let obj: any = {}
-        let rowLength = properties?.column?.columnName
-        for (let i = 0; i < rowLength.length; i++) {
-            obj[rowLength[i].toString().toLowerCase()] = ""
-        }
-        //    console.log("row", obj);
-
-        let data = properties?.column?.columnName?.forEach((item: any) => {
-            if (properties?.rows?.[item]) {
-                if (ar.length) {
-                    for (let i = 0; i < properties.rows[item]?.length; i++) {
-                        if (ar[i]) {
-                            ar[i][item.toString().toLowerCase()] = properties.rows[item][i]
-
-                        } else {
-                            ar.push({
-                                [item.toString().toLowerCase()]: properties.rows[item]?.[i]
-                            })
-                        }
-                    }
-                } else {
-                    for (let i = 0; i < properties?.rows?.[item]?.length; i++) {
-                        ar.push({
-                            [item.toString().toLowerCase()]: properties.rows[item]?.[i]
-                        })
-                    }
-                }
-            }
-        });
-        ar.push(obj)
-        return ar
-    }, [])
-    console.log("array", row1);
 
     //<------- This function is for add rows ------->
     const addRow = () => {
@@ -175,30 +141,46 @@ export default function TableField(props: Props) {
             obj[columns[k]['key']] = ""
         }
         setRows((prevState: any) => [...prevState, obj])
+    console.log("rowww", obj);
     }
-
-    //<------- this function open the dialogs box ------>
+    //<------- this function open the dialogs box ----->
     const addColumn = () => {
         setDialog(true);
     }
+    // <------ this function closed the dialog box ----->
     const dialogClose = () => {
         setDialog(false);
     }
+    // <----- this function add the dialog data ----->
     const dialogSubmit = () => {
-        setDialog(false);
-        let obj : any = {
-            key: 'sajal',
-            name: "Sajal",
-            sortable: true,
+        if(!dialogData?.['columnName']){
+            setError(true);
+            setTimeout(()=>{
+                setError(false)
+            }, 2000)
+            return;
         }
+        let obj : any = {}
+        for(let key in dialogData){
+            if(key === 'editor' && dialogData[key]){
+                obj[key] = TextEditor
+            }else if(dialogData[key]){
+                obj['key'] = dialogData[key].toString().toLowerCase();
+                obj['name'] = dialogData[key].charAt(0).toUpperCase() + dialogData[key].slice(1);
+            }
+        }
+        // console.log("updateRows", updateRows);
         setColumns((prevState : any) => [...prevState, obj])
+        // addRow()
+        setDialog(false);
     }
+    // const updatingRow = useMemo(()=>{
+
+    // },[columns])
     return (<div style={{position:"relative"}}>
         <div>
-            <button type="button" onClick={addRow}>addrow</button>
+            <button type="button" onClick={addRow}>add row</button>
             <button type="button" onClick={addColumn}>add column</button>
-
-
         </div>
         <DataGrid
             columns={columns}
@@ -218,10 +200,11 @@ export default function TableField(props: Props) {
         <dialog id="llama_dialog_box" open={dialog} style={{padding:"20px 50px", border:"1px solid", backgroundColor:"#e3dfd5", position:"absolute", top:200}}>
             <div style={{ display: "flex", flexDirection: "column", margin: "auto", width:"auto", marginBottom:"10px"}}>
                 <div>
-                    <input type="text" placeholder='Add your column' required />
+                    <input type="text" placeholder='Add your column' name = "columnName" required onChange={(e : any)=>SetDialogData({...dialogData, [e.target.name] : e.target.value})}/>
+                    {error? <p style={{ color: 'red', fontSize:"12px", padding: "0px", margin:"0px"}}>Column Name Can't Be empty</p>: null}
                 </div>
                 <div>
-                    <input type="checkbox" id="editable" />
+                    <input type="checkbox" id="editable" value={"editor"} checked={dialogData.editor} onChange={(e : any)=>SetDialogData({...dialogData, [e.target.value] : e.target.checked})}/>
                     <label htmlFor='editable'>Editable ?</label>
                 </div>
             </div>
