@@ -194,7 +194,8 @@ export default function TableField(props: Props) {
             // obj[columnData[k]['key']] = ""
         }
         setRows((prevState: any) => [...prevState, obj])
-        ro.push(obj)
+        // ro.push(obj)
+        handleData([...props.parentState[name].value, obj])
 
         // console.log("rowww", obj);
         // col.push("Sajal")
@@ -232,7 +233,8 @@ export default function TableField(props: Props) {
         })
         setRows(updateRows)
         col.push(dialogData?.['columnName'])
-        ro = updateRows
+        handleData(updateRows)
+        // ro = updateRows
         setColumns((prevState: any) => [...prevState, obj])
         setDialog(false);
     }
