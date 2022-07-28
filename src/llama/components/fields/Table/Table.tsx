@@ -13,7 +13,7 @@ interface Props {
 export default function TableField(props: Props) {
     const { properties, handleData, name } = props
     let col = properties?.['values'] || [];
-    
+
     const [error, setError] = useState(false)
     const [columns, setColumns] = useState([]) as any
     const [rows, setRows] = useState([]) as any
@@ -135,9 +135,9 @@ export default function TableField(props: Props) {
     // const onColumnResize = (id :any, width:any)=>{
     //     console.log(">>>", id, width);
     // }
-    const columnData = useMemo(()=>{
+    const columnData = useMemo(() => {
 
-        return col.map((item :any)=>{
+        return col.map((item: any) => {
             if (properties?.column?.allEditor) {
                 return {
                     key: item.toString().toLowerCase(),
@@ -171,7 +171,7 @@ export default function TableField(props: Props) {
                 }
             }
         })
-    },[col.length])
+    }, [col.length])
     console.log("properties", columnData, props.parentState[name].value);
 
     //<------- This function is for add rows ------->
@@ -223,17 +223,22 @@ export default function TableField(props: Props) {
     }
 
     // },[columns])
-    function rowClickHandler(row: any) {
-        console.log("click me", row.id)
-        // let selectedRowsSet = new Set(selectedRows);
-        // if (selectedRowsSet.has(row.id)) {
-        //   selectedRowsSet.delete(row.id);
-        // } else {
-        //   selectedRowsSet.add(row.id);  
-        // }
-        // setSelectedRows(selectedRowsSet);
-      }
-    return (<div style={{position:"relative"}}>
+
+    // const rowClickHandler = (row: any) => {
+    //     console.log("click me", row)
+    //     //convert the row's key's values to string.
+    //     let str1 = Object.values(row).toString()
+    //     const indexOfObject = rows.findIndex((obj: any) => {
+    //         let str2 = Object.values(obj).toString()
+    //         return str2 === str1
+    //     })
+    //     // delete the row from the rows array
+    //     const newRows = [...rows]
+    //     newRows.splice(indexOfObject, 1)
+    //     setRows(newRows)
+    // }
+
+    return (<div style={{ position: "relative" }}>
         <div>
             <button type="button" onClick={addRow}>add row</button>
             <button type="button" onClick={addColumn}>add column</button>
@@ -250,10 +255,10 @@ export default function TableField(props: Props) {
             onRowsChange={handleRowChange}
             // rowClass={(e: any) => rowClass(e)}
             className={properties?.['className'] ?? "fill-grid"}
-            onRowClick={rowClickHandler}
+            // onRowClick={rowClickHandler}
         // onColumnResize={onColumnResize}
         // emptyRowsRenderer={EmptyRowsView}
-        
+
         />
         <dialog id="llama_dialog_box" open={dialog} style={{ padding: "20px 50px", border: "1px solid", backgroundColor: "#e3dfd5", position: "absolute", top: 200 }}>
             <div style={{ display: "flex", flexDirection: "column", margin: "auto", width: "auto", marginBottom: "10px" }}>
