@@ -12,14 +12,16 @@ interface Props {
 
 export default function TableField(props: Props) {
     const { properties, handleData, name } = props
+    let col = properties?.['values'] || [];
+    
     const [error, setError] = useState(false)
     const [columns, setColumns] = useState([]) as any
     const [rows, setRows] = useState([]) as any
     const [dialog, setDialog] = useState(false)
     const [dialogData, SetDialogData] = useState({
-        columnName : "",
-        editor : false
-    })as any
+        columnName: "",
+        editor: false
+    }) as any
 
     // const columns = [
     //     { key: 'id', name: 'ID' },
@@ -33,7 +35,8 @@ export default function TableField(props: Props) {
 
     const handleRowChange = (rows: any, data: any) => {
         // update logic
-        console.log("handleRowChange", rows)
+        // console.log("handleRowChange", rows)
+        handleData(rows, false)
         setRows(rows)
     }
 
@@ -122,7 +125,7 @@ export default function TableField(props: Props) {
             }
         })
         setColumns(data)
-        setRows(ar)
+        setRows(props.parentState[name].value?? ar)
 
     }, [])
     // const rowClass = (row: any) => {
@@ -132,16 +135,55 @@ export default function TableField(props: Props) {
     // const onColumnResize = (id :any, width:any)=>{
     //     console.log(">>>", id, width);
     // }
+    const columnData = useMemo(()=>{
+
+        return col.map((item :any)=>{
+            if (properties?.column?.allEditor) {
+                return {
+                    key: item.toString().toLowerCase(),
+                    name: item,
+                    editor: TextEditor,
+                    sortable: true,
+                    resizable: true,
+                    frozen: true,
+                }
+            }
+            if (properties?.column?.columnEditor?.includes(item)) {
+                return {
+                    key: item.toString().toLowerCase(),
+                    name: item,
+                    editor: TextEditor,
+                    sortable: true,
+                    resizable: true,
+                    frozen: true,
+                }
+            } else {
+                return {
+                    key: item.toString().toLowerCase(),
+                    name: item,
+                    sortable: true,
+                    // width : 30,
+                    // minWidth: 50,
+                    // maxWidth : 200,
+                    editor: TextEditor,
+                    resizable: true,
+                    frozen: true,
+                }
+            }
+        })
+    },[col.length])
+    console.log("properties", columnData, props.parentState[name].value);
 
     //<------- This function is for add rows ------->
     const addRow = () => {
         let obj: any = {}
-        for(let k = 0; k < columns.length; k++){
-            if(!columns[k]['key']) return
+        for (let k = 0; k < columns.length; k++) {
+            if (!columns[k]['key']) return
             obj[columns[k]['key']] = ""
         }
         setRows((prevState: any) => [...prevState, obj])
-    console.log("rowww", obj);
+        // console.log("rowww", obj);
+        // col.push("Sajal")
     }
     //<------- this function open the dialogs box ----->
     const addColumn = () => {
@@ -153,28 +195,32 @@ export default function TableField(props: Props) {
     }
     // <----- this function add the dialog data ----->
     const dialogSubmit = () => {
-        if(!dialogData?.['columnName']){
+        if (!dialogData?.['columnName']) {
             setError(true);
-            setTimeout(()=>{
+            setTimeout(() => {
                 setError(false)
             }, 2000)
             return;
         }
-        let obj : any = {}
-        for(let key in dialogData){
-            if(key === 'editor' && dialogData[key]){
+        let obj: any = {}
+        for (let key in dialogData) {
+            if (key === 'editor' && dialogData[key]) {
                 obj[key] = TextEditor
-            }else if(dialogData[key]){
+            } else if (dialogData[key]) {
                 obj['key'] = dialogData[key].toString().toLowerCase();
                 obj['name'] = dialogData[key].charAt(0).toUpperCase() + dialogData[key].slice(1);
             }
         }
-        // console.log("updateRows", updateRows);
-        setColumns((prevState : any) => [...prevState, obj])
-        // addRow()
+        //we need to update rows
+        const updateRows = rows.map((cur: any) => {
+            cur[dialogData['columnName']] = "";
+            return cur
+        })
+        setRows(updateRows)
+        col.push(dialogData?.['columnName'])
+        setColumns((prevState: any) => [...prevState, obj])
         setDialog(false);
     }
-    // const updatingRow = useMemo(()=>{
 
     // },[columns])
     function rowClickHandler(row: any) {
@@ -193,7 +239,7 @@ export default function TableField(props: Props) {
             <button type="button" onClick={addColumn}>add column</button>
         </div>
         <DataGrid
-            columns={columns}
+            columns={columnData}
             rows={rows}
             onCopy={onCopy}
             rowHeight={35}      // it increase the height of row
@@ -209,19 +255,19 @@ export default function TableField(props: Props) {
         // emptyRowsRenderer={EmptyRowsView}
         
         />
-        <dialog id="llama_dialog_box" open={dialog} style={{padding:"20px 50px", border:"1px solid", backgroundColor:"#e3dfd5", position:"absolute", top:200}}>
-            <div style={{ display: "flex", flexDirection: "column", margin: "auto", width:"auto", marginBottom:"10px"}}>
+        <dialog id="llama_dialog_box" open={dialog} style={{ padding: "20px 50px", border: "1px solid", backgroundColor: "#e3dfd5", position: "absolute", top: 200 }}>
+            <div style={{ display: "flex", flexDirection: "column", margin: "auto", width: "auto", marginBottom: "10px" }}>
                 <div>
-                    <input type="text" placeholder='Add your column' name = "columnName" required onChange={(e : any)=>SetDialogData({...dialogData, [e.target.name] : e.target.value})}/>
-                    {error? <p style={{ color: 'red', fontSize:"12px", padding: "0px", margin:"0px"}}>Column Name Can't Be empty</p>: null}
+                    <input type="text" placeholder='Add your column' name="columnName" required onChange={(e: any) => SetDialogData({ ...dialogData, [e.target.name]: e.target.value })} />
+                    {error ? <p style={{ color: 'red', fontSize: "12px", padding: "0px", margin: "0px" }}>Column Name Can't Be empty</p> : null}
                 </div>
                 <div>
-                    <input type="checkbox" id="editable" value={"editor"} checked={dialogData.editor} onChange={(e : any)=>SetDialogData({...dialogData, [e.target.value] : e.target.checked})}/>
+                    <input type="checkbox" id="editable" value={"editor"} checked={dialogData.editor} onChange={(e: any) => SetDialogData({ ...dialogData, [e.target.value]: e.target.checked })} />
                     <label htmlFor='editable'>Editable ?</label>
                 </div>
             </div>
-            <button type='button' onClick={dialogSubmit} style={{float:"right", width:"50%"}}>Done</button>
-            <button type='button' onClick={dialogClose} style={{float:"right", width:"50%"}}>Close</button>
+            <button type='button' onClick={dialogSubmit} style={{ float: "right", width: "50%" }}>Done</button>
+            <button type='button' onClick={dialogClose} style={{ float: "right", width: "50%" }}>Close</button>
         </dialog>
     </div >
     );

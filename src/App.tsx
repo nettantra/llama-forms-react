@@ -60,35 +60,36 @@ function App() {
             required: true,
             // enum: ['Test', 'Test1', 'Test2'],
             depend:true,
-            step:1
+            step:2
           },
           table:{
             type: 'string',
+            enum: ['id', 'title', 'desc'],
             step:1
           },
           password:{
             type: 'string',
-            step:1
+            step:3
           },
           range:{
             type:"string",
-            step:1
+            step:3
           },
           zipcode:{
             type: 'string',
-            step:1
+            step:3
           },
           text:{
             type: 'string',
-            step:1
+            step:3
           },
           week:{
             type: 'string',
-            step:1
+            step:3
           },
           url:{
             type: 'string',
-            step:1
+            step:3
           },
           checkBox1:{
             type: 'string',
@@ -147,7 +148,7 @@ function App() {
             column : {
               columnName : ["Id", "Title", "Desc"],
               // allEditor:true,
-              columnEditor : ["Id", "Title"],
+              columnEditor : ["id", "title"],
               
             },
             rows:{
@@ -164,7 +165,7 @@ function App() {
               value : ['e', 'E', '+', '-'],
             },
             description: "This is zipcode field",
-            validationRegex:"/^\d{5}(?:[- ]?\d{4})?$/"
+            // validationRegex:"/^\d{5}(?:[- ]?\d{4})?$/"
           },
           password: {
             type: "password",
@@ -238,6 +239,27 @@ function App() {
         urlField: "https://www.google.com",
         // checkBox: {Test:false, Test1:true, Test2:true},
         // checkBox: {Test:false, Test1:true, Test2:true},
+        table : [
+          {
+            id : "1",
+            title : "Hero",
+            desc : "i am hero"
+          },
+          {
+            id : "2",
+            title : "Zero",
+            desc : "i am zero",
+          },
+          {
+            id : '3',
+            title : "Noob",
+            desc : "i am noob"
+          },
+          {
+            id : "4",
+            title : "pro"
+          }
+        ]
       }}
       onSubmit={login_test}
     />
