@@ -129,10 +129,10 @@ export default function TableField(props: Props) {
     //     setRows(props.parentState[name].value?? ar)
 
     // }, [])
-    const rowClass = (row: any) => {
-        // console.log("object", row);
-        return row;
-    }
+    // const rowClass = (row: any) => {
+    //     console.log("object", row);
+    //     return row;
+    // }
     // const onColumnResize = (id :any, width:any)=>{
     //     console.log(">>>", id, width);
     // }
@@ -240,8 +240,18 @@ export default function TableField(props: Props) {
         return ro
     },[ro.length])
 
-
-    return (<div style={{ position: "relative" }}>
+    // },[columns])
+    function rowClickHandler(row: any) {
+        console.log("click me", row.id)
+        // let selectedRowsSet = new Set(selectedRows);
+        // if (selectedRowsSet.has(row.id)) {
+        //   selectedRowsSet.delete(row.id);
+        // } else {
+        //   selectedRowsSet.add(row.id);  
+        // }
+        // setSelectedRows(selectedRowsSet);
+      }
+    return (<div style={{position:"relative"}}>
         <div>
             <button type="button" onClick={addRow}>add row</button>
             <button type="button" onClick={addColumn}>add column</button>
@@ -253,13 +263,15 @@ export default function TableField(props: Props) {
             rowHeight={35}      // it increase the height of row
             headerRowHeight={100}       // it increase the height of header
             // onPaste={onPaste}
-            // rowKeyGetter={rowKeyGetter}
+            // rowKeyGetter={(i: any) => rows[i]}
             // minHeight={150}
             onRowsChange={handleRowChange}
-            rowClass={(e: any) => rowClass(e)}
+            // rowClass={(e: any) => rowClass(e)}
             className={properties?.['className'] ?? "fill-grid"}
+            onRowClick={rowClickHandler}
         // onColumnResize={onColumnResize}
         // emptyRowsRenderer={EmptyRowsView}
+        
         />
         <dialog id="llama_dialog_box" open={dialog} style={{ padding: "20px 50px", border: "1px solid", backgroundColor: "#e3dfd5", position: "absolute", top: 200 }}>
             <div style={{ display: "flex", flexDirection: "column", margin: "auto", width: "auto", marginBottom: "10px" }}>
