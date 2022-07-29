@@ -64,7 +64,7 @@ function App() {
           },
           table:{
             type: 'string',
-            enum: ['id', 'title', 'desc'],
+            enum: ['id', 'title', 'desc', 'action', "roll"],
             step:1
           },
           password:{
@@ -145,16 +145,17 @@ function App() {
             type: "table",
             label: "table",
             description: "This is table field",
+            action: ["action"],
             column : {
-              columnName : ["Id", "Title", "Desc"],
+              // columnName : ["Id", "Title", "Desc"],
               // allEditor:true,
-              columnEditor : ["id", "title"],
+              columnEditor : ["id", "title", "roll"],
               
             },
             rows:{
-              Id: [0, 1, 2],
-              Title:["sajal", "Mahapatra", "chatu", "patra", "hello"],
-              Desc : ["hello", "world", "hyy", "duia"]
+              // Id: [0, 1, 2],
+              // Title:["sajal", "Mahapatra", "chatu", "patra", "hello"],
+              // Desc : ["hello", "world", "hyy", "duia"],
             }
           },
           zipcode: {
