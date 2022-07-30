@@ -111,7 +111,10 @@ function App() {
           html:{
             type: 'string',
             step:1
-          }
+          },
+          address:{
+            type: 'string',                  
+          }, 
         }
       }}
       options={{
@@ -230,7 +233,12 @@ function App() {
             label: "Check Box2 test",
             description: "This is checkbox2 field",
             blacklist:["yes","Test1"],
-          }
+          },
+          address: {
+            type: "address",
+            label: "Address",
+            description: "Enter Your address", 
+          },
         }
       }}
       data={{
