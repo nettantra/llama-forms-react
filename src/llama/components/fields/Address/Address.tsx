@@ -12,7 +12,8 @@ interface Props {
 }
 export default function Address(props: Props) {
     const { properties, handleData, name } = props;
-    console.log("properties..check", properties, handleData, name);
+    // console.log("properties[];;;;;", properties);
+    console.log("props[];;;;;", props);
     const [stateDisabled, setStateDisabled] = useState(true) as any;  //active the state field
     const [cityDisabled, setCityDisabled] = useState(true) as any;  //active the city field
 
@@ -55,32 +56,44 @@ export default function Address(props: Props) {
     const handleOnChangeCountry = (e: any) => {
         let val = e.target.value;
         console.log("check country val", val);
+        let state = props.parentState[name].value.State;
+        state ? props.parentState[name].value.State = "" : null;
+        let city = props.parentState[name].value.City;
+        city ? props.parentState[name].value.City = "" : null;
         setStateDisabled(!stateDisabled)
         setSelectCountry(val)
+        handleData({...props.parentState[name].value, Country: val})
     };
 
     //store the state value  handleOnChangeCity
     const handleOnChangeState = (e: any) => {
         let val = e.target.value;
+        let city = props.parentState[name].value.City;
+        city ? props.parentState[name].value.City = "" : null;
         setSelectState(val)
         setCityDisabled(!cityDisabled)
+        handleData({...props.parentState[name].value, State: val})
+
     };
 
     //store the city value  handleOnChangeCity
     const handleOnChangeCity = (e: any) => {
         let val = e.target.value;
+        console.log("city..", val)
         setData({ ...data, "Country": `${selectCountry}`, "State": `${selectState}`, "City": `${val}`, "Home": `${selectHome}`, "Area": `${selectArea}`, "Landmark": `${selectLandmark}` })
+        handleData({...props.parentState[name].value, City: val})
     };
 
-    useMemo(() => {
+    useEffect(() => {
         try {
-            handleData(data)
+            handleData(props.parentState[name].value)
         } catch (error) {
         }
     }, [data])
     
     // country-details-start-----------------------------------------------
     const countryData = async () => {
+        console.log("call country")
         var headers = new Headers();
         headers.append("X-CSCAPI-KEY", "WVBtd05GNnJNMDdwbzdqY2lLM0N1NXpTT1ZyQ2JCZEo2a2FBVElvSg==");  //API_key
 
@@ -108,7 +121,7 @@ export default function Address(props: Props) {
             method: 'GET',
             headers: headers,
         };
-        await fetch(`https://api.countrystatecity.in/v1/countries/${selectCountry}/states`, requestOptions)
+        await fetch(`https://api.countrystatecity.in/v1/countries/${props.parentState[name].value.Country}/states`, requestOptions)
             .then((response) => {
                 return response.json()
             })
@@ -137,11 +150,13 @@ export default function Address(props: Props) {
             method: 'GET',
             headers: headers,
         };
-        fetch(`https://api.countrystatecity.in/v1/countries/${selectCountry}/states/${selectState}/cities`, requestOptions)
+        fetch(`https://api.countrystatecity.in/v1/countries/${props.parentState[name].value.Country}/states/${props.parentState[name].value.State}/cities`, requestOptions)
             .then((response) => {
                 return response.json()
             })
             .then(result => {
+                console.log("resss..city", result)
+
                 setCityInfo(result?.map((city: any) => <option key={city.name} value={city.name}>{city.name}</option>))
             })
             .catch(error => console.log('error', error));
@@ -149,6 +164,7 @@ export default function Address(props: Props) {
     
     useEffect(() => {
         try {
+            setCityInfo([])
             cityData()
 
         } catch (error) {
@@ -158,9 +174,15 @@ export default function Address(props: Props) {
     // city-details-end----------------------------------------------------
 
     useEffect(() => {
+
         countryData()
     }, [])
 
+    console.log("countryInfo", countryInfo)
+    console.log("stateInfo", stateInfo)
+    console.log("cityInfo", cityInfo)
+
+    console.log("city check", props.parentState[name].value.City)
     return (
         <>
             <h3 style={{ fontFamily: 'Nunito Sans', fontWeight: '400', fontSize: '16px', margin: '5px 0' }}>{properties['label']}
@@ -186,7 +208,7 @@ export default function Address(props: Props) {
             <select id="country" onChange={(e) => { handleOnChangeCountry(e); }} style={{ width: '97%', padding: '7px', border: '1px solid #000', borderRadius: '5px', fontSize: '14px', fontFamily: 'Nunito Sans', fontWeight: '400', marginTop: '10px' }
             }>
 
-                <option value="" disabled selected>Select your country</option>
+                <option value={props.parentState[name].value.Country ? props.parentState[name].value.Country : ''} disabled selected>{props.parentState[name].value.Country ? countryInfo.length&&countryInfo.find((o:any) => o.props.value == props.parentState[name].value.Country).props.children : 'Select your country'}</option>
                 {
                     countryInfo.length ? countryInfo : []
                 }
@@ -194,7 +216,7 @@ export default function Address(props: Props) {
 
             <select id="state" onChange={(e) => { handleOnChangeState(e) }} style={{ width: '97%', padding: '7px', border: '1px solid #000', borderRadius: '5px', fontSize: '14px', fontFamily: 'Nunito Sans', fontWeight: '400', marginTop: '10px' }}
             >
-                <option value="" disabled selected>Select your state</option>
+                <option value={props.parentState[name].value.State ? props.parentState[name].value.State : ''} disabled selected>{props.parentState[name].value.State ? stateInfo.length&&stateInfo.find((o:any) => o.props.value == props.parentState[name].value.State).props.children : 'Select your state'}</option>
                 {
                     stateInfo.length ? stateInfo : []
                 }
@@ -202,7 +224,8 @@ export default function Address(props: Props) {
 
             <select id="city" onChange={(e) => { handleOnChangeCity(e); }} style={{ width: '97%', padding: '7px', border: '1px solid #000', borderRadius: '5px', fontSize: '14px', fontFamily: 'Nunito Sans', fontWeight: '400', marginTop: '10px' }}
             >
-                <option value="" disabled selected>Select your city</option>
+                <option value={props.parentState[name].value.City ? props.parentState[name].value.City : ''} disabled selected>{props?.parentState[name].value.City ? cityInfo.length&&cityInfo.find((o:any) => o.props?.value == props.parentState[name].value.City).props?.children : 'Select your city'}</option>
+                
                 {
                     cityInfo.length ? cityInfo : []
                 }
