@@ -55,6 +55,10 @@ function App() {
             enum: ['Test', 'Test1', 'Test2'],
             step:1
           },
+          dropzone:{
+            type: 'string',
+            required: true,
+          },
           phone:{
             type: 'string',
             required: true,
@@ -126,6 +130,11 @@ function App() {
             description: "This is checkbox field",
             // onlyCheck:"Test",
             blacklist:["Test","Test1"],
+          },
+          dropzone:{
+            type: "dropzone",
+            label: "Check Box test",
+            description: "This is checkbox field",
           },
           phone: {
             type: "phone",
