@@ -40,16 +40,21 @@ export default function Address(props: Props) {
     const handleOnChangeLandmark = (e: any) => {
         let val = e.target.value;
         setSelectLandmark(val)
+        handleData({...props.parentState[name].value, Landmark: val})
+
     };
     //store the Area value  handleOnChangeCity
     const handleOnChangeArea = (e: any) => {
         let val = e.target.value;
         setSelectArea(val)
+        handleData({...props.parentState[name].value, Area: val})
+
     };
     //store the Home value  handleOnChangeCity
     const handleOnChangeHome = (e: any) => {
         let val = e.target.value;
         setSelectHome(val)
+        handleData({...props.parentState[name].value, Home: val})
     };
 
     //store the country value
@@ -188,18 +193,21 @@ export default function Address(props: Props) {
             <h3 style={{ fontFamily: 'Nunito Sans', fontWeight: '400', fontSize: '16px', margin: '5px 0' }}>{properties['label']}
             </h3>
             <input
+                value={props.parentState[name].value.Home}
                 type="text"
                 onChange={(e) => { handleOnChangeHome(e); }}
                 placeholder="Enter your Flatno , Home , Building , Apartment"
                 style={{ width: '95%', padding: '7px', border: '1px solid #000', borderRadius: '5px', fontSize: '14px', fontFamily: 'Nunito Sans', fontWeight: '400', }}
             />
             <input
+                value={props.parentState[name].value.Area}
                 type="text"
                 onChange={(e) => { handleOnChangeArea(e); }}
                 placeholder="Enter your Area , Street , Sector , Village"
                 style={{ width: '95%', padding: '7px', border: '1px solid #000', borderRadius: '5px', fontSize: '14px', fontFamily: 'Nunito Sans', fontWeight: '400', marginTop: '10px' }}
             />
             <input
+                value={props.parentState[name].value.Landmark}
                 type="text"
                 onChange={(e) => { handleOnChangeLandmark(e); }}
                 placeholder="Enter your Landmark (E.g. near apollo hospital) "
