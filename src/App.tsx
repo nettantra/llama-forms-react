@@ -127,6 +127,10 @@ function App() {
             type: 'string',
             // step:1
           },
+          city:{
+            type: 'string',
+            // step:1
+          }
 
         }
       }}
@@ -277,6 +281,16 @@ function App() {
             stateLabel: "name", // iso2 , name
             stateValue:"iso2",
             countryName:'IN'
+          },
+          city: {
+            type: "city",
+            label: "City",
+            description: "Select Your city",
+            placeholder: "Select your city",
+            autofocus: true,
+            readOnly: false,
+            countryName:'IN',  
+            stateName:'WB'
           },
         }
       }}

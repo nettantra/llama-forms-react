@@ -29,6 +29,7 @@ import Address from '../fields/Address/Address';
 import DropZone from '../fields/DropZone/DropZone'
 import CountryField from '../fields/Country/Country';
 import StateField from '../fields/State/State';
+import CityField from '../fields/City/City';
 
 interface Props {
     fields: any,
@@ -72,7 +73,7 @@ export default function RenderForm(props: Props) {
         'dropzone' : DropZone,
         'country':CountryField,
         'state': StateField,
-
+        'city': CityField,
     }
 
 
