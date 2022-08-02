@@ -57,7 +57,7 @@ function App() {
           },
           dropzone:{
             type: 'string',
-            required: true,
+            // required: true,
           },
           phone:{
             type: 'string',
@@ -118,7 +118,11 @@ function App() {
           },
           address:{
             type: 'string',                  
-          }, 
+          },
+          country:{
+            type: 'string',
+            // step:1
+          }
         }
       }}
       options={{
@@ -247,6 +251,16 @@ function App() {
             type: "address",
             label: "Address",
             description: "Enter Your address", 
+          },
+          country: {
+            type: "country",
+            label: "Country",
+            description: "Select Your country",
+            placeholder: "Select your country",
+            autofocus: true,
+            readOnly: false,
+            countryLabel: "name", // iso2 , name
+            countryValue: "iso2"
           },
         }
       }}
