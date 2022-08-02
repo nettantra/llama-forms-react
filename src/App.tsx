@@ -122,7 +122,12 @@ function App() {
           country:{
             type: 'string',
             // step:1
-          }
+          },
+          state:{
+            type: 'string',
+            // step:1
+          },
+
         }
       }}
       options={{
@@ -261,6 +266,17 @@ function App() {
             readOnly: false,
             countryLabel: "name", // iso2 , name
             countryValue: "iso2"
+          },
+          state: {
+            type: "state",
+            label: "State",
+            description: "Select Your state",
+            placeholder: "Select your state",
+            autofocus: true,
+            readOnly: false,
+            stateLabel: "name", // iso2 , name
+            stateValue:"iso2",
+            countryName:'IN'
           },
         }
       }}

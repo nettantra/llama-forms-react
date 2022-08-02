@@ -28,6 +28,7 @@ import HtmlTag from '../fields/Html/Html'
 import Address from '../fields/Address/Address';
 import DropZone from '../fields/DropZone/DropZone'
 import CountryField from '../fields/Country/Country';
+import StateField from '../fields/State/State';
 
 interface Props {
     fields: any,
@@ -70,6 +71,7 @@ export default function RenderForm(props: Props) {
         'address':Address,
         'dropzone' : DropZone,
         'country':CountryField,
+        'state': StateField,
 
     }
 
