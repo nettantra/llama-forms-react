@@ -130,6 +130,9 @@ function App() {
           city:{
             type: 'string',
             // step:1
+          },
+          textEditor:{
+            type: 'string',
           }
 
         }
@@ -291,6 +294,11 @@ function App() {
             readOnly: false,
             countryName:'IN',  
             stateName:'WB'
+          },
+          textEditor: {
+            label: "Text Editor",
+            description: "This is text editor field",
+            type: "textEditor",
           },
         }
       }}
