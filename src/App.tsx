@@ -14,8 +14,8 @@ function App() {
       <LlamaForm
       schema={{
         type: 'object',
-        title: 'Login',
-        description: 'Login Form',
+        // title: 'Login',
+        // description: 'Login Form',
         wizard: true,
         wizardOptions : {
           onNext:login_test,

@@ -215,10 +215,13 @@ export const LlamaForm = (props: any) => {
       `}
     </style>
     <div className={`llm-form-container`}>
-      <h1 className={`llm-heading`}>{title}</h1>
-
-      <h2 className={`llm-description`}>{description}</h2>
-
+      {title && 
+        <h1 className={`llm-heading`}>{title}</h1> 
+      }
+      {description && 
+        <h2 className={`llm-description`}>{description}</h2>
+      }
+      
       {progressBar ? (
         <Progress
           className={pbClassName ?? ""}
