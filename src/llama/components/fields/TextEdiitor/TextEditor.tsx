@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback, useState } from 'react'
 import { useEditor, EditorContent } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import Underline from "@tiptap/extension-underline";
@@ -14,12 +14,10 @@ import FontFamily from '@tiptap/extension-font-family'
 import fontSize from 'tiptap-extension-font-size';
 import CharacterCount from '@tiptap/extension-character-count'
 import Placeholder from '@tiptap/extension-placeholder'
-
 import Table from '@tiptap/extension-table'
 import TableCell from '@tiptap/extension-table-cell'
 import TableHeader from '@tiptap/extension-table-header'
 import TableRow from '@tiptap/extension-table-row'
-
 import MenuBar from './MenuBar';
 interface Props {
     properties: any,
@@ -40,7 +38,9 @@ const TextEditorField = (props: Props) => {
             TextAlign.configure({
                 types: ['heading', 'paragraph'],
             }),
-            Link,
+            Link.configure({
+              autolink: false,
+            }),
             Image,
             Highlight,
             Subscript,
@@ -269,11 +269,11 @@ const TextEditorField = (props: Props) => {
             .ProseMirror p {
             margin: 0;
             }
-            .tableWrapper {
+            .ProseMirror tableWrapper {
                 padding: 1rem 0;
                 overflow-x: auto;
               }              
-              .resize-cursor {
+              .ProseMirror resize-cursor {
                 cursor: ew-resize;
                 cursor: col-resize;
               }  
