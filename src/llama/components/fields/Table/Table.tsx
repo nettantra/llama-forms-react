@@ -12,7 +12,6 @@ interface Props {
 
 export default function TableField(props: Props) {
     const { properties, handleData, name } = props
-    console.log("--pro", properties)
     let col = properties?.['values'] || [];
     let action = properties?.action || [];
     let ro = props.parentState[name].value || []
@@ -183,7 +182,7 @@ export default function TableField(props: Props) {
                     key: item.toString().toLowerCase(), 
                     name: item, 
                     formatter: function (dependentValues: any) {
-                        console.log("dependentValues", dependentValues)
+                        // console.log("dependentValues", dependentValues)
                         return <button onClick={() => {rowClickHandler(dependentValues?.row)}} type="button">Delete</button>
                     }
                 }
@@ -202,7 +201,7 @@ export default function TableField(props: Props) {
             }
         })
     }, [col.length, ro.length])
-    console.log("properties", columnData, props.parentState[name].value);
+
     //<------- This function is for add rows ------->
     const addRow = () => {
         //first we have to check column exist or not??
@@ -264,7 +263,6 @@ export default function TableField(props: Props) {
     // },[columns])
 
     const rowClickHandler = (row: any) => {
-        console.log("click me", row)
         //convert the row's key's values to string.
         let str1 = Object.values(row).toString()
         const indexOfObject = props.parentState[name].value?.findIndex((obj: any) => {
@@ -276,7 +274,6 @@ export default function TableField(props: Props) {
         newRows.splice(indexOfObject, 1)
         handleData(newRows)
     }
-    console.log("yooo", rows)
 
     return (<div style={{ position: "relative" }}>
         <div>

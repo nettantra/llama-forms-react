@@ -46,7 +46,7 @@ export default function CheckBoxField(props: Props) {
                   checked={props.parentState[name].value[item] || false}
                   disabled={properties?.["readOnly"] ?? false}
                   hidden={properties?.["hidden"] ?? false}
-                  required={properties?.["required"] ?? false}
+                  // required={properties?.["required"] ?? false}
                   autoFocus={properties?.["autoFocus"] ?? false}
                 />
                 <label

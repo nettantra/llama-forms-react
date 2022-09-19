@@ -13,7 +13,7 @@ interface Props {
 export default function Address(props: Props) {
     const { properties, handleData, name } = props;
     // console.log("properties[];;;;;", properties);
-    console.log("props[];;;;;", props);
+    // console.log("props[];;;;;", props);
     const [stateDisabled, setStateDisabled] = useState(true) as any;  //active the state field
     const [cityDisabled, setCityDisabled] = useState(true) as any;  //active the city field
 
@@ -60,7 +60,7 @@ export default function Address(props: Props) {
     //store the country value
     const handleOnChangeCountry = (e: any) => {
         let val = e.target.value;
-        console.log("check country val", val);
+        // console.log("check country val", val);
         let state = props.parentState[name].value.State;
         state ? props.parentState[name].value.State = "" : null;
         let city = props.parentState[name].value.City;
@@ -84,7 +84,7 @@ export default function Address(props: Props) {
     //store the city value  handleOnChangeCity
     const handleOnChangeCity = (e: any) => {
         let val = e.target.value;
-        console.log("city..", val)
+        // console.log("city..", val)
         setData({ ...data, "Country": `${selectCountry}`, "State": `${selectState}`, "City": `${val}`, "Home": `${selectHome}`, "Area": `${selectArea}`, "Landmark": `${selectLandmark}` })
         handleData({...props.parentState[name].value, City: val})
     };
@@ -98,7 +98,7 @@ export default function Address(props: Props) {
     
     // country-details-start-----------------------------------------------
     const countryData = async () => {
-        console.log("call country")
+        // console.log("call country")
         var headers = new Headers();
         headers.append("X-CSCAPI-KEY", "WVBtd05GNnJNMDdwbzdqY2lLM0N1NXpTT1ZyQ2JCZEo2a2FBVElvSg==");  //API_key
 
@@ -132,7 +132,7 @@ export default function Address(props: Props) {
             })
             .then(result => {
                 setStateInfo(result?.map((state: any) => <option key={state.iso2} value={state.iso2}>{state.name}</option>))  //name
-                setSelectState(result[0].iso2) //Added
+                setSelectState(result[0]?.iso2) //Added
                 
             })
             .catch(error => console.log('error', error));
@@ -160,7 +160,7 @@ export default function Address(props: Props) {
                 return response.json()
             })
             .then(result => {
-                console.log("resss..city", result)
+                // console.log("resss..city", result)
 
                 setCityInfo(result?.map((city: any) => <option key={city.name} value={city.name}>{city.name}</option>))
             })
@@ -183,11 +183,11 @@ export default function Address(props: Props) {
         countryData()
     }, [])
 
-    console.log("countryInfo", countryInfo)
-    console.log("stateInfo", stateInfo)
-    console.log("cityInfo", cityInfo)
+    // console.log("countryInfo", countryInfo)
+    // console.log("stateInfo", stateInfo)
+    // console.log("cityInfo", cityInfo)
 
-    console.log("city check", props.parentState[name].value.City)
+    // console.log("city check", props.parentState[name].value.City)
     return (
         <>
             <h3 style={{ fontFamily: 'Nunito Sans', fontWeight: '400', fontSize: '16px', margin: '5px 0' }}>{properties['label']}

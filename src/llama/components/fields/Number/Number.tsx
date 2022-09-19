@@ -21,6 +21,17 @@ export default function NumberField(props: Props) {
     }
 
     const handleChange = (e: any) => {
+        if (e.target.value < properties?.['min']) {
+            handleData(e.target.value, true)
+            setError(true)
+            return
+        }
+        if (e.target.value > properties?.['max']) {
+            handleData(e.target.value, true)
+            setError(true)
+            return
+        }
+        setError(false)
         handleData(e.target.value, false)
     }
 
