@@ -144,7 +144,7 @@ function App() {
             type: "checkbox",
             label: "Check Box test",
             description: "This is checkbox field",
-            // onlyCheck:"Test",
+            onlyCheck:"Test",
             blacklist:["Test","Test1"],
           },
           dropzone:{

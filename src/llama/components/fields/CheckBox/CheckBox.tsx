@@ -14,13 +14,20 @@ export default function CheckBoxField(props: Props) {
   const handleChange = (e: any) => {
     let checkObj = props.parentState[name].value || {};
     checkObj = { ...checkObj, [e.target.value]: e.target.checked }
-    for (let key in checkObj) {
-      if (!checkObj[key]) {
-        delete checkObj[key]
-      }
-    }
+
     if (checkObj[onlyChecked] == true) {
       checkObj = { [onlyChecked]: true }
+    }
+    if (checkObj) {
+      if (onlyChecked in checkObj) {
+        delete checkObj[onlyChecked];
+      }
+      checkObj = { ...checkObj, [e.target.value]: e.target.checked };
+      for (let key in checkObj) {
+        if (!checkObj[key]) {
+          delete checkObj[key]
+        }
+      }
     }
     handleData(Object.keys(checkObj).length >= 1 ? checkObj : "");
   };
