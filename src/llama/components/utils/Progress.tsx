@@ -13,6 +13,7 @@ export const Progress = ({
   stepLength,
   step,
   align,
+  spText,
 }: any) => {
   const Parentdiv = {
     height: height ? height : 20,
@@ -35,13 +36,13 @@ export const Progress = ({
   const SubStep = {
     display: subProgressBar ? "block" : "none",
   };
-
   return (
     <>
       {ProgressBar ? (
         <div
           className={`llm-progresbar-container ${className}`}
-          style={Parentdiv}>
+          style={Parentdiv}
+        >
           <div className={`llm-progressbar`} style={Childdiv}>
             <span className={`llm-progressbar-text`} style={progresstext}>
               {text}
@@ -50,7 +51,7 @@ export const Progress = ({
 
           {subProgressBar ? (
             <div className={`llm-progressbar-steps`} style={SubStep}>
-              Step {step} of {stepLength}
+              {spText} {step} of {stepLength}
             </div>
           ) : null}
         </div>

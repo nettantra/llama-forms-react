@@ -60,14 +60,18 @@ export const LlamaForm = (props: any) => {
         step: properties[key].step
           ? properties[key].step
           : properties[key].depend
-            ? properties[fields[key].parentField].step
-            : 1,
+          ? properties[fields[key].parentField].step
+          : 1,
         type: fields[key] ? fields[key].type : "",
         values: properties[key].enum || "",
-        required: properties[key]?.depend ? false : properties[key].required || false,
+        required: properties[key]?.depend
+          ? false
+          : properties[key].required || false,
         value: value[key] || "",
         parentField: fields[key]?.parentField || "",
-        dependentRequired: properties[key]?.depend ? properties[key].required : false || "",
+        dependentRequired: properties[key]?.depend
+          ? properties[key].required
+          : false || "",
         depend: properties[key]?.depend || false,
       };
     }
@@ -110,26 +114,29 @@ export const LlamaForm = (props: any) => {
         submitButtonText={buttons?.submit?.text ?? "Submit"}
         loader={buttons?.submit?.loader ?? false}
         ref={enterButton}
-
       />
     );
   };
 
   useEffect(() => {
     // for blacklist
-    let btn = document.getElementsByClassName('btn llm-next-btn')[0] || document.getElementsByClassName('btn llm-submit-btn')[0]
-    let currentStepFields = wizardStepSet[step]
-    btn?.removeAttribute('disabled');
+    let btn =
+      document.getElementsByClassName("btn llm-next-btn")[0] ||
+      document.getElementsByClassName("btn llm-submit-btn")[0];
+    let currentStepFields = wizardStepSet[step];
+    btn?.removeAttribute("disabled");
     currentStepFields?.forEach((field: string) => {
       if (fields[field].blacklist) {
-          if (fields[field].type === "checkbox") {
-            Object.keys(data[field].value).forEach((key: string) => {
-              fields[field].blacklist.includes(key) && btn?.setAttribute('disabled', 'true');
-            })
-          }
-          fields[field].blacklist.includes(data[field].value) && btn?.setAttribute('disabled', 'true');
+        if (fields[field].type === "checkbox") {
+          Object.keys(data[field].value).forEach((key: string) => {
+            fields[field].blacklist.includes(key) &&
+              btn?.setAttribute("disabled", "true");
+          });
         }
-    })
+        fields[field].blacklist.includes(data[field].value) &&
+          btn?.setAttribute("disabled", "true");
+      }
+    });
     //end
 
     const listener = (event: any) => {
@@ -145,23 +152,25 @@ export const LlamaForm = (props: any) => {
     };
   }, [step]);
 
-
-
   useEffect(() => {
-    let btn = document.getElementsByClassName('btn llm-next-btn')[0] || document.getElementsByClassName('btn llm-submit-btn')[0]
+    let btn =
+      document.getElementsByClassName("btn llm-next-btn")[0] ||
+      document.getElementsByClassName("btn llm-submit-btn")[0];
 
-    btn?.removeAttribute('disabled');
+    btn?.removeAttribute("disabled");
     for (let field in fields) {
       if (fields[field].blacklist) {
         if (fields[field].type === "checkbox") {
           Object.keys(data[field].value).forEach((key: string) => {
-            fields[field].blacklist.includes(key) && btn?.setAttribute('disabled', 'true');
-          })
+            fields[field].blacklist.includes(key) &&
+              btn?.setAttribute("disabled", "true");
+          });
         }
-        fields[field].blacklist.includes(data[field].value) && btn?.setAttribute('disabled', 'true');
+        fields[field].blacklist.includes(data[field].value) &&
+          btn?.setAttribute("disabled", "true");
       }
     }
-  },[data]);
+  }, [data]);
 
   const {
     show: pbShow,
@@ -174,9 +183,12 @@ export const LlamaForm = (props: any) => {
     align: pbAlign,
     textAlign: pbTextAlign,
     className: pbClassName,
+    subProgressText: spText,
   } = progressBar;
-  return (<>
-    <style>{`
+  return (
+    <>
+      <style>
+        {`
         .llm-form-container{
           background-color: #FAFAFA;
           width: 100%;
@@ -213,44 +225,41 @@ export const LlamaForm = (props: any) => {
           margin: 5px 5px 20px auto;
       }
       `}
-    </style>
-    <div className={`llm-form-container`}>
-      {title && 
-        <h1 className={`llm-heading`}>{title}</h1> 
-      }
-      {description && 
-        <h2 className={`llm-description`}>{description}</h2>
-      }
-      
-      {progressBar ? (
-        <Progress
-          className={pbClassName ?? ""}
-          height={pbHeight ?? ""}
-          width={pbWidth ?? ""}
-          step={step}
-          stepLength={Object.keys(wizardStepSet).length}
-          color={pbColor ?? ""}
-          text={pbText ?? ""}
-          textAlign={pbTextAlign ?? ""}
-          textColor={pbTextColor ?? ""}
-          ProgressBar={pbShow ?? false}
-          subProgressBar={subProgress ?? false}
-          align={pbAlign ?? "start"}
-        />
-      ) : null}
+      </style>
+      <div className={`llm-form-container`}>
+        {title && <h1 className={`llm-heading`}>{title}</h1>}
+        {description && <h2 className={`llm-description`}>{description}</h2>}
 
-      <form
-        className="llm-form"
-        onSubmit={(e) => {
-          e.preventDefault();
-        }}
-        style={{ minWidth: "100%", padding: "0px 20px" }}>
-        {formBuilder()}
-      </form>
-    </div>
-  </>
+        {progressBar ? (
+          <Progress
+            className={pbClassName ?? ""}
+            height={pbHeight ?? ""}
+            width={pbWidth ?? ""}
+            step={step}
+            stepLength={Object.keys(wizardStepSet).length}
+            color={pbColor ?? ""}
+            text={pbText ?? ""}
+            textAlign={pbTextAlign ?? ""}
+            textColor={pbTextColor ?? ""}
+            ProgressBar={pbShow ?? false}
+            subProgressBar={subProgress ?? false}
+            align={pbAlign ?? "start"}
+            spText={spText ? spText : "Step"}
+          />
+        ) : null}
+
+        <form
+          className="llm-form"
+          onSubmit={(e) => {
+            e.preventDefault();
+          }}
+          style={{ minWidth: "100%", padding: "0px 20px" }}
+        >
+          {formBuilder()}
+        </form>
+      </div>
+    </>
   );
 };
-
 
 export default LlamaForm;
