@@ -30,6 +30,7 @@ function App() {
           textAlign: '',
           textColor: '',
           subProgress: true,
+          subProgressText: 'Question ?',
           align: '',
           
         },
