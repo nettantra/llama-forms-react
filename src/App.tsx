@@ -31,6 +31,7 @@ function App() {
           textColor: '',
           subProgress: true,
           subProgressText: 'Question ?',
+          numberToWord:true,
           align: '',
           
         },

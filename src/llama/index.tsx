@@ -184,6 +184,7 @@ export const LlamaForm = (props: any) => {
     textAlign: pbTextAlign,
     className: pbClassName,
     subProgressText: spText,
+    numberToWord: numToWord,
   } = progressBar;
   return (
     <>
@@ -245,6 +246,7 @@ export const LlamaForm = (props: any) => {
             subProgressBar={subProgress ?? false}
             align={pbAlign ?? "start"}
             spText={spText ? spText : "Step"}
+            numToWord={numToWord ? true : false}
           />
         ) : null}
 
