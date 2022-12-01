@@ -51,6 +51,11 @@ function App() {
         },
         initialStep:1,
         properties: {
+          search:{
+            type: 'string',
+            required: true,
+            step:1
+          },
           checkBox:{
             type: 'string',
             required: true,
@@ -142,6 +147,11 @@ function App() {
       options={{
         type: 'object',
         fields: {
+          search: {
+            type: "search",
+            label: "this is search box",
+            description: "This is search field",
+          },
           checkBox: {
             type: "checkbox",
             label: "Check Box test",

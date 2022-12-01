@@ -31,6 +31,7 @@ import CountryField from '../fields/Country/Country';
 import StateField from '../fields/State/State';
 import CityField from '../fields/City/City';
 import TextEditorField from '../fields/TextEdiitor/TextEditor';
+import SearchField from '../fields/Search/Search';
 
 interface Props {
     fields: any,
@@ -76,6 +77,7 @@ export default function RenderForm(props: Props) {
         'state': StateField,
         'city': CityField,
         'textEditor': TextEditorField,
+        'search': SearchField,
     }
 
 
