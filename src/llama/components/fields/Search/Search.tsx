@@ -16,32 +16,26 @@ const SearchField = (props: Props) => {
     handleData(e.target.value, false);
   };
   return (
-    <div>
-      <h3
-        style={{
-          fontFamily: "Nunito Sans",
-          fontWeight: "400",
-          fontSize: "16px",
-          margin: "5px 0",
-        }}
-      >
-        {properties["label"]}
-      </h3>
-      <input
-        type="search"
-        id={name}
-        name={name}
-        className={properties["className"] || "llama-" + name}
-        placeholder={properties?.["placeholder"] || null}
-        value={props.parentState[name]?.value}
-        maxLength={properties?.["maxlength"] || null}
-        minLength={properties?.["minLength"] || null}
-        onChange={(e: ChangeEvent<HTMLInputElement>) => {
-          handleChange(e);
-        }}
-        
-      />
-    </div>
+    <>
+      <div className="llm-field-search-container">
+        <h3 className="llm-field-search-label">{properties["label"]}</h3>
+        <input
+          type="search"
+          id={name}
+          name={name}
+          className={`llm-field-search ${properties["className"] || ""}`}
+          placeholder={properties?.["placeholder"] || null}
+          value={props.parentState[name]?.value}
+          maxLength={properties?.["maxlength"] || null}
+          minLength={properties?.["minLength"] || null}
+          autoFocus={properties['autoFocus'] ?? false}
+          autoComplete={properties['autoComplete'] ? "on" : "off"}
+          onChange={(e: ChangeEvent<HTMLInputElement>) => {
+            handleChange(e);
+          }}
+        />
+      </div>
+    </>
   );
 };
 
